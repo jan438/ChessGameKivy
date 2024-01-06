@@ -356,6 +356,7 @@ class ChessBoard(RelativeLayout):
                     ChessBoard.piece_pressed = True
                     ChessBoard.piece_index = id
                     ChessBoard.available_moves = child.available_moves(self.children)
+                    print(ChessBoard.available_moves)
                     self.draw_moves()
                     ChessBoard.id_piece_ = child.id
                     break
