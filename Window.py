@@ -144,25 +144,19 @@ class Knight(ChessPiece):
 
     def available_moves(self, pieces):
         available_moves = {"available_moves":self.create_moves(), "pieces_to_capture":[]}
-
         for piece in pieces:
             if self.id[:5] == "White":
-
                 if piece.id[:5] == "White" and (piece.grid_x, piece.grid_y) in available_moves["available_moves"]:
                     available_moves["available_moves"].remove((piece.grid_x, piece.grid_y))
-
                 if piece.id[:5] == "Black" and (piece.grid_x, piece.grid_y) in available_moves["available_moves"]:
                     available_moves["available_moves"].remove((piece.grid_x, piece.grid_y))
                     available_moves["pieces_to_capture"].append((piece.grid_x, piece.grid_y))
-
             if self.id[:5] == "Black":
                 if piece.id[:5] == "Black" and (piece.grid_x, piece.grid_y) in available_moves["available_moves"]:
                     available_moves["available_moves"].remove((piece.grid_x, piece.grid_y))
-
                 if piece.id[:5] == "White" and (piece.grid_x, piece.grid_y) in available_moves["available_moves"]:
                     available_moves["available_moves"].remove((piece.grid_x, piece.grid_y))
                     available_moves["pieces_to_capture"].append((piece.grid_x, piece.grid_y))
-
         return available_moves
 
     def create_moves(self):
