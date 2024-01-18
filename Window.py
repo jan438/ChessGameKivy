@@ -290,23 +290,14 @@ class King(ChessPiece):
 
     def create_moves(self):
         available_moves = {"available_moves":[], "pieces_to_capture":[]}
-
         available_moves["available_moves"].append((self.grid_x, self.grid_y+1))
-
         available_moves["available_moves"].append((self.grid_x-1, self.grid_y+1))
-
         available_moves["available_moves"].append((self.grid_x+1, self.grid_y+1))
-
         available_moves["available_moves"].append((self.grid_x-1, self.grid_y))
-
         available_moves["available_moves"].append((self.grid_x-1, self.grid_y-1))
-
         available_moves["available_moves"].append((self.grid_x+1, self.grid_y))
-
         available_moves["available_moves"].append((self.grid_x+1, self.grid_y-1))
-
         available_moves["available_moves"].append((self.grid_x, self.grid_y-1))
-
         return available_moves
 
     def castling(self, pieces):
