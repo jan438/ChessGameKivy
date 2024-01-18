@@ -162,11 +162,9 @@ class Knight(ChessPiece):
 class Bishop(ChessPiece):
 
     def available_moves(self, pieces):
-
         available_moves = {"available_moves":[], "pieces_to_capture":[]}
         rows = 8
         cols = 8
-
         for i in range(1, rows):
             if self.grid_x + i >= rows or self.grid_y + i >= cols:
                 break
@@ -177,11 +175,9 @@ class Bishop(ChessPiece):
                     if piece.id[:5] != self.id[:5]:
                         available_moves["pieces_to_capture"].append((self.grid_x + i, self.grid_y + i))
                     break
-
             if found:
                 break
             available_moves["available_moves"].append((self.grid_x + i, self.grid_y + i))
-
         for i in range(1, rows):
             if self.grid_x - i < 0 or self.grid_y + i >= rows:
                 break
@@ -192,11 +188,9 @@ class Bishop(ChessPiece):
                     if piece.id[:5] != self.id[:5]:
                         available_moves["pieces_to_capture"].append((self.grid_x - i, self.grid_y + i))
                     break
-
             if found:
                 break
             available_moves["available_moves"].append((self.grid_x - i, self.grid_y + i))
-
         for i in range(1, rows):
             if self.grid_x - i < 0 or self.grid_y - i < 0:
                 break
@@ -207,11 +201,9 @@ class Bishop(ChessPiece):
                     if piece.id[:5] != self.id[:5]:
                         available_moves["pieces_to_capture"].append((self.grid_x - i, self.grid_y - i))
                     break
-
             if found:
                 break
             available_moves["available_moves"].append((self.grid_x - i, self.grid_y - i))
-
         for i in range(1, rows):
             if self.grid_x + i >= rows or self.grid_y - i < 0:
                 break
@@ -222,11 +214,9 @@ class Bishop(ChessPiece):
                     if piece.id[:5] != self.id[:5]:
                         available_moves["pieces_to_capture"].append((self.grid_x + i, self.grid_y - i))
                     break
-
             if found:
                 break
             available_moves["available_moves"].append((self.grid_x + i, self.grid_y - i))
-
         return available_moves
 
 class Queen(Rook, Bishop):
@@ -388,7 +378,6 @@ class ChessBoard(RelativeLayout):
     def turn(self):
         if ChessBoard.turn_ == "White":
             ChessBoard.turn_ = "Black"
-
         else:
             ChessBoard.turn_ = "White"
 
@@ -398,7 +387,6 @@ class ChessBoard(RelativeLayout):
             if piece_.id[:5] == ChessBoard.turn_ and piece_.id[5:] == "King":
                 King = piece_
                 break
-
         for piece in self.children:
             if piece.id[:5] != ChessBoard.turn_:
                 piece_available_moves = piece.available_moves(self.children)
@@ -441,11 +429,9 @@ class ChessBoard(RelativeLayout):
         grid_size_y = self.height / 8
         Blue = (0, 0, 1)
         Green = (0, 1, 0)
-
         with self.canvas:
             self.canvas.remove_group("moves")
             size = (0.2*grid_size_x, 0.2*grid_size_y)
-
             for idx, moves in enumerate(ChessBoard.available_moves.values()):
                 if idx == 0:
                     Color(rgb=Blue)
