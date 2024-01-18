@@ -243,24 +243,17 @@ class King(ChessPiece):
         rows, cols = 8,8
         good_available_moves = []
         for move in available_moves["available_moves"]:
-
             if move[0] <= cols and move[1] <= rows and move[1] >= 0 and move[0] >= 0:
-
                 good_available_moves.append(move)
-
         available_moves["available_moves"] = good_available_moves
-
         for piece in pieces:
             if (piece.grid_x, piece.grid_y) in available_moves["available_moves"]:
                 if piece.id[:5] != self.id[:5]:
                     available_moves["available_moves"].remove((piece.grid_x, piece.grid_y))
                     available_moves["pieces_to_capture"].append((piece.grid_x, piece.grid_y))
-
                 available_moves["available_moves"].remove((piece.grid_x, piece.grid_y))
-
         if self.First_use:
             available_moves["castling"] = self.castling(pieces)
-
         return available_moves
 
     def create_moves(self):
