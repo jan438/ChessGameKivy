@@ -355,7 +355,7 @@ class ChessBoard(RelativeLayout):
                     print("Optie2:",grid_x)
                     anim = Animation(grid_x=grid_x+1, grid_y=grid_y, t='in_out_expo', duration=0.5)
                     anim.start(self.children[id])
-                print("Optie3:",grid_x,child.id)
+                print("Optie3:",grid_x,child.id,ChessBoard.available_moves["castling"])
                 anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                 anim.start(self.children[ChessBoard.piece_index])
                 ChessBoard.piece_pressed = False
