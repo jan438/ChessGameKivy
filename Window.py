@@ -264,7 +264,7 @@ class King(ChessPiece):
             no_piece_left = True
             no_piece_right = True
             for piece in pieces:
-                print("Castling def1",piece.id,piece.grid_x,piece.grid_y)
+                #print("Castling def1",piece.id,piece.grid_x,piece.grid_y)
                 if piece.grid_y == self.grid_y and piece.grid_x > self.grid_x and (piece.id[5:9] != "Rook" or self.id[:5] != piece.id[:5]):
                     no_piece_right = False
 
