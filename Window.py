@@ -288,6 +288,12 @@ class ChessBoard(RelativeLayout):
     turn_ = "White"
     piece_index = None
     check = BooleanProperty(defaultvalue=False)
+    
+    def findpiece(self,id):
+        print("Findpiece",id)
+        for child in self.children:
+            if child.id == id:
+                return child
 
     def on_touch_down(self, touch):
         rows, cols = 8,8
