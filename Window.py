@@ -354,8 +354,11 @@ class ChessBoard(RelativeLayout):
                             else:
                                 self.turn()
                                 break
-            elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"] and child.id[:5] == ChessBoard.id_piece_[:5] and child.id[5:-2] == "Rook" and child.First_use:
+            elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"] and child.First_use:
                 print("Castling uitvoeren",child.id,"Rook x:",child.grid_x,"King x",grid_x,self.children[ChessBoard.piece_index].id,"Available:",ChessBoard.available_moves["castling"])
+                if grid_x == 2 and grid_y == 0:
+                    piece = self.findpiece("WhiteRook_0")
+                    print("=====",piece.id,"(",piece.grid_x,grid_y,")")
                 if child.grid_x == grid_x + 1:
                     print("Optie1:",grid_x)
                     anim = Animation(grid_x=grid_x-1, grid_y=grid_y, t='in_out_expo', duration=0.5)
