@@ -375,7 +375,6 @@ class ChessBoard(RelativeLayout):
                 anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                 anim.start(self.children[ChessBoard.piece_index])
                 ChessBoard.piece_pressed = False
-                child.First_use = False
                 self.children[ChessBoard.piece_index].First_use = False
                 ChessBoard.available_moves = {"available_moves":(), "pieces_to_capture":[]}
                 if self.check_check():
@@ -387,7 +386,6 @@ class ChessBoard(RelativeLayout):
                     if ChessBoard.id_piece_ == "White":
                         anim = Animation(grid_x=4, grid_y=7, t='in_quad', duration=0.5)
                         anim.start(self.children[ChessBoard.piece_index])
-                    child.First_use = True
                     self.children[ChessBoard.piece_index].First_use = True
                     break
                 else:
