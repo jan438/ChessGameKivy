@@ -358,15 +358,25 @@ class ChessBoard(RelativeLayout):
                 print("Castling uitvoeren")
                 if grid_x == 2 and grid_y == 0:
                     piece = self.findpiece("WhiteRook_0")
-                    print("=====",piece.id,"(",piece.grid_x,grid_y,")")
                     anim = Animation(grid_x=grid_x+1, grid_y=grid_y, t='in_out_expo', duration=0.5)
                     anim.start(piece)
                     anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                     anim.start(self.children[ChessBoard.piece_index])
                 if grid_x == 2 and grid_y == 7:
                     piece = self.findpiece("BlackRook_0")
-                    print("=====",piece.id,"(",piece.grid_x,grid_y,")")
                     anim = Animation(grid_x=grid_x+1, grid_y=grid_y, t='in_out_expo', duration=0.5)
+                    anim.start(piece)
+                    anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
+                    anim.start(self.children[ChessBoard.piece_index])
+                if grid_x == 6 and grid_y == 0:
+                    piece = self.findpiece("WhiteRook_1")
+                    anim = Animation(grid_x=grid_x-1, grid_y=grid_y, t='in_out_expo', duration=0.5)
+                    anim.start(piece)
+                    anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
+                    anim.start(self.children[ChessBoard.piece_index])
+                if grid_x == 6 and grid_y == 7:
+                    piece = self.findpiece("BlackRook_1")
+                    anim = Animation(grid_x=grid_x-1, grid_y=grid_y, t='in_out_expo', duration=0.5)
                     anim.start(piece)
                     anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                     anim.start(self.children[ChessBoard.piece_index])
