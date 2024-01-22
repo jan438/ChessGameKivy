@@ -354,7 +354,7 @@ class ChessBoard(RelativeLayout):
                             else:
                                 self.turn()
                                 break
-            elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"] and child.First_use:
+            elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
                 print("Castling uitvoeren")
                 if grid_x == 2 and grid_y == 0:
                     piece = self.findpiece("WhiteRook_0")
