@@ -289,8 +289,11 @@ class ChessBoard(RelativeLayout):
     piece_index = None
     check = BooleanProperty(defaultvalue=False)
     
+    def listpieces(self):
+        for child in self.children:
+            print("Human board",child.id,child.grid_x,child.grid_y)           
+    
     def findpiece(self,id):
-        print("Findpiece",id)
         for child in self.children:
             if child.id == id:
                 return child
