@@ -291,7 +291,7 @@ class ChessBoard(RelativeLayout):
     
     def listpieces(self):
         for child in self.children:
-            print("Human board",child.id,child.grid_x,child.grid_y)           
+            print("Human board",child.id,round(child.grid_x),round(child.grid_y))           
     
     def findpiece(self,id):
         for child in self.children:
