@@ -404,6 +404,7 @@ class ChessBoard(RelativeLayout):
             ChessBoard.turn_ = "Black"
         else:
             ChessBoard.turn_ = "White"
+        self.listpieces()
 
     def check_check(self):
         King = None
