@@ -337,6 +337,7 @@ class ChessBoard(RelativeLayout):
                         anim.start(self.children[id])
                         break
                     else:
+                        print("3b")
                         self.turn()
                         break
                 elif (grid_x, grid_y) in ChessBoard.available_moves["pieces_to_capture"]:
