@@ -299,6 +299,7 @@ class ChessBoard(RelativeLayout):
                 return child
 
     def on_touch_down(self, touch):
+        print("Len:",len(self.children))
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
