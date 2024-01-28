@@ -388,9 +388,6 @@ class ChessBoard(RelativeLayout):
                     if ChessBoard.id_piece_ == "White":
                         anim = Animation(grid_x=4, grid_y=0, t='in_quad', duration=0.5)
                         anim.start(self.children[ChessBoard.piece_index])
-                    if ChessBoard.id_piece_ == "White":
-                        anim = Animation(grid_x=4, grid_y=7, t='in_quad', duration=0.5)
-                        anim.start(self.children[ChessBoard.piece_index])
                     self.children[ChessBoard.piece_index].First_use = True
                     break
                 else:
