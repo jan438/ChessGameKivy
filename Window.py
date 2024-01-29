@@ -297,9 +297,15 @@ class ChessBoard(RelativeLayout):
         for child in self.children:
             if child.id == id:
                 return child
+                
+    def trace(self,id):
+        piece = self.findpiece(id)
+        print("==========",id)
 
     def on_touch_down(self, touch):
         print("Len:",len(self.children))
+        traceid = "WhitePawm_3"
+        self.trace(traceid)
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
