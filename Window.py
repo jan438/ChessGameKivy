@@ -294,15 +294,14 @@ class ChessBoard(RelativeLayout):
             print("Human board",child.id,round(child.grid_x),round(child.grid_y))           
     
     def findpiece(self,id):
-        print("1111111111111",id)
         for child in self.children:
-            print("22222222",child.id)
+            print("find====",child.id)
             if child.id == id:
                 return child
                 
     def trace(self,id):
         piece = self.findpiece(id)
-        print("trace==========",id)
+        print("trace====",id)
 
     def on_touch_down(self, touch):
         print("Len:",len(self.children))
