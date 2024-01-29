@@ -305,7 +305,7 @@ class ChessBoard(RelativeLayout):
 
     def on_touch_down(self, touch):
         print("Len:",len(self.children))
-        traceid = "WhitePawm_3"
+        traceid = "WhitePawn_3"
         self.trace(traceid)
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
