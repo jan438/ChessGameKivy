@@ -294,7 +294,9 @@ class ChessBoard(RelativeLayout):
             print("Human board",child.id,round(child.grid_x),round(child.grid_y))           
     
     def findpiece(self,id):
+        print("1111111111111",id)
         for child in self.children:
+            print("22222222",child.id)
             if child.id == id:
                 return child
                 
