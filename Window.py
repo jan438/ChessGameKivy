@@ -243,7 +243,7 @@ class King(ChessPiece):
                     available_moves["pieces_to_capture"].append((piece.grid_x, piece.grid_y))
                 available_moves["available_moves"].remove((piece.grid_x, piece.grid_y))
         if self.First_use:
-            print("Available King:",self.id,self.castling(pieces))
+            #print("Available King:",self.id,self.castling(pieces))
             available_moves["castling"] = self.castling(pieces)
         return available_moves
 
@@ -271,13 +271,13 @@ class King(ChessPiece):
                 elif piece.grid_y == self.grid_y and piece.grid_x < self.grid_x and (piece.id[5:9] != "Rook" or self.id[:5] != piece.id[:5]):
                     no_piece_left = False
             if no_piece_right and no_piece_left:
-                print("Castling def2 no leftt no right:",self.grid_x-2,self.grid_y,self.id,self.grid_x+2,self.grid_y)
+                #print("Castling def2 no leftt no right:",self.grid_x-2,self.grid_y,self.id,self.grid_x+2,self.grid_y)
                 return [(self.grid_x-2, self.grid_y),(self.grid_x+2, self.grid_y)]
             if no_piece_right:
-                print("Castling def2 no right:",self.grid_x+2,self.grid_y,self.id)
+                #print("Castling def2 no right:",self.grid_x+2,self.grid_y,self.id)
                 return [(self.grid_x+2, self.grid_y)]
             if no_piece_left:
-                print("Castling def2 no left:",self.grid_x-2,self.grid_y,self.id)
+                #print("Castling def2 no left:",self.grid_x-2,self.grid_y,self.id)
                 return [(self.grid_x-2, self.grid_y)]
         return []
 
@@ -299,14 +299,15 @@ class ChessBoard(RelativeLayout):
             if child.id == id:
                 return child
                 
-    def trace(self,id):
+    def trace(self,id,nr):
         piece = self.findpiece(id)
-        print("trace====",id,piece.grid_y)
+        print("trace====",id,"nr:",nr,"piece.id:",piece.id,"piece.grid_y",piece.grid_y)
 
     def on_touch_down(self, touch):
         print("Len:",len(self.children))
         traceid = "WhitePawn_3"
-        self.trace(traceid)
+        nr = 0
+        self.trace(traceid,nr)
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
@@ -410,7 +411,7 @@ class ChessBoard(RelativeLayout):
             ChessBoard.turn_ = "Black"
         else:
             ChessBoard.turn_ = "White"
-        self.listpieces()
+        #self.listpieces()
 
     def check_check(self):
         King = None
