@@ -306,8 +306,7 @@ class ChessBoard(RelativeLayout):
     def on_touch_down(self, touch):
         print("Len:",len(self.children))
         traceid = "WhitePawn_3"
-        nr = 0
-        self.trace(traceid,nr)
+        self.trace(traceid,1)
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
@@ -348,6 +347,7 @@ class ChessBoard(RelativeLayout):
                         break
                     else:
                         print("3b")
+                        self.trace(traceid,2)
                         self.turn()
                         break
                 elif (grid_x, grid_y) in ChessBoard.available_moves["pieces_to_capture"]:
