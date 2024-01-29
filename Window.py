@@ -291,7 +291,7 @@ class ChessBoard(RelativeLayout):
     
     def listpieces(self):
         for child in self.children:
-            print("Human board",child.id,round(child.grid_x),round(child.grid_y))           
+            print("Human board",child.id,child.grid_x,child.grid_y)           
     
     def findpiece(self,id):
         for child in self.children:
@@ -313,7 +313,7 @@ class ChessBoard(RelativeLayout):
         print("On toch", grid_x, grid_y)
         for id, child in enumerate(self.children):
             if grid_x == child.grid_x and grid_y == child.grid_y:
-                print(child.id,round(child.grid_x),round(grid_y))
+                print(child.id,child.grid_x,grid_y)
         for id, child in enumerate(self.children):
             old_x, old_y = child.grid_x, child.grid_y
             if not ChessBoard.piece_pressed:
