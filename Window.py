@@ -295,13 +295,13 @@ class ChessBoard(RelativeLayout):
     
     def findpiece(self,id):
         for child in self.children:
-            print("find====",child.id)
+            #print("find====",child.id)
             if child.id == id:
                 return child
                 
     def trace(self,id):
         piece = self.findpiece(id)
-        print("trace====",id)
+        print("trace====",id,piece.grid_y)
 
     def on_touch_down(self, touch):
         print("Len:",len(self.children))
