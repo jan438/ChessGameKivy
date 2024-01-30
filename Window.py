@@ -15,6 +15,7 @@ from kivy.graphics import Rectangle, Color, Ellipse
 from kivy.lang.builder import Builder
 from kivy.utils import get_hex_from_color, get_color_from_hex
 
+indent = '    '
 Width, Height = 800, 800
 Window.size = (Width, Height)
 
