@@ -387,6 +387,7 @@ class ChessBoard(RelativeLayout):
                     piece = self.findpiece("BlackRook_1")
                     anim = Animation(grid_x=grid_x-1, grid_y=grid_y, t='in_out_expo', duration=0.5)
                     anim.start(piece)
+                piece.First_use = False
                 anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                 anim.start(self.children[ChessBoard.piece_index])
                 ChessBoard.piece_pressed = False
