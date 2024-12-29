@@ -1,3 +1,6 @@
+import chess
+import chess.pgn
+import io
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
@@ -533,4 +536,11 @@ class ChessApp(App):
         return board
 
 if __name__ == '__main__':
+    game = chess.pgn.Game()
+    game.headers["Event"] = "Example"
+    node = game.add_variation(chess.Move.from_uci("e2e4"))
+    node = node.add_variation(chess.Move.from_uci("e7e5"))
+    node.comment = "Comment"
+    print(game)
+    print("PGN")
     ChessApp().run()
