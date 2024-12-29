@@ -1,6 +1,8 @@
 import chess
 import chess.pgn
 import io
+import sys
+import os
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
@@ -536,6 +538,11 @@ class ChessApp(App):
         return board
 
 if __name__ == '__main__':
+    if sys.platform[0] == 'l':
+        path = '/home/jan/git/ChessGameKivy'
+    if sys.platform[0] == 'w':
+        path = "C:/Users/janbo/OneDrive/Documents/GitHub/ChessGameKivy"
+    os.chdir(path)
     game = chess.pgn.Game()
     game.headers["Event"] = "Example"
     node = game.add_variation(chess.Move.from_uci("e2e4"))
@@ -544,4 +551,6 @@ if __name__ == '__main__':
     print(game)
     pgn = open("PGN/testpgn.pgn")
     testgame = chess.pgn.read_game(pgn)
+    for move in testgame.mainline_moves():
+        print(move)
     ChessApp().run()
