@@ -542,6 +542,6 @@ if __name__ == '__main__':
     node = node.add_variation(chess.Move.from_uci("e7e5"))
     node.comment = "Comment"
     print(game)
-    pgn = open("testpgn.pgn")
+    pgn = open("PGN/testpgn.pgn")
     testgame = chess.pgn.read_game(pgn)
     ChessApp().run()
