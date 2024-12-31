@@ -338,6 +338,10 @@ class ChessBoard(RelativeLayout):
             for move in game.mainline_moves():
                 print(move)
             pgn.close()
+        elif l == 'w':
+            pgn = open("PGN/outputpgn.pgn", 'w')
+            print("Write pgn")
+            pgn.close()
         return True
 
     def close_application(self): 
