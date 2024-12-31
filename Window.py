@@ -305,6 +305,12 @@ class ChessBoard(RelativeLayout):
         self._keyboard = None
         
     def check_pgn_move(self):
+        game = chess.pgn.Game()
+        game.headers["Event"] = "Example"
+        node = game.add_variation(chess.Move.from_uci("e2e4"))
+        node = node.add_variation(chess.Move.from_uci("e7e5"))
+        node.comment = "Comment"
+        print(game)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
@@ -586,10 +592,4 @@ if __name__ == '__main__':
     if sys.platform[0] == 'w':
         path = "C:/Users/janbo/OneDrive/Documents/GitHub/ChessGameKivy"
     os.chdir(path)
-    #game = chess.pgn.Game()
-    #game.headers["Event"] = "Example"
-    #node = game.add_variation(chess.Move.from_uci("e2e4"))
-    #node = node.add_variation(chess.Move.from_uci("e7e5"))
-    #node.comment = "Comment"
-    #print(game)
     ChessApp().run()
