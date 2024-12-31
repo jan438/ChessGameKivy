@@ -326,6 +326,12 @@ class ChessBoard(RelativeLayout):
             self.check_pgn_move()
             self.hmmove = "     "
             self.index = 0
+        elif l == 'r':
+            pgn = open("PGN/testpgn.pgn")
+            game = chess.pgn.read_game(pgn)
+            for move in game.mainline_moves():
+                print(move)
+            pgn.close()
         return True
 
     def close_application(self): 
@@ -580,14 +586,10 @@ if __name__ == '__main__':
     if sys.platform[0] == 'w':
         path = "C:/Users/janbo/OneDrive/Documents/GitHub/ChessGameKivy"
     os.chdir(path)
-    game = chess.pgn.Game()
-    game.headers["Event"] = "Example"
-    node = game.add_variation(chess.Move.from_uci("e2e4"))
-    node = node.add_variation(chess.Move.from_uci("e7e5"))
-    node.comment = "Comment"
-    print(game)
-    pgn = open("PGN/testpgn.pgn")
-    testgame = chess.pgn.read_game(pgn)
-    for move in testgame.mainline_moves():
-        print(move)
+    #game = chess.pgn.Game()
+    #game.headers["Event"] = "Example"
+    #node = game.add_variation(chess.Move.from_uci("e2e4"))
+    #node = node.add_variation(chess.Move.from_uci("e7e5"))
+    #node.comment = "Comment"
+    #print(game)
     ChessApp().run()
