@@ -295,6 +295,40 @@ class ChessBoard(RelativeLayout):
     piece_index = None
     check = BooleanProperty(defaultvalue=False)
     
+    def __init__(self, **kwargs):
+        super(ChessBoard, self).__init__(**kwargs)
+        self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
+        self._keyboard.bind(on_key_down = self.make_pgn_move)
+        
+    def _keyboard_closed(self):
+        self._keyboard.unbind(on_key_down = self.make_pgn_move)
+        self._keyboard = None
+        
+    def make_pgn_move(self, keyboard, keycode, text, modifiers):
+        l = keycode[1]
+        if l == 'q':
+            self.close_application()   
+        elif l == 'm':
+            self.hmmove = "     "
+            self.index = 0
+        elif (l >= 'a' and l <= 'h') or (l >= '1' and l <= '8'):
+            if self.index < 5:
+                self.hmmove = self.hmmove[: self.index] + l + self.hmmove[self.index + 1:]
+                self.index += 1
+            if self.index == 2:
+                self.hmmove = self.hmmove[: self.index] + ' ' + self.hmmove[self.index + 1:]
+                self.index = 3
+        elif l == '.':
+            print("Move:" + self.hmmove + " Index:" + str(self.index))
+            #self.check_ai_move()
+            self.hmmove = "     "
+            self.index = 0
+        return True
+
+    def close_application(self): 
+        App.get_running_app().stop() 
+        Window.close()
+    
     def listpieces(self):
         for child in self.children:
             print("Human board",child.id,child.grid_x,child.grid_y)           
