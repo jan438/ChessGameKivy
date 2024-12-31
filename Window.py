@@ -304,6 +304,9 @@ class ChessBoard(RelativeLayout):
         self._keyboard.unbind(on_key_down = self.make_pgn_move)
         self._keyboard = None
         
+    def check_pgn_move(self):
+        return True
+
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
         if l == 'q':
@@ -320,7 +323,7 @@ class ChessBoard(RelativeLayout):
                 self.index = 3
         elif l == '.':
             print("Move:" + self.hmmove + " Index:" + str(self.index))
-            #self.check_ai_move()
+            self.check_pgn_move()
             self.hmmove = "     "
             self.index = 0
         return True
