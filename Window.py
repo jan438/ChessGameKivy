@@ -294,6 +294,7 @@ class ChessBoard(RelativeLayout):
     turn_ = "White"
     piece_index = None
     check = BooleanProperty(defaultvalue=False)
+    pgngame = chess.pgn.Game()
     
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
@@ -327,8 +328,7 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[: self.index] + ' ' + self.hmmove[self.index + 1:]
                 self.index = 3
         elif l == '.':
-            pgngame = chess.pgn.Game()
-            print("Move:" + self.hmmove + " Index:" + str(self.index), "PGNGame", pgngame)
+            print("Move:" + self.hmmove + " Index:" + str(self.index), "PGNGame", ChessBoard.pgngame)
             self.hmmove = "     "
             self.index = 0
         elif l == 'r':
