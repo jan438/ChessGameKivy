@@ -23,6 +23,7 @@ from kivy.utils import get_hex_from_color, get_color_from_hex
 indent = '    '
 Width, Height = 800, 800
 Window.size = (Width, Height)
+pgngame = chess.pgn.Game()
 
 class ChessPiece(ButtonBehavior, Image):
 
@@ -305,12 +306,11 @@ class ChessBoard(RelativeLayout):
         self._keyboard = None
         
     def check_pgn_move(self):
-        game = chess.pgn.Game()
-        game.headers["Event"] = "Example"
-        node = game.add_variation(chess.Move.from_uci("e2e4"))
+        pgngame.headers["Event"] = "Example"
+        node = pgngame.add_variation(chess.Move.from_uci("e2e4"))
         node = node.add_variation(chess.Move.from_uci("e7e5"))
         node.comment = "Comment"
-        print(game)
+        print(pgngame)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
@@ -334,8 +334,8 @@ class ChessBoard(RelativeLayout):
             self.index = 0
         elif l == 'r':
             pgn = open("PGN/inputpgn.pgn")
-            game = chess.pgn.read_game(pgn)
-            for move in game.mainline_moves():
+            pgngame = chess.pgn.read_game(pgn)
+            for move in pgngame.mainline_moves():
                 print(move)
             pgn.close()
         elif l == 'w':
