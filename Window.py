@@ -328,6 +328,7 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[: self.index] + ' ' + self.hmmove[self.index + 1:]
                 self.index = 3
         elif l == '.':
+            ChessBoard.pgngame.headers["Event"] = "Example2"
             print("Move:" + self.hmmove + " Index:" + str(self.index), "PGNGame", ChessBoard.pgngame)
             self.hmmove = "     "
             self.index = 0
