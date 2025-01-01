@@ -333,7 +333,7 @@ class ChessBoard(RelativeLayout):
             self.hmmove = "     "
             self.index = 0
         elif l == 'r':
-            pgn = open("PGN/testpgn.pgn")
+            pgn = open("PGN/inputpgn.pgn")
             game = chess.pgn.read_game(pgn)
             for move in game.mainline_moves():
                 print(move)
