@@ -329,6 +329,9 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[: self.index] + ' ' + self.hmmove[self.index + 1:]
                 self.index = 3
         elif l == '.':
+            node = ChessBoard.pgngame.add_variation(chess.Move.from_uci("e2e4"))
+            node = node.add_variation(chess.Move.from_uci("e7e5"))
+            node.comment = "Comment1"
             print("Move:" + self.hmmove + " Index:" + str(self.index), "PGNGame", ChessBoard.pgngame)
             self.hmmove = "     "
             self.index = 0
