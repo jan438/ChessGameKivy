@@ -358,11 +358,10 @@ Ra7 41. Kxb3 Re7 42. Rb6+ Kc5 43. Ka4 Re4+ 44. b4+ Kc4 45. Rc6+ Kd5 46. Rc5+ Kd6
 Rg3 54. Qd8+ Ke6 55. Ra6 Kf5 56. Qf6+ Ke4 57. Ra4+ Kd3 58. Qd4+ Ke2 59. Ra2+ Kf1
 60. Qf2# 1-0
 """
-            pgn = "PGN/outputpgn.pgn"
-            with open(pgn, "w") as file:
-                file.write(pgn_data)
+            pgn = open("PGN/outputpgn.pgn", "w")
+            pgn.write(pgn_data)
             print("Write pgn")
-            file.close()
+            pgn.close()
         return True
 
     def close_application(self): 
