@@ -363,6 +363,10 @@ Rg3 54. Qd8+ Ke6 55. Ra6 Kf5 56. Qf6+ Ke4 57. Ra4+ Kd3 58. Qd4+ Ke2 59. Ra2+ Kf1
             pgn = open("PGN/outputpgn.pgn", "w")
             pgn.write(pgn_data)
             pgn.close()
+        elif l == 'n':
+            print("Next", len(ChessBoard.pgn_moves))
+        elif l == 'p':
+            print("Previous", len(ChessBoard.pgn_moves))
         return True
 
     def close_application(self): 
