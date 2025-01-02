@@ -340,6 +340,8 @@ class ChessBoard(RelativeLayout):
                 self.pgn_moves.append(move)
             pgn.close()
             self.pgn_index = len(self.pgn_moves)
+        elif l == 'l':
+            print("List")
         elif l == 'w':
             pgn_data = """[Event "F/S Return Match"]
 [Site "Belgrade, Serbia JUG"]
