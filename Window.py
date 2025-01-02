@@ -162,7 +162,6 @@ class Knight(ChessPiece):
         for move in moves:
             if move[0] <= 7 and move[1] <= 7 and move[0] >= 0 and move[1] >= 0:
                 good_moves.append((move))
-
         return good_moves
 
 class Bishop(ChessPiece):
@@ -365,11 +364,11 @@ Rg3 54. Qd8+ Ke6 55. Ra6 Kf5 56. Qf6+ Ke4 57. Ra4+ Kd3 58. Qd4+ Ke2 59. Ra2+ Kf1
             pgn.write(pgn_data)
             pgn.close()
         elif l == 'n':
-            if ChessBoard.pgn_index > 0 and ChessBoard.pgn_index < len(ChessBoard.pgn_moves):
-                print("Next", len(ChessBoard.pgn_moves), ChessBoard.pgn_index)
+            if ChessBoard.pgn_index > -1 and ChessBoard.pgn_index < len(ChessBoard.pgn_moves):
+                print("Next", len(ChessBoard.pgn_moves), ChessBoard.pgn_index, ChessBoard.pgn_moves[ChessBoard.pgn_index])
         elif l == 'p':
-            if ChessBoard.pgn_index > 0 and ChessBoard.pgn_index < len(ChessBoard.pgn_moves):
-                print("Previous", len(ChessBoard.pgn_moves), ChessBoard.pgn_index)
+            if ChessBoard.pgn_index > -1 and ChessBoard.pgn_index < len(ChessBoard.pgn_moves):
+                print("Previous", len(ChessBoard.pgn_moves), ChessBoard.pgn_index, ChessBoard.pgn_moves[ChessBoard.pgn_index])
         return True
 
     def close_application(self): 
