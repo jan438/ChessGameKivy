@@ -297,6 +297,7 @@ class ChessBoard(RelativeLayout):
     pgngame = chess.pgn.Game()
     pgngame.headers["Event"] = "FirstEvent"
     pgn_moves = []
+    pgn_index = -1
     
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
@@ -364,9 +365,9 @@ Rg3 54. Qd8+ Ke6 55. Ra6 Kf5 56. Qf6+ Ke4 57. Ra4+ Kd3 58. Qd4+ Ke2 59. Ra2+ Kf1
             pgn.write(pgn_data)
             pgn.close()
         elif l == 'n':
-            print("Next", len(ChessBoard.pgn_moves))
+            print("Next", len(ChessBoard.pgn_moves), ChessBoard.pgn_index)
         elif l == 'p':
-            print("Previous", len(ChessBoard.pgn_moves))
+            print("Previous", len(ChessBoard.pgn_moves), ChessBoard.pgn_index)
         return True
 
     def close_application(self): 
