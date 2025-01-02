@@ -341,7 +341,7 @@ class ChessBoard(RelativeLayout):
             pgn.close()
             self.pgn_index = len(self.pgn_moves)
         elif l == 'l':
-            print("List")
+            self.listpgn_moves()
         elif l == 'w':
             pgn_data = """[Event "F/S Return Match"]
 [Site "Belgrade, Serbia JUG"]
@@ -386,6 +386,9 @@ Rg3 54. Qd8+ Ke6 55. Ra6 Kf5 56. Qf6+ Ke4 57. Ra4+ Kd3 58. Qd4+ Ke2 59. Ra2+ Kf1
             #print("find====",child.id)
             if child.id == id:
                 return child
+                
+    def listpgn_moves(self):
+        print("List pgn_moves")
                 
     def trace(self,id,nr):
         piece = self.findpiece(id)
