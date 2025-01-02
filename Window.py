@@ -338,9 +338,9 @@ class ChessBoard(RelativeLayout):
             pgn = open("PGN/inputpgn.pgn")
             ChessBoard.pgngame = chess.pgn.read_game(pgn)
             for move in ChessBoard.pgngame.mainline_moves():
-                print(move)
                 ChessBoard.pgn_moves.append(move)
             pgn.close()
+            ChessBoard.pgn_index = len(ChessBoard.pgn_moves)
         elif l == 'w':
             pgn_data = """[Event "F/S Return Match"]
 [Site "Belgrade, Serbia JUG"]
