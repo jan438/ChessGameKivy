@@ -326,7 +326,7 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[: self.index] + ' ' + self.hmmove[self.index + 1:]
                 self.index = 3
         elif l == '.':
-            node = ChessBoard.pgngame.add_variation(chess.Move.from_uci("e2e4"))
+            node = self.pgngame.add_variation(chess.Move.from_uci("e2e4"))
             node = node.add_variation(chess.Move.from_uci("e7e5"))
             node.comment = "Comment1"
             self.check_pgn_move()
@@ -335,11 +335,11 @@ class ChessBoard(RelativeLayout):
             self.index = 0
         elif l == 'r':
             pgn = open("PGN/inputpgn.pgn")
-            ChessBoard.pgngame = chess.pgn.read_game(pgn)
-            for move in ChessBoard.pgngame.mainline_moves():
-                ChessBoard.pgn_moves.append(move)
+            self.pgngame = chess.pgn.read_game(pgn)
+            for move in self.pgngame.mainline_moves():
+                self.pgn_moves.append(move)
             pgn.close()
-            ChessBoard.pgn_index = len(ChessBoard.pgn_moves)
+            self.pgn_index = len(self.pgn_moves)
         elif l == 'w':
             pgn_data = """[Event "F/S Return Match"]
 [Site "Belgrade, Serbia JUG"]
@@ -364,11 +364,11 @@ Rg3 54. Qd8+ Ke6 55. Ra6 Kf5 56. Qf6+ Ke4 57. Ra4+ Kd3 58. Qd4+ Ke2 59. Ra2+ Kf1
             pgn.write(pgn_data)
             pgn.close()
         elif l == 'n':
-            if ChessBoard.pgn_index > -1 and ChessBoard.pgn_index < len(ChessBoard.pgn_moves):
-                print("Next", len(ChessBoard.pgn_moves), ChessBoard.pgn_index, ChessBoard.pgn_moves[ChessBoard.pgn_index])
+            if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
+                print("Next", len(self.pgn_moves), self.pgn_index, self.pgn_moves[self.pgn_index])
         elif l == 'p':
-            if ChessBoard.pgn_index > -1 and ChessBoard.pgn_index < len(ChessBoard.pgn_moves):
-                print("Previous", len(ChessBoard.pgn_moves), ChessBoard.pgn_index, ChessBoard.pgn_moves[ChessBoard.pgn_index])
+            if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
+                print("Previous", len(self.pgn_moves), self.pgn_index, self.pgn_moves[self.pgn_index])
         return True
 
     def close_application(self): 
