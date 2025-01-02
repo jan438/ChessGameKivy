@@ -296,6 +296,7 @@ class ChessBoard(RelativeLayout):
     check = BooleanProperty(defaultvalue=False)
     pgngame = chess.pgn.Game()
     pgngame.headers["Event"] = "FirstEvent"
+    pgn_moves = []
     
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
@@ -337,6 +338,7 @@ class ChessBoard(RelativeLayout):
             ChessBoard.pgngame = chess.pgn.read_game(pgn)
             for move in ChessBoard.pgngame.mainline_moves():
                 print(move)
+                ChessBoard.pgn_moves.append(move)
             pgn.close()
         elif l == 'w':
             pgn_data = """[Event "F/S Return Match"]
