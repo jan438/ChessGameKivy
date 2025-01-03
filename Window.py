@@ -323,12 +323,10 @@ class ChessBoard(RelativeLayout):
             self.index = 0
         elif (l >= 'a' and l <= 'h') or (l >= '1' and l <= '8'):
             if self.index < 4:
-                self.hmmove = self.hmmove[: self.index] + l + self.hmmove[self.index + 1:]
+                self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                 self.index += 1
         elif l == '.':
             node = self.pgngame.add_variation(chess.Move.from_uci(self.hmmove))
-            #node = node.add_variation(chess.Move.from_uci("e7e5"))
-            #node.comment = "Comment1"
             self.check_pgn_move(node)
             self.hmmove = "    "
             self.index = 0
