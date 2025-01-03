@@ -311,8 +311,8 @@ class ChessBoard(RelativeLayout):
         print("Check_pgn_move", self.pgngame)
         return True
         
-    def animate_pgn_move(self, pgn_move):
-        print("Animate_pgn_move", pgn_move)
+    def animate_pgn_move(self, index, pgn_move):
+        print("Animate_pgn_move at index", index, pgn_move)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
@@ -370,12 +370,12 @@ Rg3 54. Qd8+ Ke6 55. Ra6 Kf5 56. Qf6+ Ke4 57. Ra4+ Kd3 58. Qd4+ Ke2 59. Ra2+ Kf1
             pgn.close()
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
-                self.animate_pgn_move(self.pgn_moves[self.pgn_index])
+                self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
                 if self.pgn_index < len(self.pgn_moves):
                     self.pgn_index += 1
         elif l == 'p':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
-                self.animate_pgn_move(self.pgn_moves[self.pgn_index])
+                self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
                 if self.pgn_index > 0:
                     self.pgn_index -= 1
         return True
