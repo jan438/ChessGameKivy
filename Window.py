@@ -307,8 +307,8 @@ class ChessBoard(RelativeLayout):
         self._keyboard.unbind(on_key_down = self.make_pgn_move)
         self._keyboard = None
         
-    def check_pgn_move(self):
-        print("Check_pgn_move", self.pgngame)
+    def check_pgn_move(self, pgn_move):
+        print("Check_pgn_move", pgn_move)
         return True
         
     def animate_pgn_move(self, index, pgn_move):
@@ -330,10 +330,9 @@ class ChessBoard(RelativeLayout):
                 self.index = 3
         elif l == '.':
             node = self.pgngame.add_variation(chess.Move.from_uci("e2e4"))
-            node = node.add_variation(chess.Move.from_uci("e7e5"))
-            node.comment = "Comment1"
-            self.check_pgn_move()
-            print("Move:" + self.hmmove + " Index:" + str(self.index))
+            #node = node.add_variation(chess.Move.from_uci("e7e5"))
+            #node.comment = "Comment1"
+            self.check_pgn_move(node)
             self.hmmove = "     "
             self.index = 0
         elif l == 'r':
