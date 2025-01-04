@@ -24,6 +24,26 @@ indent = '    '
 Width, Height = 800, 800
 Window.size = (Width, Height)
 
+def letter_to_xpos(letter):
+    letter = letter.upper()
+    if letter == 'a':
+        return 0
+    if letter == 'b':
+        return 1
+    if letter == 'c':
+        return 2
+    if letter == 'd':
+        return 3
+    if letter == 'e':
+        return 4
+    if letter == 'f':
+        return 5
+    if letter == 'g':
+        return 6
+    if letter == 'h':
+        return 7
+    raise ValueError("Invalid letter.")
+
 class ChessPiece(ButtonBehavior, Image):
 
     grid_x = NumericProperty()
@@ -313,7 +333,7 @@ class ChessBoard(RelativeLayout):
         
     def animate_pgn_move(self, index, pgn_move):
         pgnmove = str(pgn_move)
-        print("Animatepgnmove:" + str(index), pgnmove)
+        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove))
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
