@@ -358,7 +358,7 @@ class ChessBoard(RelativeLayout):
     tstgame.headers["Event"] = "TestEvent"
     tst_moves = []
     tst_index = -1
-    tstpgn = open("PGN/testpgn.pgn", "w")
+    tstpgn = open("PGN/test.pgn", "w")
     
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
@@ -404,7 +404,7 @@ class ChessBoard(RelativeLayout):
             self.hmmove = "    "
             self.index = 0
         elif l == 'r':
-            pgn = open("PGN/inputpgn.pgn")
+            pgn = open("PGN/input.pgn")
             self.pgngame = chess.pgn.read_game(pgn)
             for move in self.pgngame.mainline_moves():
                 self.pgn_moves.append(move)
@@ -413,7 +413,7 @@ class ChessBoard(RelativeLayout):
         elif l == 'l':
             self.listpgn_moves()
         elif l == 'w':
-            pgn = open("PGN/outputpgn.pgn", "w")
+            pgn = open("PGN/output.pgn", "w")
             pgn.write(pgn_data)
             pgn.close()
         elif l == 'n':
