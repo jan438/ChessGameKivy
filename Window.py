@@ -377,7 +377,9 @@ class ChessBoard(RelativeLayout):
         pgnmove = str(pgn_move)
         xfrom = letter_to_xpos(pgnmove[0])
         yfrom = letter_to_ypos(pgnmove[1])
-        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom)
+        xto = letter_to_xpos(pgnmove[2])
+        yto = letter_to_ypos(pgnmove[3])
+        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
