@@ -367,10 +367,6 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                 self.index += 1
         elif l == '.':
-            #pgn = io.StringIO("1. e4 e5 2. Nf3 *")
-            #val = pgn.getvalue()
-            #s = str(val)
-            #print(val, s)
             node = self.pgngame.add_variation(chess.Move.from_uci(self.hmmove))
             self.check_pgn_move(node)
             self.hmmove = "    "
