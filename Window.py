@@ -312,7 +312,7 @@ class ChessBoard(RelativeLayout):
         return True
         
     def animate_pgn_move(self, index, pgn_move):
-        print("Animate_pgn_move:" + str(index), pgn_move)
+        print("Animate_pgn_move:" + str(index), str(pgn_move))
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
