@@ -355,7 +355,7 @@ class ChessBoard(RelativeLayout):
     pgn_moves = []
     pgn_index = -1
     tstgame = chess.pgn.Game()
-    tstgame.headers["Event"] = "FirstEvent"
+    tstgame.headers["Event"] = "TestEvent"
     tst_moves = []
     tst_index = -1
     
@@ -390,8 +390,11 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                 self.index += 1
         elif l == '.':
-            node = self.pgngame.add_variation(chess.Move.from_uci(self.hmmove))
+            pgn = open("PGN/testpgn.pgn", "w")
+            node = self.tstgame.add_variation(chess.Move.from_uci(self.hmmove))
             self.check_pgn_move(node)
+            pgn.write(str(self.tstgame))
+            pgn.close()
             self.hmmove = "    "
             self.index = 0
         elif l == 'r':
