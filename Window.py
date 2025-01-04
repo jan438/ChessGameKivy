@@ -379,7 +379,8 @@ class ChessBoard(RelativeLayout):
         yfrom = letter_to_ypos(pgnmove[1])
         xto = letter_to_xpos(pgnmove[2])
         yto = letter_to_ypos(pgnmove[3])
-        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto)
+        pindex = self.pieceindex_at_board(xfrom, yfrom)
+        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto, pindex)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
@@ -447,6 +448,14 @@ class ChessBoard(RelativeLayout):
     def trace(self,id,nr):
         piece = self.findpiece(id)
         print("trace====",id,"nr:",nr,"piece.id:",piece.id,"piece.grid_y",piece.grid_y)
+
+    def pieceindex_at_board(self, xpos, ypos):
+        index = -1
+        for child in self.children:
+            index += 1
+            if child.grid_x == xpos and child.grid_y == ypos:
+                return index
+        return -1
 
     def on_touch_down(self, touch):
         print("Len:",len(self.children))
