@@ -354,6 +354,10 @@ class ChessBoard(RelativeLayout):
     pgngame.headers["Event"] = "FirstEvent"
     pgn_moves = []
     pgn_index = -1
+    tstgame = chess.pgn.Game()
+    tstgame.headers["Event"] = "FirstEvent"
+    tst_moves = []
+    tst_index = -1
     
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
