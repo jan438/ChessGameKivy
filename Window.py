@@ -43,6 +43,25 @@ def letter_to_xpos(letter):
         return 7
     raise ValueError("Invalid letter.")
 
+def letter_to_ypos(letter):
+    if letter == '1':
+        return 0
+    if letter == '2':
+        return 1
+    if letter == '3':
+        return 2
+    if letter == '4':
+        return 3
+    if letter == '5':
+        return 4
+    if letter == '6':
+        return 5
+    if letter == '7':
+        return 6
+    if letter == '8':
+        return 7
+    raise ValueError("Invalid letter")
+    
 class ChessPiece(ButtonBehavior, Image):
 
     grid_x = NumericProperty()
@@ -333,7 +352,8 @@ class ChessBoard(RelativeLayout):
     def animate_pgn_move(self, index, pgn_move):
         pgnmove = str(pgn_move)
         xfrom = letter_to_xpos(pgnmove[0])
-        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove), xfrom)
+        yfrom = letter_to_ypos(pgnmove[1])
+        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
