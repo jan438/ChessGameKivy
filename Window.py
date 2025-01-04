@@ -25,7 +25,6 @@ Width, Height = 800, 800
 Window.size = (Width, Height)
 
 def letter_to_xpos(letter):
-    letter = letter.upper()
     if letter == 'a':
         return 0
     if letter == 'b':
@@ -333,7 +332,8 @@ class ChessBoard(RelativeLayout):
         
     def animate_pgn_move(self, index, pgn_move):
         pgnmove = str(pgn_move)
-        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove))
+        xfrom = letter_to_xpos(pgnmove[0])
+        print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove), xfrom)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
