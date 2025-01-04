@@ -380,6 +380,9 @@ class ChessBoard(RelativeLayout):
         xto = letter_to_xpos(pgnmove[2])
         yto = letter_to_ypos(pgnmove[3])
         pindex = self.pieceindex_at_board(xfrom, yfrom)
+        anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
+        if pindex > -1:
+            anim.start(self.children[pindex])
         print("Animatepgnmove:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto, pindex)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
