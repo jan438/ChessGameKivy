@@ -358,6 +358,7 @@ class ChessBoard(RelativeLayout):
     tst_moves = []
     tst_index = -1
     tstpgn = open("PGN/test.pgn", "w")
+    tstpgn.write(str(tstgame))
     
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
