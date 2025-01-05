@@ -533,7 +533,6 @@ class ChessBoard(RelativeLayout):
                 break
             elif ChessBoard.piece_pressed and child.id == ChessBoard.id_piece_:
                 if (grid_x, grid_y) in ChessBoard.available_moves["available_moves"]:
-                    ########### optie 1 grid_x and grid_y updaten
                     anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_quad', duration=0.5)
                     anim.start(self.children[id])
                     ChessBoard.piece_pressed = False
@@ -612,7 +611,6 @@ class ChessBoard(RelativeLayout):
             ChessBoard.turn_ = "Black"
         else:
             ChessBoard.turn_ = "White"
-        #self.listpieces()
 
     def check_check(self):
         King = None
