@@ -383,7 +383,12 @@ class ChessBoard(RelativeLayout):
         anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
         if pindex > -1:
             child = self.children[pindex]
-            print(child.id)
+            if child.id[0:5] == "White":
+                self.BlackCapture()
+                print(child.id)
+            if child.id[0:5] == "Black":
+                self.WhiteCapture()
+                print(child.id)
             anim.start(child)
         print("APM:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto, pindex)
 
@@ -449,7 +454,43 @@ class ChessBoard(RelativeLayout):
                 print(i, self.pgn_moves[i])
         else:
             print("No pgn_moves")
-                
+
+    def WhiteCapture(self):
+        capture = False
+        hmsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
+        for child in self.children:
+            hm_x_grid = round(child.grid_x)
+            hm_y_grid = round(child.grid_y)
+            hmsyn[hm_x_grid][hm_y_grid] += 1
+            if hmsyn[hm_x_grid][hm_y_grid] > 1:
+                print("WhiteCapture", hm_x_grid,hm_y_grid)
+                capture = True
+                break
+        if capture:
+            for child in self.children:
+                if child.id[0:5] == "White":
+                    if [round(child.grid_x),round(child.grid_y)] == [hm_x_grid,hm_y_grid]:
+                        piece = self.findpiece(child.id)
+                        self.remove_widget(piece)
+                        
+    def BlackCapture(self):
+        capture = False
+        hmsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
+        for child in self.children:
+            hm_x_grid = round(child.grid_x)
+            hm_y_grid = round(child.grid_y)
+            hmsyn[hm_x_grid][hm_y_grid] += 1
+            if hmsyn[hm_x_grid][hm_y_grid] > 1:
+                print("BlackCapture", hm_x_grid,hm_y_grid)
+                capture = True
+                break
+        if capture:
+            for child in self.children:
+                if child.id[0:5] == "Black":
+                    if [round(child.grid_x),round(child.grid_y)] == [hm_x_grid,hm_y_grid]:
+                        piece = self.findpiece(child.id)
+                        self.remove_widget(piece)
+                                     
     def trace(self,id,nr):
         piece = self.findpiece(id)
         print("trace====",id,"nr:",nr,"piece.id:",piece.id,"piece.grid_y",piece.grid_y)
