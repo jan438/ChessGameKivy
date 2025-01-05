@@ -459,17 +459,17 @@ class ChessBoard(RelativeLayout):
         capture = False
         pgnsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
         for child in self.children:
-            hm_x_grid = round(child.grid_x)
-            hm_y_grid = round(child.grid_y)
-            pgnsyn[hm_x_grid][hm_y_grid] += 1
-            if pgnsyn[hm_x_grid][hm_y_grid] > 1:
-                print("WhiteCapture", hm_x_grid,hm_y_grid)
+            x_grid = round(child.grid_x)
+            y_grid = round(child.grid_y)
+            pgnsyn[x_grid][y_grid] += 1
+            if pgnsyn[x_grid][y_grid] > 1:
+                print("WhiteCapture", x_grid, y_grid)
                 capture = True
                 break
         if capture:
             for child in self.children:
                 if child.id[0:5] == "White":
-                    if [round(child.grid_x),round(child.grid_y)] == [hm_x_grid,hm_y_grid]:
+                    if [round(child.grid_x),round(child.grid_y)] == [x_grid, y_grid]:
                         piece = self.findpiece(child.id)
                         self.remove_widget(piece)
                         
@@ -477,17 +477,17 @@ class ChessBoard(RelativeLayout):
         capture = False
         pgnsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
         for child in self.children:
-            hm_x_grid = round(child.grid_x)
-            hm_y_grid = round(child.grid_y)
-            pgnsyn[hm_x_grid][hm_y_grid] += 1
-            if pgnsyn[hm_x_grid][hm_y_grid] > 1:
-                print("BlackCapture", hm_x_grid,hm_y_grid)
+            x_grid = round(child.grid_x)
+            y_grid = round(child.grid_y)
+            pgnsyn[x_grid][y_grid] += 1
+            if pgnsyn[x_grid][y_grid] > 1:
+                print("BlackCapture", x_grid, y_grid)
                 capture = True
                 break
         if capture:
             for child in self.children:
                 if child.id[0:5] == "Black":
-                    if [round(child.grid_x),round(child.grid_y)] == [hm_x_grid,hm_y_grid]:
+                    if [round(child.grid_x),round(child.grid_y)] == [x_grid, y_grid]:
                         piece = self.findpiece(child.id)
                         self.remove_widget(piece)
                                      
