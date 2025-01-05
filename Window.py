@@ -457,12 +457,12 @@ class ChessBoard(RelativeLayout):
 
     def WhiteCapture(self):
         capture = False
-        hmsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
+        pgnsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
         for child in self.children:
             hm_x_grid = round(child.grid_x)
             hm_y_grid = round(child.grid_y)
-            hmsyn[hm_x_grid][hm_y_grid] += 1
-            if hmsyn[hm_x_grid][hm_y_grid] > 1:
+            pgnsyn[hm_x_grid][hm_y_grid] += 1
+            if pgnsyn[hm_x_grid][hm_y_grid] > 1:
                 print("WhiteCapture", hm_x_grid,hm_y_grid)
                 capture = True
                 break
@@ -475,12 +475,12 @@ class ChessBoard(RelativeLayout):
                         
     def BlackCapture(self):
         capture = False
-        hmsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
+        pgnsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
         for child in self.children:
             hm_x_grid = round(child.grid_x)
             hm_y_grid = round(child.grid_y)
-            hmsyn[hm_x_grid][hm_y_grid] += 1
-            if hmsyn[hm_x_grid][hm_y_grid] > 1:
+            pgnsyn[hm_x_grid][hm_y_grid] += 1
+            if pgnsyn[hm_x_grid][hm_y_grid] > 1:
                 print("BlackCapture", hm_x_grid,hm_y_grid)
                 capture = True
                 break
