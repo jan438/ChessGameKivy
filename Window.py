@@ -378,16 +378,13 @@ class ChessBoard(RelativeLayout):
         yfrom = letter_to_ypos(pgnmove[1])
         xto = letter_to_xpos(pgnmove[2])
         yto = letter_to_ypos(pgnmove[3])
+        cindex = self.pieceindex_at_board(xto, yto)
+        if cindex > -1:
+            print("Piece to capture")
         pindex = self.pieceindex_at_board(xfrom, yfrom)
         anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
         if pindex > -1:
             child = self.children[pindex]
-            if child.id[0:5] == "White":
-                self.BlackCapture()
-                print(child.id)
-            if child.id[0:5] == "Black":
-                self.WhiteCapture()
-                print(child.id)
             anim.start(child)
         print("APM:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto, pindex)
 
