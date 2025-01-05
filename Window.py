@@ -469,8 +469,9 @@ class ChessBoard(RelativeLayout):
         if capture:
             for child in self.children:
                 if child.id[0:5] == "White":
-                    if [round(child.grid_x),round(child.grid_y)] == [x_grid, y_grid]:
+                    if [round(child.grid_x), round(child.grid_y)] == [x_grid, y_grid]:
                         piece = self.findpiece(child.id)
+                        print("Remove white widget", child.id, piece.id)
                         self.remove_widget(piece)
                         
     def BlackCapture(self):
@@ -487,8 +488,9 @@ class ChessBoard(RelativeLayout):
         if capture:
             for child in self.children:
                 if child.id[0:5] == "Black":
-                    if [round(child.grid_x),round(child.grid_y)] == [x_grid, y_grid]:
+                    if [round(child.grid_x), round(child.grid_y)] == [x_grid, y_grid]:
                         piece = self.findpiece(child.id)
+                        print("Remove black widget", child.id, piece.id)
                         self.remove_widget(piece)
                                      
     def trace(self,id,nr):
