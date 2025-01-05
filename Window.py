@@ -380,7 +380,9 @@ class ChessBoard(RelativeLayout):
         yto = letter_to_ypos(pgnmove[3])
         cindex = self.pieceindex_at_board(xto, yto)
         if cindex > -1:
-            print("Piece to capture")
+            child = self.children[cindex]
+            self.remove_widget(child)
+            print("Piece to capture", child.id)
         pindex = self.pieceindex_at_board(xfrom, yfrom)
         anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
         if pindex > -1:
