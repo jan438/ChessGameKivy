@@ -472,44 +472,6 @@ class ChessBoard(RelativeLayout):
                 print(i, self.pgn_moves[i])
         else:
             print("No pgn_moves")
-
-    def WhiteCapture(self):
-        capture = False
-        pgnsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
-        for child in self.children:
-            x_grid = round(child.grid_x)
-            y_grid = round(child.grid_y)
-            pgnsyn[x_grid][y_grid] += 1
-            if pgnsyn[x_grid][y_grid] > 1:
-                print("WhiteCapture", x_grid, y_grid)
-                capture = True
-                break
-        if capture:
-            for child in self.children:
-                if child.id[0:5] == "White":
-                    if [round(child.grid_x), round(child.grid_y)] == [x_grid, y_grid]:
-                        piece = self.findpiece(child.id)
-                        print("Remove white widget", child.id, piece.id)
-                        self.remove_widget(piece)
-                        
-    def BlackCapture(self):
-        capture = False
-        pgnsyn = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
-        for child in self.children:
-            x_grid = round(child.grid_x)
-            y_grid = round(child.grid_y)
-            pgnsyn[x_grid][y_grid] += 1
-            if pgnsyn[x_grid][y_grid] > 1:
-                print("BlackCapture", x_grid, y_grid)
-                capture = True
-                break
-        if capture:
-            for child in self.children:
-                if child.id[0:5] == "Black":
-                    if [round(child.grid_x), round(child.grid_y)] == [x_grid, y_grid]:
-                        piece = self.findpiece(child.id)
-                        print("Remove black widget", child.id, piece.id)
-                        self.remove_widget(piece)
                                      
     def trace(self,id,nr):
         piece = self.findpiece(id)
