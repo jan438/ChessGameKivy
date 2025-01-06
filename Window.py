@@ -394,13 +394,17 @@ class ChessBoard(RelativeLayout):
                 anim = Animation(grid_x = 5, grid_y = 0, t='in_out_expo', duration=0.5)
                 anim.start(piece)
             if id == "WhiteKing" and xto == 2 and yto == 0:
-                print("Castling w s")
+                piece = self.findpiece("WhiteRook_0")
+                anim = Animation(grid_x = 3, grid_y = 0, t='in_out_expo', duration=0.5)
+                anim.start(piece)
             if id == "BlackKing" and xto == 6 and yto == 7:
                 piece = self.findpiece("BlackRook_1")
                 anim = Animation(grid_x = 5, grid_y = 7, t='in_out_expo', duration=0.5)
                 anim.start(piece)
             if id == "BlackKing" and xto == 2 and yto == 7:
-                print("Castling b s")
+                piece = self.findpiece("BlackRook_0")
+                anim = Animation(grid_x = 3, grid_y = 7, t='in_out_expo', duration=0.5)
+                anim.start(piece)
         print("APM:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto, pindex)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
