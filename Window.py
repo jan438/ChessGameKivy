@@ -357,9 +357,7 @@ class ChessBoard(RelativeLayout):
     tstgame.headers["Event"] = "TestEvent"
     tst_moves = []
     tst_index = -1
-    tstpgn = open("PGN/test.pgn", "w")
-    tstpgn.write(str(tstgame))
-    
+  
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
         self._keyboard = Window.request_keyboard(self._keyboard_closed, self)
@@ -434,6 +432,9 @@ class ChessBoard(RelativeLayout):
             self.pgn_index = 0
         elif l == 'l':
             self.listpgn_moves()
+        elif l == 't':
+            self.tstpgn = open("PGN/test.pgn", "w")
+            self.tstpgn.write(str(self.tstgame))
         elif l == 'w':
             pgn = open("PGN/output.pgn", "w")
             pgn.write(pgn_data)
