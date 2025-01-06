@@ -410,7 +410,6 @@ class ChessBoard(RelativeLayout):
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
         if l == 'q':
-            self.tstpgn.close()
             self.close_application()   
         elif l == 'm':
             self.hmmove = "    "
