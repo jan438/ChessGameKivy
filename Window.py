@@ -383,12 +383,22 @@ class ChessBoard(RelativeLayout):
         if cindex > -1:
             child = self.children[cindex]
             self.remove_widget(child)
-            print("Piece to capture", child.id)
         pindex = self.pieceindex_at_board(xfrom, yfrom)
         anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
         if pindex > -1:
             child = self.children[pindex]
+            id = child.id
             anim.start(child)
+            if id == "WhiteKing" and xto == 6 and yto == 0:
+                piece = self.findpiece("WhiteRook_1")
+                anim = Animation(grid_x = 5, grid_y = 0, t='in_out_expo', duration=0.5)
+                anim.start(piece)
+            if id == "WhiteKing" and xto == 2 and yto == 0:
+                print("Castling w s")
+            if id == "BlackKing" and xto == 6 and yto == 7:
+                print("Castling b l")
+            if id == "BlackKing" and xto == 2 and yto == 7:
+                print("Castling b s")
         print("APM:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto, pindex)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
