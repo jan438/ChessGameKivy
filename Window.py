@@ -405,6 +405,7 @@ class ChessBoard(RelativeLayout):
                 anim.start(piece)
             if id[:9] == "WhitePawn" and yto == 7:
                  self.remove_widget(child)
+                 self.add_widget(Queen(id = "", source="Assets/PNG/WhiteQueen.png", grid_x = xto, grid_y = 7))
         print("APM:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto, pindex)
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
