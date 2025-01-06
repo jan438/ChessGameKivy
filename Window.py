@@ -23,25 +23,6 @@ from kivy.utils import get_hex_from_color, get_color_from_hex
 indent = '    '
 Width, Height = 800, 800
 Window.size = (Width, Height)
-pgn_data = """[Event "F/S Return Match"]
-[Site "Belgrade, Serbia JUG"]
-[Date "1992.11.04"]
-[Round "29"]
-[White "Fischer, Robert J."]
-[Black "Spassky, Boris V."]
-[Result "1/2-1/2"]
-
-1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Ba4 Nf6 5. O-O Be7 6. Re1 b5 7. Bb3 d6 8. c3 O-O
-9. h3 Nb8 10. d4 Nbd7 11. c4 c6 12. Nc3 Qc7 13. a3 Bb7 14. Ba2 Rfe8 15. Bg5 h6
-16. Bh4 Bf8 17. Rc1 g6 18. cxb5 axb5 19. dxe5 dxe5 20. Nd5 Qd6 21. Nxf6+ Nxf6
-22. Qb3 Re7 23. Red1 Qe6 24. Qxe6 Rxe6 25. Bxf6 Rxf6 26. Rd7 Bc8 27. Rc7 Be6
-28. Bxe6 Rxe6 29. R1xc6 Rxc6 30. Rxc6 Bg7 31. Rc5 Rb8 32. Nxe5 b4 33. a4 b3
-34. a5 Bxe5 35. Rxe5 Ra8 36. Rb5 Kf8 37. Kf1 Ke7 38. Ke2 Kd6 39. Kd3 Kc6 40. Kc4
-Ra7 41. Kxb3 Re7 42. Rb6+ Kc5 43. Ka4 Re4+ 44. b4+ Kc4 45. Rc6+ Kd5 46. Rc5+ Kd6
-47. a6 Re1 48. Kb5 Ra1 49. Kb6 Ra2 50. Ra5 Rxf2 51. a7 Rb2 52. b5 Rxg2 53. a8=Q
-Rg3 54. Qd8+ Ke6 55. Ra6 Kf5 56. Qf6+ Ke4 57. Ra4+ Kd3 58. Qd4+ Ke2 59. Ra2+ Kf1
-60. Qf2# 1-0
-"""
 
 def letter_to_xpos(letter):
     if letter == 'a':
@@ -437,6 +418,7 @@ class ChessBoard(RelativeLayout):
             self.listpgn_moves()
         elif l == 'w':
             pgn = open("PGN/output.pgn", "w")
+            pgn_data = ""
             pgn.write(pgn_data)
             pgn.close()
         elif l == 'n':
