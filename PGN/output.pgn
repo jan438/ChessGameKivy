@@ -1,4 +1,4 @@
-[Event "FirstEvent"]
+[Event "?"]
 [Site "?"]
 [Date "????.??.??"]
 [Round "?"]
@@ -6,12 +6,4 @@
 [Black "?"]
 [Result "*"]
 
-*[Event "?"]
-[Site "?"]
-[Date "????.??.??"]
-[Round "?"]
-[White "?"]
-[Black "?"]
-[Result "*"]
-
-1. e3 *
+*

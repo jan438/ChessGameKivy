@@ -330,6 +330,7 @@ class ChessBoard(RelativeLayout):
     turn_ = "White"
     piece_index = None
     check = BooleanProperty(defaultvalue=False)
+    opgngame = chess.pgn.Game()
     pgn_moves = []
     pgn_index = -1
   
@@ -389,6 +390,9 @@ class ChessBoard(RelativeLayout):
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
         if l == 'q':
+            pgn = open("PGN/output.pgn", "w")
+            pgn.write(str(self.opgngame))
+            pgn.close()
             self.close_application()
         elif l == 'm':
             self.hmmove = "    "
@@ -416,11 +420,7 @@ class ChessBoard(RelativeLayout):
         elif l == 'l':
             self.listpgn_moves()
         elif l == 'w':
-            pgn = open("PGN/output.pgn", "w")
-            pgngame = chess.pgn.Game()
-            pgngame.headers["Event"] = "FirstEvent"
-            pgn.write(str(pgngame))
-            pgn.close()
+            self.opgngame.headers["Event"] = "FirstEvent"
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
