@@ -353,10 +353,6 @@ class ChessBoard(RelativeLayout):
     pgngame.headers["Event"] = "FirstEvent"
     pgn_moves = []
     pgn_index = -1
-    tstgame = chess.pgn.Game()
-    tstgame.headers["Event"] = "TestEvent"
-    tst_moves = []
-    tst_index = -1
   
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
@@ -414,7 +410,7 @@ class ChessBoard(RelativeLayout):
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
         if l == 'q':
-            self.close_application()   
+            self.close_application()
         elif l == 'm':
             self.hmmove = "    "
             self.index = 0
@@ -423,9 +419,11 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                 self.index += 1
         elif l == '.':
-            node = self.tstgame.add_variation(chess.Move.from_uci(self.hmmove))
+            node = self.pgngame.add_variation(chess.Move.from_uci(self.hmmove))
             self.check_pgn_move(node)
-            self.tstpgn.write(str(self.tstgame))
+            pgn = open("PGN/output.pgn", "a")
+            pgn.write(str(self.pgngame))
+            pgn.close()
             self.hmmove = "    "
             self.index = 0
         elif l == 'r':
@@ -437,9 +435,6 @@ class ChessBoard(RelativeLayout):
             self.pgn_index = 0
         elif l == 'l':
             self.listpgn_moves()
-        elif l == 't':
-            self.tstpgn = open("PGN/test.pgn", "w")
-            self.tstpgn.write(str(self.tstgame))
         elif l == 'w':
             pgn = open("PGN/output.pgn", "w")
             pgn.write(pgn_data)
