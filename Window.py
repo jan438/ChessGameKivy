@@ -330,8 +330,6 @@ class ChessBoard(RelativeLayout):
     turn_ = "White"
     piece_index = None
     check = BooleanProperty(defaultvalue=False)
-    pgngame = chess.pgn.Game()
-    pgngame.headers["Event"] = "FirstEvent"
     pgn_moves = []
     pgn_index = -1
   
@@ -400,10 +398,11 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                 self.index += 1
         elif l == '.':
-            node = self.pgngame.add_variation(chess.Move.from_uci(self.hmmove))
+            pgngame = chess.pgn.Game()
+            node = pgngame.add_variation(chess.Move.from_uci(self.hmmove))
             self.check_pgn_move(node)
             pgn = open("PGN/output.pgn", "a")
-            pgn.write(str(self.pgngame))
+            pgn.write(str(pgngame))
             pgn.close()
             self.hmmove = "    "
             self.index = 0
@@ -418,8 +417,9 @@ class ChessBoard(RelativeLayout):
             self.listpgn_moves()
         elif l == 'w':
             pgn = open("PGN/output.pgn", "w")
-            pgn_data = ""
-            pgn.write(pgn_data)
+            pgngame = chess.pgn.Game()
+            pgngame.headers["Event"] = "FirstEvent"
+            pgn.write(str(pgngame))
             pgn.close()
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
