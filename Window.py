@@ -3,6 +3,7 @@ import chess.pgn
 import io
 import sys
 import os
+from datetime import datetime
 from kivy.app import App
 from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
@@ -417,7 +418,8 @@ class ChessBoard(RelativeLayout):
             self.listpgn_moves()
         elif l == 'w':
             self.opgngame.headers["Event"] = "FirstEvent"
-            self.opgngame.headers["Date"] = "2025.01.07"
+            current_date = datetime.today().strftime('%Y-%m-%d')
+            self.opgngame.headers["Date"] = current_date
             print(dir(self.opgngame))
             self.pgn_moves = []
             self.pgn_index = 0
