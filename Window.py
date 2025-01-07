@@ -421,11 +421,13 @@ class ChessBoard(RelativeLayout):
             self.pgn_moves = []
             self.pgn_index = 0
             pgn = open("PGN/begin.txt", 'r')
+            count = 0
             for line in pgn:
                 self.hmmove = line
                 node = self.opgngame.add_variation(chess.Move.from_uci(self.hmmove[:4]))
                 node = self.opgngame.add_variation(chess.Move.from_uci(self.hmmove[4:8]))
-                node.comment = "Comment"
+                count += 1
+                node.comment = "Comment " + str(count)
             pgn.close()
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
