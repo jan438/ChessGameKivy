@@ -432,8 +432,9 @@ class ChessBoard(RelativeLayout):
                 node = self.opgngame.add_variation(chess.Move.from_uci(self.hmmove[4:8]))
                 count += 1
                 node.comment = "Comment " + str(count)
+                variations = self.opgngame.variations
                 turn = self.opgngame.turn()
-                print("Turn", turn, "Startvariation", startvariation)
+                print("Turn", turn, "Startvariation", startvariation, "Len variations", len(variations))
             pgn.close()
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
