@@ -433,7 +433,7 @@ class ChessBoard(RelativeLayout):
                 count += 1
                 node.comment = "Comment " + str(count)
                 for move in self.opgngame.mainline_moves():
-                    print(move)
+                    self.animate_pgn_move(0, move)
                 turn = self.opgngame.turn()
                 print("Turn", turn, "Startvariation", startvariation)
             pgn.close()
