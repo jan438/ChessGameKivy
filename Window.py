@@ -426,8 +426,8 @@ class ChessBoard(RelativeLayout):
             pgn = open("PGN/begin.txt", 'r')
             count = 0
             for line in pgn:
-                self.hmmove = line
-                node = self.opgngame.add_main_variation(chess.Move.from_uci(self.hmmove[:4]))
+                self.hmmove = line[0:4]
+                node = self.opgngame.add_main_variation(chess.Move.from_uci(self.hmmove))
                 count += 1
                 node.comment = "Comment " + str(count)
                 for move in self.opgngame.mainline_moves():
