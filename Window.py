@@ -423,7 +423,6 @@ class ChessBoard(RelativeLayout):
             for line in pgn:
                 self.hmmove = line[:4]
                 node = self.opgngame.add_variation(chess.Move.from_uci(self.hmmove))
-                break
             pgn.close()
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
