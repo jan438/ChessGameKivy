@@ -417,6 +417,7 @@ class ChessBoard(RelativeLayout):
             self.listpgn_moves()
         elif l == 'w':
             self.opgngame.headers["Event"] = "FirstEvent"
+            print(dir(self.opgngame))
             self.pgn_moves = []
             self.pgn_index = 0
             pgn = open("PGN/begin.txt", 'r')
