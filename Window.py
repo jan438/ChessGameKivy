@@ -425,6 +425,7 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = line
                 node = self.opgngame.add_variation(chess.Move.from_uci(self.hmmove[:4]))
                 node = self.opgngame.add_variation(chess.Move.from_uci(self.hmmove[4:8]))
+                node.comment = "Comment"
             pgn.close()
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
