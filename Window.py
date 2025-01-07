@@ -417,6 +417,7 @@ class ChessBoard(RelativeLayout):
             self.listpgn_moves()
         elif l == 'w':
             self.opgngame.headers["Event"] = "FirstEvent"
+            self.opgngame.headers["Date"] = "2025.01.07"
             print(dir(self.opgngame))
             self.pgn_moves = []
             self.pgn_index = 0
