@@ -417,6 +417,12 @@ class ChessBoard(RelativeLayout):
             self.listpgn_moves()
         elif l == 'w':
             self.opgngame.headers["Event"] = "FirstEvent"
+            self.pgn_moves = []
+            self.pgn_index = 0
+            pgn = open("PGN/begin.txt", 'r')
+            for line in pgn:
+                print(line.strip())
+            pgn.close()
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
