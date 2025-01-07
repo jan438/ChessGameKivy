@@ -421,7 +421,7 @@ class ChessBoard(RelativeLayout):
             self.pgn_index = 0
             pgn = open("PGN/begin.txt", 'r')
             for line in pgn:
-                self.hmmove = "d2d4"
+                self.hmmove = line[:4]
                 node = self.opgngame.add_variation(chess.Move.from_uci(self.hmmove))
                 break
             pgn.close()
