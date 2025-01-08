@@ -197,7 +197,6 @@ class Knight(ChessPiece):
             (self.grid_x + 1, self.grid_y + 2),
             (self.grid_x - 2, self.grid_y + 1),
             (self.grid_x - 1, self.grid_y + 2),
-
             (self.grid_x + 1, self.grid_y - 2),
             (self.grid_x + 2, self.grid_y - 1),
             (self.grid_x - 2, self.grid_y - 1),
