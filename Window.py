@@ -423,11 +423,11 @@ class ChessBoard(RelativeLayout):
             print(dir(self.opgngame))
             self.pgn_moves = []
             self.pgn_index = 0
-            count = 0
             pgn = open("PGN/begin.txt", 'r')
             for line in pgn:
-                print(count, line.strip())
+                self.pgn_moves.append(line.strip())
             pgn.close()
+            print("len",len(self.pgn_moves))
             count = 0
 
             #self.hmmove = line[:4]
