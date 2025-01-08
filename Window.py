@@ -421,24 +421,23 @@ class ChessBoard(RelativeLayout):
             current_date = datetime.today().strftime('%Y-%m-%d')
             self.opgngame.headers["Date"] = current_date
             self.pgn_moves = []
-            self.pgn_index = 0
             pgn = open("PGN/begin.txt", 'r')
             for line in pgn:
                 self.pgn_moves.append(line.strip())
             pgn.close()
-            count = 0
-            self.hmmove = self.pgn_moves[count][:4]
+            self.pgn_index = 0
+            self.hmmove = self.pgn_moves[self.pgn_index][:4]
             node = self.opgngame.add_main_variation(chess.Move.from_uci(self.hmmove))
             node.comment = "Comment"
-            count = 1
-            while count < len(self.pgn_moves):
-                self.hmmove = self.pgn_moves[count][:4]
+            self.pgn_index = 1
+            while self.pgn_index < len(self.pgn_moves):
+                self.hmmove = self.pgn_moves[self.pgn_index][:4]
                 node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
-                count += 1
-            count = 0
+                self.pgn_index += 1
+            self.pgn_index = 0
             for move in self.opgngame.mainline_moves():
-                self.animate_pgn_move(count, move)
-                count += 1
+                self.animate_pgn_move(self.pgn_index, move)
+                self.pgn_index += 1
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
