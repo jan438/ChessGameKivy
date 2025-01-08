@@ -429,9 +429,8 @@ class ChessBoard(RelativeLayout):
             pgn.close()
             print("len",len(self.pgn_moves))
             count = 0
-
-            #self.hmmove = line[:4]
-            #node = self.opgngame.add_main_variation(chess.Move.from_uci(self.hmmove))
+            self.hmmove = self.pgn_moves[0][:4]
+            node = self.opgngame.add_main_variation(chess.Move.from_uci(self.hmmove))
 
             #self.hmmove = line[:4]
             #node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
