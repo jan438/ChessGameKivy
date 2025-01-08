@@ -420,14 +420,12 @@ class ChessBoard(RelativeLayout):
             self.opgngame.headers["Event"] = "FirstEvent"
             current_date = datetime.today().strftime('%Y-%m-%d')
             self.opgngame.headers["Date"] = current_date
-            print(dir(self.opgngame))
             self.pgn_moves = []
             self.pgn_index = 0
             pgn = open("PGN/begin.txt", 'r')
             for line in pgn:
                 self.pgn_moves.append(line.strip())
             pgn.close()
-            print("len",len(self.pgn_moves))
             count = 0
             self.hmmove = self.pgn_moves[count][:4]
             node = self.opgngame.add_main_variation(chess.Move.from_uci(self.hmmove))
