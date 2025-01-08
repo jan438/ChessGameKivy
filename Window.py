@@ -435,9 +435,9 @@ class ChessBoard(RelativeLayout):
                 node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
                 self.pgn_index += 1
             self.pgn_index = 0
+            self.pgn_moves = []
             for move in self.opgngame.mainline_moves():
-                self.animate_pgn_move(self.pgn_index, move)
-                self.pgn_index += 1
+                self.pgn_moves.append(move)
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
