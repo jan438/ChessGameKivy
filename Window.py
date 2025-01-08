@@ -9,6 +9,7 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from kivy.core.audio import SoundLoader
 from kivy.uix.widget import Widget
 from kivy.config import Config
 from kivy.uix.behaviors import ButtonBehavior
@@ -25,6 +26,11 @@ indent = '    '
 Width, Height = 800, 800
 Window.size = (Width, Height)
 
+def play_sound(): 
+    sound = SoundLoader.load('WAV/success.wav') 
+    if sound: 
+        sound.play() 
+  
 def letter_to_xpos(letter):
     if letter == 'a':
         return 0
@@ -440,6 +446,7 @@ class ChessBoard(RelativeLayout):
                 self.pgn_moves.append(move)
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
+                play_sound()
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
                 if self.pgn_index < len(self.pgn_moves):
                     self.pgn_index += 1
