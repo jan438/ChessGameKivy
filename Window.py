@@ -429,6 +429,7 @@ class ChessBoard(RelativeLayout):
             count = 0
             self.hmmove = self.pgn_moves[count][:4]
             node = self.opgngame.add_main_variation(chess.Move.from_uci(self.hmmove))
+            node.comment = "Comment"
             count = 1
             while count < len(self.pgn_moves):
                 self.hmmove = self.pgn_moves[count][:4]
