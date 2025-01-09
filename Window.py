@@ -414,6 +414,7 @@ class ChessBoard(RelativeLayout):
             node = self.opgngame.end()
             try:
                 node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
+                self.pgn_moves.append(self.hmmove)
                 self.animate_pgn_move(0, self.hmmove)
                 play_sound(True)
             except Exception as e:
