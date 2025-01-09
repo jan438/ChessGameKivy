@@ -415,9 +415,9 @@ class ChessBoard(RelativeLayout):
             try:
                 node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
                 play_sound(True)
-            except:
+            except Exception as e:
                 play_sound(False)
-                print("except")
+                print("Except", e)
             self.hmmove = "    "
             self.index = 0
         elif l == 'r':
