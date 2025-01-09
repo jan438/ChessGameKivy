@@ -408,7 +408,8 @@ class ChessBoard(RelativeLayout):
                 self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                 self.index += 1
         elif l == '.':
-            node = self.opgngame.add_variation(chess.Move.from_uci(self.hmmove))
+            node = self.opgngame.end()
+            node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
             self.check_pgn_move(node)
             self.hmmove = "    "
             self.index = 0
