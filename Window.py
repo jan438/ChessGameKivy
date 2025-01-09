@@ -26,8 +26,11 @@ indent = '    '
 Width, Height = 800, 800
 Window.size = (Width, Height)
 
-def play_sound(): 
-    sound = SoundLoader.load('WAV/success.wav') 
+def play_sound(sorf):
+    if sorf:
+        sound = SoundLoader.load('WAV/success.wav')
+    else:
+        sound = SoundLoader.load('WAV/failure.wav')
     if sound: 
         sound.play() 
   
@@ -409,8 +412,10 @@ class ChessBoard(RelativeLayout):
                 self.index += 1
         elif l == '.':
             node = self.opgngame.end()
-            node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
-            self.check_pgn_move(node)
+            try:
+                node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
+            except:
+                print("except")
             self.hmmove = "    "
             self.index = 0
         elif l == 'r':
@@ -446,7 +451,8 @@ class ChessBoard(RelativeLayout):
                 self.pgn_moves.append(move)
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
-                play_sound()
+                play_sound(True)
+                play_sound(False)
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
                 if self.pgn_index < len(self.pgn_moves):
                     self.pgn_index += 1
