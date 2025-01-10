@@ -534,7 +534,6 @@ class ChessBoard(RelativeLayout):
                         anim.start(self.children[id])
                         break
                     else:
-                        print("3b")
                         self.trace(traceid,2)
                         self.turn()
                         break
@@ -557,7 +556,6 @@ class ChessBoard(RelativeLayout):
                                 self.turn()
                                 break
             elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
-                print("Castling uitvoeren")
                 if grid_x == 2 and grid_y == 0:
                     piece = self.findpiece("WhiteRook_0")
                     anim = Animation(grid_x=grid_x+1, grid_y=grid_y, t='in_out_expo', duration=0.5)
