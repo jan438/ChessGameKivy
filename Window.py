@@ -342,6 +342,7 @@ class ChessBoard(RelativeLayout):
     opgngame = chess.pgn.Game()
     pgn_moves = []
     pgn_index = -1
+    pgn_inputmode = False
   
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
@@ -406,22 +407,25 @@ class ChessBoard(RelativeLayout):
         elif l == 'm':
             self.hmmove = "    "
             self.index = 0
-        elif (l >= 'a' and l <= 'h') or (l >= '1' and l <= '8'):
-            if self.index < 4:
-                self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
-                self.index += 1
-        elif l == '.':
-            node = self.opgngame.end()
-            try:
-                node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
-                self.pgn_moves.append(self.hmmove)
-                self.animate_pgn_move(0, self.hmmove)
-                play_sound(True)
-            except Exception as e:
-                play_sound(False)
-                print("Except", e)
-            self.hmmove = "    "
-            self.index = 0
+            self.pgn_inputmode = True
+        if self.pgn_inputmode:
+            if (l >= 'a' and l <= 'h') or (l >= '1' and l <= '8'):
+                if self.index < 4:
+                    self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
+                    self.index += 1
+            elif l == '.':
+                node = self.opgngame.end()
+                try:
+                    node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
+                    self.pgn_moves.append(self.hmmove)
+                    self.animate_pgn_move(0, self.hmmove)
+                    play_sound(True)
+                except Exception as e:
+                    play_sound(False)
+                    print("Except", e)
+                self.hmmove = "    "
+                self.index = 0
+                self.pgn_inputmode = False
         elif l == 'r':
             pgn = open("PGN/input.pgn")
             self.pgngame = chess.pgn.read_game(pgn)
