@@ -349,10 +349,6 @@ class ChessBoard(RelativeLayout):
         self._keyboard.unbind(on_key_down = self.make_pgn_move)
         self._keyboard = None
         
-    def check_pgn_move(self, pgn_move):
-        print("Check_pgn_move", pgn_move)
-        return True
-        
     def animate_pgn_move(self, index, pgn_move):
         pgnmove = str(pgn_move)
         xfrom = letter_to_xpos(pgnmove[0])
