@@ -535,7 +535,8 @@ class ChessBoard(RelativeLayout):
                 break
             elif ChessBoard.piece_pressed and child.id == ChessBoard.id_piece_:
                 if (grid_x, grid_y) in ChessBoard.available_moves["available_moves"]:
-                    touchmove = xpos_to_letter(old_x) + ypos_to_digit(old_y) + xpos_to_letter(grid_x) + ypos_to_digit(grid_y)
+                    print(child.id, old_x, old_y, grid_x, grid_y)
+                    touchmove = xpos_to_letter(round(old_x)) + ypos_to_digit(round(old_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
                     node = self.opgngame.end()
                     try:
                         node = node.add_main_variation(chess.Move.from_uci(touchmove))
