@@ -537,12 +537,12 @@ class ChessBoard(RelativeLayout):
                 if (grid_x, grid_y) in ChessBoard.available_moves["available_moves"]:
                     pressedmove = xpos_to_letter(old_x) + ypos_to_digit(old_y) + xpos_to_letter(grid_x) + ypos_to_digit(grid_y)
                     print(child.id, old_x, old_y, grid_x, grid_y, "pressedmove", pressedmove)
-                    #node = self.opgngame.end()
-                    #try:
-                        #node = node.add_main_variation(chess.Move.from_uci(pressedmove))
-                        #self.pgn_moves.append(pressedmove)
-                    #except Exception as e:
-                        #print("Except", e)
+                    node = self.opgngame.end()
+                    try:
+                        node = node.add_main_variation(chess.Move.from_uci(pressedmove))
+                        self.pgn_moves.append(pressedmove)
+                    except Exception as e:
+                        print("Except", e)
                     anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_quad', duration=0.5)
                     anim.start(self.children[id])
                     ChessBoard.piece_pressed = False
