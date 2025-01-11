@@ -540,7 +540,7 @@ class ChessBoard(RelativeLayout):
                         self.pgn_moves.append(touchmove)
                     except Exception as e:
                         print("Except", e)
-                    anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_quad', duration=0.5)
+                    anim = Animation(grid_x = grid_x, grid_y = grid_y, t='in_quad', duration=0.5)
                     anim.start(self.children[id])
                     ChessBoard.piece_pressed = False
                     ChessBoard.available_moves = {"available_moves":(), "pieces_to_capture":[]}
@@ -548,7 +548,7 @@ class ChessBoard(RelativeLayout):
                         child.First_use = False
                     self.draw_moves()
                     if self.check_check():
-                        anim = Animation(grid_x=old_x, grid_y=old_y, t='in_quad', duration=0.5)
+                        anim = Animation(grid_x = old_x, grid_y = old_y, t='in_quad', duration=0.5)
                         anim.start(self.children[id])
                         break
                     else:
