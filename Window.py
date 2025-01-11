@@ -441,6 +441,8 @@ class ChessBoard(RelativeLayout):
             self.listpgn_moves()
         elif l == 'w':
             self.opgngame.headers["Event"] = "FirstEvent"
+            self.opgngame.headers["White"] = "Wim"
+            self.opgngame.headers["Black"] = "Jan"
             current_date = datetime.today().strftime('%Y-%m-%d')
             self.opgngame.headers["Date"] = current_date
             self.pgn_moves = []
