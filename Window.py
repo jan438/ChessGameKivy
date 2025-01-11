@@ -419,10 +419,11 @@ class ChessBoard(RelativeLayout):
                     self.index += 1
             elif l == '.':
                 node = self.opgngame.end()
+                self.pgn_index = len(self.pgn_moves)
                 try:
                     node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
                     self.pgn_moves.append(self.hmmove)
-                    self.animate_pgn_move(0, self.hmmove)
+                    self.animate_pgn_move(self.pgn_index, self.hmmove)
                     play_sound(True)
                 except Exception as e:
                     play_sound(False)
