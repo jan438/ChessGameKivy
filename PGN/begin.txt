@@ -26,3 +26,7 @@ g1g2
 g7g6
 h2h3
 h5f6
+f3g5
+g8g7
+e3e4
+e6e5
