@@ -536,7 +536,6 @@ class ChessBoard(RelativeLayout):
                 break
             elif ChessBoard.piece_pressed and child.id == ChessBoard.id_piece_:
                 if (grid_x, grid_y) in ChessBoard.available_moves["available_moves"]:
-                    print(child.id, old_x, old_y, grid_x, grid_y)
                     touchmove = xpos_to_letter(round(old_x)) + ypos_to_digit(round(old_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
                     node = self.opgngame.end()
                     try:
@@ -577,7 +576,6 @@ class ChessBoard(RelativeLayout):
                                 self.turn()
                                 break
             elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
-                print(ChessBoard.id_piece_, self.children[ChessBoard.piece_index].grid_x, self.children[ChessBoard.piece_index].grid_y, grid_x, grid_y)
                 touchmove = xpos_to_letter(round(self.children[ChessBoard.piece_index].grid_x)) + ypos_to_digit(round(self.children[ChessBoard.piece_index].grid_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
                 node = self.opgngame.end()
                 try:
