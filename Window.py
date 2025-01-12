@@ -578,6 +578,13 @@ class ChessBoard(RelativeLayout):
                                 break
             elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
                 print(ChessBoard.id_piece_, self.children[ChessBoard.piece_index].grid_x, self.children[ChessBoard.piece_index].grid_y, grid_x, grid_y)
+                touchmove = xpos_to_letter(round(self.children[ChessBoard.piece_index].grid_x)) + ypos_to_digit(round(self.children[ChessBoard.piece_index].grid_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
+                node = self.opgngame.end()
+                try:
+                    node = node.add_main_variation(chess.Move.from_uci(touchmove))
+                    self.pgn_moves.append(touchmove)
+                except Exception as e:
+                    print("Except", e)
                 if grid_x == 2 and grid_y == 0:
                     piece = self.findpiece("WhiteRook_0")
                     anim = Animation(grid_x=grid_x+1, grid_y=grid_y, t='in_out_expo', duration=0.5)
