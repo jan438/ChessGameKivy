@@ -627,6 +627,7 @@ class ChessBoard(RelativeLayout):
                             ChessBoard.available_moves = {"available_moves":[], "pieces_to_capture":[]}
                             self.draw_moves()
                             enpassant = True
+                            self.turn()
                     if child.id[:5] == "White":
                         self.clear_en_passant("Black")
                     else:
