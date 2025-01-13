@@ -617,6 +617,13 @@ class ChessBoard(RelativeLayout):
                                 self.turn()
                                 break
                         elif child.id[5:9] == "Pawn" and enemy.id[5:9] == "Pawn" and (child.grid_x - 1 == enemy.grid_x or child.grid_x + 1 == enemy.grid_x) and child.grid_y == enemy.grid_y and child.id[:5] != enemy.id[:5]:
+                            touchmove = xpos_to_letter(round(old_x)) + ypos_to_digit(round(old_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
+                            node = self.opgngame.end()
+                            try:
+                                node = node.add_main_variation(chess.Move.from_uci(touchmove))
+                                self.pgn_moves.append(touchmove)
+                            except Exception as e:
+                                print("Except", e)
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                             anim.start(child)
                             if enemy.grid_x == grid_x and enemy.grid_y == grid_y - 1 and enemy.grid_y == 4 and enemy.id[:5] == "Black":
