@@ -586,7 +586,7 @@ class ChessBoard(RelativeLayout):
                     if child.id[5:9] == "Pawn" and abs(grid_y - old_y) == 2:
                         self.mark_en_passant(child.id[:5], grid_x)
                     else:
-                        self.clear_en_passant("White") 
+                        self.clear_en_passant(child.id[:5]) 
                     if (child.id[5:9] == "Pawn" or child.id[5:9] == "Rook" or child.id[5:9] == "King") and child.First_use:
                         child.First_use = False
                     self.draw_moves()
