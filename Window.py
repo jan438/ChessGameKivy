@@ -24,8 +24,8 @@ from kivy.utils import get_hex_from_color, get_color_from_hex
 
 Width, Height = 800, 800
 Window.size = (Width, Height)
-wep = [True,True,True,True,True,True,True,True]
-bep = [True,True,True,True,True,True,True,True]
+wep = [False,False,False,False,False,False,False,False]
+bep = [False,False,False,False,False,False,False,False]
 
 def play_sound(sorf):
     if sorf:
@@ -524,6 +524,18 @@ class ChessBoard(RelativeLayout):
             if child.grid_x == xpos and child.grid_y == ypos:
                 return index
         return -1
+                    
+    def mark_en_passant(self, c, x):
+        if c == "White":
+            wep[x] = True
+        elif c == "Black":
+            bep[x] = True
+  
+    def clear_en_passant(self, c):
+        if c == "White":
+            wep = [False,False,False,False,False,False,False,False]
+        elif c == "Black":
+            bep = [False,False,False,False,False,False,False,False]
 
     def on_touch_down(self, touch):
         print("Len:", len(self.children))
@@ -532,6 +544,9 @@ class ChessBoard(RelativeLayout):
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
         print("On toch", grid_x, grid_y)
+        self.clear_en_passant("White")
+        self.mark_en_passant("Black", 5)
+        print(bep)
         for id, child in enumerate(self.children):
             if grid_x == child.grid_x and grid_y == child.grid_y:
                 print(child.id,child.grid_x,grid_y)
