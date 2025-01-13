@@ -24,6 +24,8 @@ from kivy.utils import get_hex_from_color, get_color_from_hex
 
 Width, Height = 800, 800
 Window.size = (Width, Height)
+wep = [True,True,True,True,True,True,True,True]
+bep = [True,True,True,True,True,True,True,True]
 
 def play_sound(sorf):
     if sorf:
@@ -509,7 +511,8 @@ class ChessBoard(RelativeLayout):
         return -1
 
     def on_touch_down(self, touch):
-        print("Len:",len(self.children))
+        print("Len:", len(self.children))
+        print(wep[0])
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
