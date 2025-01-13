@@ -378,22 +378,27 @@ class ChessBoard(RelativeLayout):
         if pindex > -1:
             child = self.children[pindex]
             id = child.id
+            child.First_use = False
             anim.start(child)
             if id == "WhiteKing" and xto == 6 and yto == 0:
                 piece = self.findpiece("WhiteRook_1")
                 anim = Animation(grid_x = 5, grid_y = 0, t='in_out_expo', duration=0.5)
+                piece.First_use = False
                 anim.start(piece)
             if id == "WhiteKing" and xto == 2 and yto == 0:
                 piece = self.findpiece("WhiteRook_0")
                 anim = Animation(grid_x = 3, grid_y = 0, t='in_out_expo', duration=0.5)
+                piece.First_use = False
                 anim.start(piece)
             if id == "BlackKing" and xto == 6 and yto == 7:
                 piece = self.findpiece("BlackRook_1")
                 anim = Animation(grid_x = 5, grid_y = 7, t='in_out_expo', duration=0.5)
+                piece.First_use = False
                 anim.start(piece)
             if id == "BlackKing" and xto == 2 and yto == 7:
                 piece = self.findpiece("BlackRook_0")
                 anim = Animation(grid_x = 3, grid_y = 7, t='in_out_expo', duration=0.5)
+                piece.First_use = False
                 anim.start(piece)
             if id[:9] == "WhitePawn" and yto == 7:
                  self.remove_widget(child)
