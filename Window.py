@@ -623,7 +623,14 @@ class ChessBoard(RelativeLayout):
                                 self.remove_widget(enemy)
                             if enemy.grid_x == grid_x and enemy.grid_y == grid_y + 1 and enemy.grid_y == 3 and enemy.id[:5] == "White":
                                 self.remove_widget(enemy)
-                    self.clear_en_passant("White") 
+                            ChessBoard.piece_pressed = False
+                            ChessBoard.available_moves = {"available_moves":[], "pieces_to_capture":[]}
+                            self.draw_moves()
+                            enpassant = True
+                    if child.id[:5] == "White":
+                        self.clear_en_passant("Black")
+                    else:
+                        self.clear_en_passant("White")
             elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
                 touchmove = xpos_to_letter(round(self.children[ChessBoard.piece_index].grid_x)) + ypos_to_digit(round(self.children[ChessBoard.piece_index].grid_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
                 node = self.opgngame.end()
