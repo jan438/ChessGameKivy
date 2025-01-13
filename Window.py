@@ -577,6 +577,16 @@ class ChessBoard(RelativeLayout):
                     anim.start(self.children[id])
                     ChessBoard.piece_pressed = False
                     ChessBoard.available_moves = {"available_moves":(), "pieces_to_capture":[]}
+                    if grid_y == 7 and child.id[0:9] == "WhitePawn":
+                        self.remove_widget(child)
+                        self.add_widget(Queen(id="WhiteQueen2",source="Assets/PNG/WhiteQueen.png", grid_x=grid_x, grid_y=grid_y))
+                    if grid_y == 0 and child.id[0:9] == "BlackPawn":
+                        self.remove_widget(child)
+                        self.add_widget(Queen(id="BlackQueen2",source="Assets/PNG/BlackQueen.png", grid_x=grid_x, grid_y=grid_y))
+                    if child.id[5:9] == "Pawn" and abs(grid_y - old_y) == 2:
+                        self.mark_en_passant(child.id[:5], grid_x)
+                    else:
+                        self.clear_en_passant("White") 
                     if (child.id[5:9] == "Pawn" or child.id[5:9] == "Rook" or child.id[5:9] == "King") and child.First_use:
                         child.First_use = False
                     self.draw_moves()
