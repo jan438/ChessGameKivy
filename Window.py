@@ -606,6 +606,8 @@ class ChessBoard(RelativeLayout):
                             else:
                                 self.turn()
                                 break
+                        elif child.id[5:9] == "Pawn" and enemy.id[5:9] == "Pawn" and (child.grid_x - 1 == enemy.grid_x or child.grid_x + 1 == enemy.grid_x) and child.grid_y == enemy.grid_y and child.id[:5] != enemy.id[:5]:
+                            print("En passant")
                     self.clear_en_passant("White") 
             elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
                 touchmove = xpos_to_letter(round(self.children[ChessBoard.piece_index].grid_x)) + ypos_to_digit(round(self.children[ChessBoard.piece_index].grid_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
