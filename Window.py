@@ -544,9 +544,6 @@ class ChessBoard(RelativeLayout):
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
         print("On toch", grid_x, grid_y)
-        self.clear_en_passant("White")
-        self.mark_en_passant("Black", 5)
-        print(bep)
         for id, child in enumerate(self.children):
             if grid_x == child.grid_x and grid_y == child.grid_y:
                 print(child.id,child.grid_x,grid_y)
@@ -591,6 +588,7 @@ class ChessBoard(RelativeLayout):
                         self.turn()
                         break
                 elif (grid_x, grid_y) in ChessBoard.available_moves["pieces_to_capture"]:
+                    enpassant = False
                     for enemy in self.children:
                         if enemy.grid_x == grid_x and enemy.grid_y == grid_y:
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
@@ -608,6 +606,7 @@ class ChessBoard(RelativeLayout):
                             else:
                                 self.turn()
                                 break
+                    self.clear_en_passant("White") 
             elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
                 touchmove = xpos_to_letter(round(self.children[ChessBoard.piece_index].grid_x)) + ypos_to_digit(round(self.children[ChessBoard.piece_index].grid_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
                 node = self.opgngame.end()
