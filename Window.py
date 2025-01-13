@@ -443,11 +443,11 @@ class ChessBoard(RelativeLayout):
         elif l == 'l':
             self.listpgn_moves()
         elif l == 'w':
-            self.opgngame.headers["Event"] = "FirstEvent"
-            self.opgngame.headers["White"] = "Wim"
-            self.opgngame.headers["Black"] = "Jan"
+            self.opgngame.headers["Event"] = "Bugojno 3rd"
+            self.opgngame.headers["White"] = "Jan Timman"
+            self.opgngame.headers["Black"] = "Garry Kasparov"
             current_date = datetime.today().strftime('%Y-%m-%d')
-            self.opgngame.headers["Date"] = current_date
+            self.opgngame.headers["Date"] = "1982.05.??"
             self.pgn_moves = []
             pgn = open("PGN/begin.txt", 'r')
             for line in pgn:
