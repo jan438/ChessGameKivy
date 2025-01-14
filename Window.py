@@ -391,12 +391,10 @@ class ChessBoard(RelativeLayout):
                 if abs(yto - yfrom) == 2:
                     self.mark_en_passant(color, xto)
                 if color == "Black" and yto == 2 and abs(xfrom - xto) == 1:
-                    print("Enpassant")
+                    print("Enpassant black", wep)
                 if color == "White" and yto == 5 and abs(xfrom - xto) == 1:
-                    print("Enpassant")
-                print(color, xfrom, yfrom, xto, yto)
-                print("wep", wep)
-                print("bep", bep)
+                    print("Enpassant white", bep)
+                #print(color, xfrom, yfrom, xto, yto)
             anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
             anim.start(child)
             if id == "WhiteKing" and xto == 6 and yto == 0:
