@@ -390,6 +390,8 @@ class ChessBoard(RelativeLayout):
             if child.id[5:9] == "Pawn":
                 if abs(yto - yfrom) == 2:
                     self.mark_en_passant(color, xto)
+                else:
+                    self.clear_en_passant(color) 
                 if color == "Black" and yto == 2 and abs(xfrom - xto) == 1 and wep[xto]:
                     pieceindex = self.pieceindex_at_board(xto, yto + 1)
                     if pieceindex > -1:
