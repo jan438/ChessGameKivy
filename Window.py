@@ -386,9 +386,10 @@ class ChessBoard(RelativeLayout):
             child = self.children[pindex]
             id = child.id
             child.First_use = False
-            if child.id[5:9] == "Pawn" and abs(yto - yfrom) == 2:
+            if child.id[5:9] == "Pawn":
                 color = child.id[:5]
-                self.mark_en_passant(color, xto)
+                if abs(yto - yfrom) == 2:
+                    self.mark_en_passant(color, xto)
                 print(color, xfrom, yfrom, xto, yto)
                 print("wep", wep)
                 print("bep", bep)
