@@ -387,9 +387,8 @@ class ChessBoard(RelativeLayout):
             id = child.id
             child.First_use = False
             if child.id[5:9] == "Pawn" and abs(yto - yfrom) == 2:
-                if child.id[:5] == "White":
-                    wep[xto] = True
-                    print(child.id[:5], xfrom, yfrom, xto, yto, wep)
+                self.mark_en_passant(child.id[:5], xto)
+                print(child.id[:5], xfrom, yfrom, xto, yto, wep, bep)
             anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
             anim.start(child)
             if id == "WhiteKing" and xto == 6 and yto == 0:
