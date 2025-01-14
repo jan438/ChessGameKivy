@@ -397,8 +397,11 @@ class ChessBoard(RelativeLayout):
                         self.remove_widget(piece)
                     print("Enpassant black", wep)
                 if color == "White" and yto == 5 and abs(xfrom - xto) == 1:
+                    pieceindex = self.pieceindex_at_board(xto, yto - 1)
+                    if pieceindex > -1:
+                        piece = self.children[pieceindex]
+                        self.remove_widget(piece)
                     print("Enpassant white", bep)
-                #print(color, xfrom, yfrom, xto, yto)
             anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
             anim.start(child)
             if id == "WhiteKing" and xto == 6 and yto == 0:
