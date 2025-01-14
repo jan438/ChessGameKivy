@@ -386,7 +386,7 @@ class ChessBoard(RelativeLayout):
             child = self.children[pindex]
             id = child.id
             child.First_use = False
-            if child.id[5:9] == "Pawn":
+            if child.id[5:9] == "Pawn" and abs(yto - yfrom) == 2:
                 print(child.id[:5], xfrom, yfrom, xto, yto)
             anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
             anim.start(child)
