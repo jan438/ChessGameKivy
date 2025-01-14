@@ -390,13 +390,13 @@ class ChessBoard(RelativeLayout):
             if child.id[5:9] == "Pawn":
                 if abs(yto - yfrom) == 2:
                     self.mark_en_passant(color, xto)
-                if color == "Black" and yto == 2 and abs(xfrom - xto) == 1:
+                if color == "Black" and yto == 2 and abs(xfrom - xto) == 1 and wep[xto]:
                     pieceindex = self.pieceindex_at_board(xto, yto + 1)
                     if pieceindex > -1:
                         piece = self.children[pieceindex]
                         self.remove_widget(piece)
                     print("Enpassant black", wep)
-                if color == "White" and yto == 5 and abs(xfrom - xto) == 1:
+                if color == "White" and yto == 5 and abs(xfrom - xto) == 1 and bep[xto]:
                     pieceindex = self.pieceindex_at_board(xto, yto - 1)
                     if pieceindex > -1:
                         piece = self.children[pieceindex]
