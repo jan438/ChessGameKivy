@@ -390,6 +390,8 @@ class ChessBoard(RelativeLayout):
                 color = child.id[:5]
                 if abs(yto - yfrom) == 2:
                     self.mark_en_passant(color, xto)
+                if color == "Black" and yto == 2 and abs(xfrom - xto) == 1:
+                    print("Enpassant")
                 print(color, xfrom, yfrom, xto, yto)
                 print("wep", wep)
                 print("bep", bep)
