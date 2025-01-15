@@ -344,13 +344,103 @@ class King(ChessPiece):
                     no_piece_right = False
                 elif piece.grid_y == self.grid_y and piece.grid_x < self.grid_x and (piece.id[5:9] != "Rook" or self.id[:5] != piece.id[:5]):
                     no_piece_left = False
-            if no_piece_right and no_piece_left:
-                return [(self.grid_x-2, self.grid_y),(self.grid_x+2, self.grid_y)]
-            if no_piece_right:
-                return [(self.grid_x+2, self.grid_y)]
-            if no_piece_left:
-                return [(self.grid_x-2, self.grid_y)]
-        return []
+            if no_piece_left and no_piece_right and self.id == "WhiteKing":
+                no_attack_left = self.safe_left(pieces)
+                no_attack_right = self.safe_right(pieces)
+                if no_attack_left and no_attack_right:
+                    return [(self.grid_x-2, 0),(self.grid_x+2, 0)]      
+                if no_attack_left:
+                    return [(self.grid_x-2, 0)]
+                if no_attack_right:  
+                    return [(self.grid_x+2, 0)]       
+            elif no_piece_left and self.id == "WhiteKing":
+                no_attack_left = self.safe_left(pieces) 
+                if no_attack_left:
+                    return [(self.grid_x-2, 0)]                      
+            elif no_piece_right and self.id == "WhiteKing":
+                 no_attack_right = self.safe_right(pieces)
+                 if no_attack_right:
+                     return [(self.grid_x+2, 0)]               
+            elif no_piece_left and no_piece_right and self.id == "BlackKing":
+                 no_attack_left = self.safe_left(pieces) 
+                 no_attack_right = self.safe_right(pieces) 
+                 if no_attack_left and no_attack_right:
+                     return [(self.grid_x-2, 7),(self.grid_x+2, 7)]     
+                 if no_attack_left:
+                     return [(self.grid_x-2, 7)]
+                 if no_attack_right:
+                     return [(self.grid_x+2, 7)]      
+            elif no_piece_left and self.id == "BlackKing":
+                 no_attack_left = self.safe_left(pieces)  
+                 if no_attack_left:
+                     return [(self.grid_x-2, 7)]               
+            elif no_piece_right and self.id == "BlackKing":
+                 no_attack_right = self.safe_right(pieces) 
+                 if no_attack_right:
+                     return [(self.grid_x+2, 7)]        
+            return []
+    
+    def safe_left(self, pieces):
+        if self.id == "WhiteKing":
+            places = [[4,0],[3,0],[2,0],[1,0]]
+            for plc in places:
+                if not self.safe_place(plc, pieces):
+                    return False
+        if self.id == "BlackKing":
+            places = [[4,7],[3,7],[2,7],[1,7]]
+            for plc in places:
+                if not self.safe_place(plc, pieces):
+                    return False
+        return True
+        
+    def safe_right(self, pieces):
+        if self.id == "WhiteKing":
+            places = [[4,0],[5,0],[6,0]]
+            for plc in places:
+                if not self.safe_place(plc, pieces):
+                    return False
+        if self.id == "BlackKing":
+            places = [[4,7],[5,7],[6,7]]
+            for plc in places:
+                if not self.safe_place(plc, pieces):
+                    return False
+        return True
+        
+    def safe_place(self, plc, pieces):
+        for piece in pieces:
+            if (plc[1] == 0 and piece.id[:5] == "Black") or (plc[1] == 7 and piece.id[:5] == "White"):
+                if self.attacked(plc, piece):
+                    return False
+        return True
+        
+    def attacked(self, plc, piece):
+        piecekind = piece.id[5:9]
+        if piecekind == "Knig":
+            if (piece.grid_x + 2, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y + 2) == (plc[0],plc[1]) or (piece.grid_x - 2, piece.grid_y + 1) == (plc[0],plc[1]) or  (piece.grid_x - 1, piece.grid_y + 2) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y - 2) == (plc[0],plc[1]) or (piece.grid_x + 2, piece.grid_y - 1) == (plc[0],plc[1]) or  (piece.grid_x - 2, piece.grid_y - 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y - 2) == (plc[0],plc[1]):
+               return True
+        if piecekind == "Bish":
+            if self.diagonal(plc, piece):
+                return True
+        if piecekind == "Rook":
+            if self.straight(plc, piece):
+                return True
+        if piecekind == "Quee":
+            if self.diagonal(plc, piece) or self.straight(plc, piece):
+                return True
+        if piecekind == "Pawn":
+            if (piece.grid_x + 1, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y - 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y - 1) == (plc[0],plc[1]):
+                return True
+        return False
+        
+    def diagonal(self, plc, piece):
+        deltax = abs(round(piece.grid_x) - plc[0])
+        deltay = abs(round(piece.grid_y) - plc[1])
+        return False
+    
+    def straight(self, plc, piece):
+        deltax = abs(round(piece.grid_x) - plc[0])
+        deltay = abs(round(piece.grid_y) - plc[1])
+        return False                
 
 class ChessBoard(RelativeLayout):
     piece_pressed = False
