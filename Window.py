@@ -334,6 +334,8 @@ class King(ChessPiece):
         return available_moves
 
     def castling(self, pieces):
+        no_attack_left = True
+        no_attack_right = True
         if self.First_use:
             no_piece_left = True
             no_piece_right = True
