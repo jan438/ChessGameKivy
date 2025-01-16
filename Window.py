@@ -553,7 +553,6 @@ class ChessBoard(RelativeLayout):
                     self.animate_pgn_move(self.pgn_index, self.hmmove)
                     play_sound(True)
                     self.turn()
-                    print(pgnboard)
                 except Exception as e:
                     play_sound(False)
                     print("Except", e)
