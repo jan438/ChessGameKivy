@@ -567,10 +567,8 @@ class ChessBoard(RelativeLayout):
             pgnboard = self.pgngame.board()
             for move in self.pgngame.mainline_moves():
                 self.pgn_moves.append(move)
-                pgnboard.push(move)
             pgn.close()
             self.pgn_index = 0
-            print(pgnboard)
         elif l == 'l':
             self.listpgn_moves()
         elif l == 'w':
