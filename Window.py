@@ -434,6 +434,7 @@ class King(ChessPiece):
     def diagonal(self, plc, piece):
         deltax = abs(round(piece.grid_x) - plc[0])
         deltay = abs(round(piece.grid_y) - plc[1])
+        print(pgnboard)
         return False
     
     def straight(self, plc, piece):
