@@ -317,7 +317,6 @@ class King(ChessPiece):
                     available_moves["pieces_to_capture"].append((piece.grid_x, piece.grid_y))
                 available_moves["available_moves"].remove((piece.grid_x, piece.grid_y))
         if self.First_use:
-            #print("Available King:",self.id,self.castling(pieces))
             available_moves["castling"] = self.castling(pieces)
         return available_moves
 
@@ -655,7 +654,6 @@ class ChessBoard(RelativeLayout):
 
     def on_touch_down(self, touch):
         print("Len:", len(self.children))
-        print(wep[0])
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
