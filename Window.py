@@ -435,7 +435,6 @@ class King(ChessPiece):
     def diagonal(self, plc, piece):
         deltax = abs(round(piece.grid_x) - plc[0])
         deltay = abs(round(piece.grid_y) - plc[1])
-        print(pgnboard)
         return False
     
     def straight(self, plc, piece):
@@ -554,6 +553,7 @@ class ChessBoard(RelativeLayout):
                     self.animate_pgn_move(self.pgn_index, self.hmmove)
                     play_sound(True)
                     self.turn()
+                    print(pgnboard)
                 except Exception as e:
                     play_sound(False)
                     print("Except", e)
