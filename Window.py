@@ -464,6 +464,8 @@ class ChessBoard(RelativeLayout):
         self._keyboard = None
         
     def animate_pgn_move(self, index, pgn_move):
+        pgnboard.push(pgn_move)
+        print(pgnboard)
         pgnmove = str(pgn_move)
         xfrom = letter_to_xpos(pgnmove[0])
         yfrom = letter_to_ypos(pgnmove[1])
@@ -596,8 +598,6 @@ class ChessBoard(RelativeLayout):
             self.pgn_moves = []
             for move in self.opgngame.mainline_moves():
                 self.pgn_moves.append(move)
-                pgnboard.push(move)
-            print(pgnboard)
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
