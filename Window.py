@@ -763,8 +763,11 @@ class ChessBoard(RelativeLayout):
                 touchmove = xpos_to_letter(round(self.children[ChessBoard.piece_index].grid_x)) + ypos_to_digit(round(self.children[ChessBoard.piece_index].grid_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
                 node = self.opgngame.end()
                 try:
-                    node = node.add_main_variation(chess.Move.from_uci(touchmove))
+                    pgnmove = chess.Move.from_uci(touchmove)
+                    node = node.add_main_variation(pgnmove)
                     self.pgn_moves.append(touchmove)
+                    pgnboard.push(pgnmove)
+                    print(pgnboard)
                 except Exception as e:
                     print("Except", e)
                 if grid_x == 2 and grid_y == 0:
