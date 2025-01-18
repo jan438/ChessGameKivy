@@ -449,7 +449,7 @@ class ChessBoard(RelativeLayout):
     turn_ = "White"
     piece_index = None
     check = BooleanProperty(defaultvalue=False)
-    opgngame = chess.pgn.Game()
+    pgngame = chess.pgn.Game()
     pgn_moves = []
     pgn_index = -1
     pgn_inputmode = False
@@ -532,7 +532,7 @@ class ChessBoard(RelativeLayout):
         l = keycode[1]
         if l == 'q':
             pgn = open("PGN/output.pgn", "w")
-            pgn.write(str(self.opgngame))
+            pgn.write(str(self.pgngame))
             pgn.close()
             self.close_application()
         elif l == 'm':
@@ -545,7 +545,7 @@ class ChessBoard(RelativeLayout):
                     self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                     self.index += 1
             elif l == '.':
-                node = self.opgngame.end()
+                node = self.pgngame.end()
                 self.pgn_index = len(self.pgn_moves)
                 try:
                     node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
@@ -570,12 +570,12 @@ class ChessBoard(RelativeLayout):
         elif l == 'l':
             self.listpgn_moves()
         elif l == 'w':
-            self.opgngame.headers["Event"] = "Bugojno 3rd"
-            self.opgngame.headers["White"] = "Jan Timman"
-            self.opgngame.headers["Black"] = "Garry Kasparov"
+            self.pgngame.headers["Event"] = "Bugojno 3rd"
+            self.pgngame.headers["White"] = "Jan Timman"
+            self.pgngame.headers["Black"] = "Garry Kasparov"
             current_date = datetime.today().strftime('%Y-%m-%d')
-            self.opgngame.headers["Date"] = "1982.05.??"
-            pgnboard = self.opgngame.board()
+            self.pgngame.headers["Date"] = "1982.05.??"
+            pgnboard = self.pgngame.board()
             self.pgn_moves = []
             pgn = open("PGN/begin.txt", 'r')
             for line in pgn:
@@ -583,7 +583,7 @@ class ChessBoard(RelativeLayout):
             pgn.close()
             self.pgn_index = 0
             self.hmmove = self.pgn_moves[self.pgn_index][:4]
-            node = self.opgngame.add_main_variation(chess.Move.from_uci(self.hmmove))
+            node = self.pgngame.add_main_variation(chess.Move.from_uci(self.hmmove))
             node.comment = "Comment"
             self.pgn_index = 1
             while self.pgn_index < len(self.pgn_moves):
@@ -592,19 +592,16 @@ class ChessBoard(RelativeLayout):
                 self.pgn_index += 1
             self.pgn_index = 0
             self.pgn_moves = []
-            for move in self.opgngame.mainline_moves():
+            for move in self.pgngame.mainline_moves():
                 self.pgn_moves.append(move)
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
                 if self.pgn_index < len(self.pgn_moves):
+                    pgnboard.push(self.pgn_moves[self.pgn_index])
                     self.pgn_index += 1
                 self.turn()
                 print("Turn", self.turn_)
-        elif l == 'p':
-            if self.pgn_index > 0 and self.pgn_index <= len(self.pgn_moves):
-                self.pgn_index -= 1
-                self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
         return True
 
     def close_application(self): 
@@ -681,7 +678,7 @@ class ChessBoard(RelativeLayout):
             elif ChessBoard.piece_pressed and child.id == ChessBoard.id_piece_:
                 if (grid_x, grid_y) in ChessBoard.available_moves["available_moves"]:
                     touchmove = xpos_to_letter(round(old_x)) + ypos_to_digit(round(old_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
-                    node = self.opgngame.end()
+                    node = self.pgngame.end()
                     try:
                         pgnmove = chess.Move.from_uci(touchmove)
                         node = node.add_main_variation(pgnmove)
@@ -735,7 +732,7 @@ class ChessBoard(RelativeLayout):
                                 break
                         elif child.id[5:9] == "Pawn" and enemy.id[5:9] == "Pawn" and (child.grid_x - 1 == enemy.grid_x or child.grid_x + 1 == enemy.grid_x) and child.grid_y == enemy.grid_y and child.id[:5] != enemy.id[:5]:
                             touchmove = xpos_to_letter(round(old_x)) + ypos_to_digit(round(old_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
-                            node = self.opgngame.end()
+                            node = self.pgngame.end()
                             try:
                                 pgnmove = chess.Move.from_uci(touchmove)
                                 node = node.add_main_variation(pgnmove)
@@ -761,7 +758,7 @@ class ChessBoard(RelativeLayout):
                         self.clear_en_passant("White")
             elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
                 touchmove = xpos_to_letter(round(self.children[ChessBoard.piece_index].grid_x)) + ypos_to_digit(round(self.children[ChessBoard.piece_index].grid_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
-                node = self.opgngame.end()
+                node = self.pgngame.end()
                 try:
                     pgnmove = chess.Move.from_uci(touchmove)
                     node = node.add_main_variation(pgnmove)
