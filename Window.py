@@ -434,7 +434,7 @@ class King(ChessPiece):
     def diagonal(self, plc, piece):
         deltax = abs(round(piece.grid_x) - plc[0])
         deltay = abs(round(piece.grid_y) - plc[1])
-        print("Diagonal", pgnboard.piece_map())
+        print("Diagonal", ChessBoard.pgnboard.piece_map())
         return False
     
     def straight(self, plc, piece):
@@ -450,6 +450,7 @@ class ChessBoard(RelativeLayout):
     piece_index = None
     check = BooleanProperty(defaultvalue=False)
     pgngame = chess.pgn.Game()
+    pgnboard = chess.Board()
     pgn_moves = []
     pgn_index = -1
     pgn_inputmode = False
@@ -896,8 +897,6 @@ class ChessApp(App):
         board.add_widget(Queen(id="BlackQueen",source="Assets/PNG/BlackQueen.png",grid_x=3, grid_y=7))
         board.add_widget(King(id="BlackKing",source="Assets/PNG/BlackKing.png",grid_x=4, grid_y=7))
         return board
-
-pgnboard = chess.Board()
 
 if __name__ == '__main__':
     if sys.platform[0] == 'l':
