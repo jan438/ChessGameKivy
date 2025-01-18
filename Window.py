@@ -464,8 +464,6 @@ class ChessBoard(RelativeLayout):
         self._keyboard = None
         
     def animate_pgn_move(self, index, pgn_move):
-        pgnboard.push(pgn_move)
-        print(pgnboard)
         pgnmove = str(pgn_move)
         xfrom = letter_to_xpos(pgnmove[0])
         yfrom = letter_to_ypos(pgnmove[1])
