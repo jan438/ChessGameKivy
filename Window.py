@@ -563,7 +563,7 @@ class ChessBoard(RelativeLayout):
         elif l == 'r':
             pgn = open("PGN/input.pgn")
             self.pgngame = chess.pgn.read_game(pgn)
-            pgnboard = self.pgngame.board()
+            self.pgnboard = self.pgngame.board()
             for move in self.pgngame.mainline_moves():
                 self.pgn_moves.append(move)
             pgn.close()
@@ -576,7 +576,7 @@ class ChessBoard(RelativeLayout):
             self.pgngame.headers["Black"] = "Garry Kasparov"
             current_date = datetime.today().strftime('%Y-%m-%d')
             self.pgngame.headers["Date"] = "1982.05.??"
-            pgnboard = self.pgngame.board()
+            self.pgnboard = self.pgngame.board()
             self.pgn_moves = []
             pgn = open("PGN/begin.txt", 'r')
             for line in pgn:
@@ -599,7 +599,7 @@ class ChessBoard(RelativeLayout):
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
                 if self.pgn_index < len(self.pgn_moves):
-                    pgnboard.push(self.pgn_moves[self.pgn_index])
+                    self.pgnboard.push(self.pgn_moves[self.pgn_index])
                     self.pgn_index += 1
                 self.turn()
                 print("Turn", self.turn_)
@@ -684,8 +684,8 @@ class ChessBoard(RelativeLayout):
                         pgnmove = chess.Move.from_uci(touchmove)
                         node = node.add_main_variation(pgnmove)
                         self.pgn_moves.append(touchmove)
-                        pgnboard.push(pgnmove)
-                        print(pgnboard)
+                        self.pgnboard.push(pgnmove)
+                        print(self.pgnboard)
                     except Exception as e:
                         print("Except", e)
                     anim = Animation(grid_x = grid_x, grid_y = grid_y, t='in_quad', duration=0.5)
@@ -738,8 +738,8 @@ class ChessBoard(RelativeLayout):
                                 pgnmove = chess.Move.from_uci(touchmove)
                                 node = node.add_main_variation(pgnmove)
                                 self.pgn_moves.append(touchmove)
-                                pgnboard.push(pgnmove)
-                                print(pgnboard)
+                                self.pgnboard.push(pgnmove)
+                                print(self.pgnboard)
                             except Exception as e:
                                 print("Except", e)
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
@@ -764,8 +764,8 @@ class ChessBoard(RelativeLayout):
                     pgnmove = chess.Move.from_uci(touchmove)
                     node = node.add_main_variation(pgnmove)
                     self.pgn_moves.append(touchmove)
-                    pgnboard.push(pgnmove)
-                    print(pgnboard)
+                    self.pgnboard.push(pgnmove)
+                    print(self.pgnboard)
                 except Exception as e:
                     print("Except", e)
                 if grid_x == 2 and grid_y == 0:
