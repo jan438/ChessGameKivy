@@ -600,8 +600,8 @@ class ChessBoard(RelativeLayout):
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
                 self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
+                self.pgnboard.push(self.pgn_moves[self.pgn_index])
                 if self.pgn_index < len(self.pgn_moves):
-                    self.pgnboard.push(self.pgn_moves[self.pgn_index])
                     self.pgn_index += 1
                 self.turn()
                 print("Turn", self.turn_)
