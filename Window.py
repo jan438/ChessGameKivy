@@ -549,8 +549,10 @@ class ChessBoard(RelativeLayout):
                 node = self.pgngame.end()
                 self.pgn_index = len(self.pgn_moves)
                 try:
-                    node = node.add_main_variation(chess.Move.from_uci(self.hmmove))
+                    pgnmove = chess.Move.from_uci(self.hmmove)
+                    node = node.add_main_variation(pgnmove)
                     self.pgn_moves.append(self.hmmove)
+                    self.pgnboard.push(pgnmove)
                     self.animate_pgn_move(self.pgn_index, self.hmmove)
                     play_sound(True)
                     self.turn()
