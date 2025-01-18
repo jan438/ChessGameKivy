@@ -603,6 +603,8 @@ class ChessBoard(RelativeLayout):
                     self.pgn_index += 1
                 self.turn()
                 print("Turn", self.turn_)
+        elif l == 'p':
+            print(self.pgnboard)
         return True
 
     def close_application(self): 
