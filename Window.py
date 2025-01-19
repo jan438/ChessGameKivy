@@ -446,18 +446,15 @@ class King(ChessPiece):
             for i in range(deltax):
                 pgnposx = round(piece.grid_x) + i * stepx + stepx
                 pgnposy = round(piece.grid_y) + i * stepy + stepy
+                pieceindex = pgnposy * 8 + pgnposx
+                pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
                 print(piece.id, pgnposx, pgnposy)
-                #if boardai.chesspiecesai[aiposx][aiposy] != 0:
-                    #break
-            #if aiposy == ai_to_hm_y(plc[1]) and (boardai.chesspiecesai[aiposx][aiposy] == 0 or boardai.chesspiecesai[aiposx][aiposy].id[5:9] == "King"):
-                #return True
-        #print("plc", round(piece.grid_x), round(piece.grid_y), plc[0], plc[1])
-        #for pgnrow in range(8):
-            #for pgncol in range(8):
-                #pieceindex = pgnrow * 8 + pgncol
-                #pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
-                #if pgnpiece != None:
-                    #print("P", pgnrow, pgncol, pgnpiece)
+                if pgnpiece != None:
+                    break
+            endindex =  plc[1]* 8 + plc[0]
+            endpiece = ChessBoard.pgnboard.piece_at(endindex)
+            if pgnposy == plc[1] and (endpiece == None or endpiece == 'K' or endpiece == 'k'):
+                return True
         return False
     
     def straight(self, plc, piece):
