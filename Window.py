@@ -448,7 +448,6 @@ class King(ChessPiece):
                 pgnposy = round(piece.grid_y) + i * stepy + stepy
                 pieceindex = pgnposy * 8 + pgnposx
                 pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
-                print(piece.id, pgnposx, pgnposy)
                 if pgnpiece != None:
                     break
             endindex =  plc[1]* 8 + plc[0]
