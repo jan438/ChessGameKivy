@@ -450,7 +450,7 @@ class King(ChessPiece):
                 pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
                     break
-            endindex =  plc[1]* 8 + plc[0]
+            endindex =  plc[1] * 8 + plc[0]
             endpiece = ChessBoard.pgnboard.piece_at(endindex)
             if pgnposy == plc[1] and (endpiece == None or endpiece == 'K' or endpiece == 'k'):
                 return True
@@ -459,7 +459,40 @@ class King(ChessPiece):
     def straight(self, plc, piece):
         deltax = abs(round(piece.grid_x) - plc[0])
         deltay = abs(round(piece.grid_y) - plc[1])
-        return False                
+        if deltax == 0 or deltay == 0:
+            if deltay == 0:
+                pgnposy = plc[1]
+                if piece.grid_x < self.grid_x:
+                    stepx = +1
+                if piece.grid_x > self.grid_x:
+                    stepx = -1
+                for i in range(deltax):
+                    pgnposx = round(piece.grid_x) + i * stepx + stepx
+                    pieceindex = pgnposy * 8 + pgnposx
+                    pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+                    if pgnpiece != None:
+                        break
+                endindex =  plc[1] * 8 + plc[0]
+                endpiece = ChessBoard.pgnboard.piece_at(endindex)
+                if pgnposx == plc[0] and (endpiece == None or endpiece == 'K' or endpiece == 'k'):
+                    return True
+            if deltax == 0:
+                pgnposx = plc[0]
+                if piece.grid_y < self.grid_y:
+                    stepy = +1
+                if piece.grid_y > self.grid_y:
+                    stepy = -1
+                for i in range(deltay):
+                    pgnposy = round(piece.grid_y) + i * stepy + stepy
+                    pieceindex = pgnposy * 8 + pgnposx
+                    pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+                    if pgnpiece != None:
+                        break
+                endindex =  plc[1] * 8 + plc[0]
+                endpiece = ChessBoard.pgnboard.piece_at(endindex)
+                if pgnposy == plc[1] and (endpiece == None or endpiece == 'K' or endpiece == 'k'):
+                    return True
+        return False              
 
 class ChessBoard(RelativeLayout):
     piece_pressed = False
