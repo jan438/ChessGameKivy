@@ -437,7 +437,9 @@ class King(ChessPiece):
         for pgnrow in range(8):
             for pgncol in range(8):
                 pieceindex = pgnrow * 8 + pgncol
-                print("P", pgnrow, pgncol, ChessBoard.pgnboard.piece_at(pieceindex))
+                piece = ChessBoard.pgnboard.piece_at(pieceindex)
+                if piece != None:
+                    print("P", pgnrow, pgncol, piece)
         return False
     
     def straight(self, plc, piece):
