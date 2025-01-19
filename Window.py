@@ -434,12 +434,30 @@ class King(ChessPiece):
     def diagonal(self, plc, piece):
         deltax = abs(round(piece.grid_x) - plc[0])
         deltay = abs(round(piece.grid_y) - plc[1])
-        for pgnrow in range(8):
-            for pgncol in range(8):
-                pieceindex = pgnrow * 8 + pgncol
-                pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
-                if pgnpiece != None:
-                    print("P", pgnrow, pgncol, pgnpiece)
+        if deltax == deltay:
+            if piece.grid_x < self.grid_x:
+               stepx = +1
+            else:
+                stepx = -1
+            if piece.grid_y < self.grid_y:
+                stepy = +1
+            else:
+                stepy = -1
+            for i in range(deltax):
+                pgnposx = round(piece.grid_x) + i * stepx + stepx
+                pgnposy = round(piece.grid_y) + i * stepy + stepy
+                print(piece.id, pgnposx, pgnposy)
+                #if boardai.chesspiecesai[aiposx][aiposy] != 0:
+                    #break
+            #if aiposy == ai_to_hm_y(plc[1]) and (boardai.chesspiecesai[aiposx][aiposy] == 0 or boardai.chesspiecesai[aiposx][aiposy].id[5:9] == "King"):
+                #return True
+        #print("plc", round(piece.grid_x), round(piece.grid_y), plc[0], plc[1])
+        #for pgnrow in range(8):
+            #for pgncol in range(8):
+                #pieceindex = pgnrow * 8 + pgncol
+                #pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+                #if pgnpiece != None:
+                    #print("P", pgnrow, pgncol, pgnpiece)
         return False
     
     def straight(self, plc, piece):
