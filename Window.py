@@ -506,6 +506,9 @@ class ChessBoard(RelativeLayout):
     pgn_moves = []
     pgn_index = -1
     pgn_inputmode = False
+    white_chess = False
+    black_chess = False
+    chessmate = False
   
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
@@ -867,18 +870,38 @@ class ChessBoard(RelativeLayout):
         else:
             ChessBoard.turn_ = "White"
 
-    def check_check(self):
-        King = None
-        for piece_ in self.children:
-            if piece_.id[:5] == ChessBoard.turn_ and piece_.id[5:] == "King":
-                King = piece_
-                break
-        for piece in self.children:
-            if piece.id[:5] != ChessBoard.turn_:
-                piece_available_moves = piece.available_moves(self.children)
-                if (King.grid_x, King.grid_y) in piece_available_moves["available_moves"] or (King.grid_x, King.grid_y) in piece_available_moves["pieces_to_capture"]:
-                    return True
+    def check_white(self):
+        #for piece_ in self.children:
+            #if piece_.id == "WhiteKing":
+                #return self.check_place("White", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
         return False
+        
+    def check_black(self):
+        #for piece_ in self.children:
+            #if piece_.id == "BlackKing":
+                #return self.check_place("Black", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
+        return False
+
+    def check_check(self):
+        if ChessBoard.turn == "White":
+            if self.white_chess:
+                if self.check_white():
+                    #self.animate("White")
+                    self.chessmate = True
+                else:
+                    self.white_chess = False
+            if self.check_black():
+                self.black_chess = True
+        if ChessBoard.turn == "Black":
+            if self.black_chess:
+                if self.check_black():
+                    #self.animate("Black")
+                    self.chessmate = True
+                else:
+                    self.black_chess = False
+            if self.check_white():
+                self.white_chess = True
+        return self.chessmate
 
     def draw_moves(self):
         grid_size_x = self.width / 8
