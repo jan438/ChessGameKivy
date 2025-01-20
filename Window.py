@@ -21,6 +21,7 @@ from kivy.graphics.instructions import InstructionGroup
 from kivy.graphics import Rectangle, Color, Ellipse
 from kivy.lang.builder import Builder
 from kivy.utils import get_hex_from_color, get_color_from_hex
+import random
 
 Width, Height = 800, 800
 Window.size = (Width, Height)
@@ -873,18 +874,20 @@ class ChessBoard(RelativeLayout):
     def animate(self, color):
         id = color + "King"
         piece = self.findpiece(id)
-        xpos = piece.grid_x
-        ypos = piece.grid_y
+        pgnposx = piece.grid_x
+        pgnposy = piece.grid_y
         self.remove_widget(piece)
-        self.add_widget(King(id="DeadKing",source="Assets/PNG/" + color + "Dead.png",grid_x=xpos, grid_y=ypos,First_use=True))
+        self.add_widget(King(id="DeadKing", source="Assets/PNG/" + color + "Dead.png", grid_x = pgnposx, grid_y = pgnposy,First_use=True))
         piece = self.findpiece("DeadKing")
         while True:
-            xpos = random.randint(0, 7)
-            ypos = random.randint(0, 7)
-            if boardai.chesspiecesai[ai_to_hm_x(xpos)][ai_to_hm_y(ypos)] == 0:
+            pgnposx = random.randint(0, 7)
+            pgnposy = random.randint(0, 7)
+            pieceindex = pgnposy * 8 + pgnposx
+            pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+            if pgnpiece == None:
                 break
-        anim = Animation(grid_x=xpos, grid_y=ypos, t='out_bounce', duration=5.0)
-        anim += Animation(grid_x=xpos, grid_y=ypos, t='out_bounce', duration=5.0)
+        anim = Animation(grid_x = pgnposx, grid_y = pgnposy, t='out_bounce', duration=5.0)
+        anim += Animation(grid_x = pgnposx, grid_y = pgnposy, t='out_bounce', duration=5.0)
         anim.start(piece)
 
     def attack_king(self, plc, piece):
