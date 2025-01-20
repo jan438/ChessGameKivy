@@ -883,7 +883,7 @@ class ChessBoard(RelativeLayout):
             pgnposx = random.randint(0, 7)
             pgnposy = random.randint(0, 7)
             pieceindex = pgnposy * 8 + pgnposx
-            pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+            pgnpiece = self.pgnboard.piece_at(pieceindex)
             if pgnpiece == None:
                 break
         anim = Animation(grid_x = pgnposx, grid_y = pgnposy, t='out_bounce', duration=5.0)
@@ -925,7 +925,7 @@ class ChessBoard(RelativeLayout):
                 pgnposx = round(piece.grid_x) + i * stepx + stepx
                 pgnposy = round(piece.grid_y) + i * stepy + stepy
                 pieceindex = pgnposy * 8 + pgnposx
-                pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+                pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
                     if pgnpiece == 'K' or pgnpiece == 'k':
                         return True
@@ -945,7 +945,7 @@ class ChessBoard(RelativeLayout):
                 for i in range(deltay):
                     pgnposy = round(piece.grid_y) + i * stepy + stepy
                     pieceindex = pgnposy * 8 + pgnposx
-                    pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+                    pgnpiece = self.pgnboard.piece_at(pieceindex)
                     if pgnpiece != None:
                         if pgnpiece == 'K' or pgnpiece == 'k':
                             return True
