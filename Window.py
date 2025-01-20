@@ -870,17 +870,118 @@ class ChessBoard(RelativeLayout):
         else:
             ChessBoard.turn_ = "White"
 
+    def animate(self, color):
+        id = color + "King"
+        piece = self.findpiece(id)
+        xpos = piece.grid_x
+        ypos = piece.grid_y
+        self.remove_widget(piece)
+        self.add_widget(King(id="DeadKing",source="Assets/PNG/" + color + "Dead.png",grid_x=xpos, grid_y=ypos,First_use=True))
+        piece = self.findpiece("DeadKing")
+        while True:
+            xpos = random.randint(0, 7)
+            ypos = random.randint(0, 7)
+            if boardai.chesspiecesai[ai_to_hm_x(xpos)][ai_to_hm_y(ypos)] == 0:
+                break
+        anim = Animation(grid_x=xpos, grid_y=ypos, t='out_bounce', duration=5.0)
+        anim += Animation(grid_x=xpos, grid_y=ypos, t='out_bounce', duration=5.0)
+        anim.start(piece)
+
+    def attack_king(self, plc, piece):
+        piecekind = piece.id[5:9]
+        if piecekind == "Knig":
+            if (piece.grid_x + 2, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y + 2) == (plc[0],plc[1]) or (piece.grid_x - 2, piece.grid_y + 1) == (plc[0],plc[1]) or  (piece.grid_x - 1, piece.grid_y + 2) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y - 2) == (plc[0],plc[1]) or (piece.grid_x + 2, piece.grid_y - 1) == (plc[0],plc[1]) or  (piece.grid_x - 2, piece.grid_y - 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y - 2) == (plc[0],plc[1]):
+                return True
+        if piecekind == "Bish":
+            if self.check_diagonal(plc, piece):
+                return True
+        if piecekind == "Rook":
+            if self.check_straight(plc, piece):
+                return True
+        if piecekind == "Quee":
+            if self.check_diagonal(plc, piece) or self.check_straight(plc, piece):
+                return True
+        if piecekind == "Pawn":
+            if (piece.grid_x + 1, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y - 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y - 1) == (plc[0],plc[1]):
+                return True
+        return False
+          
+    def check_diagonal(self, plc, piece):
+        deltax = abs(round(piece.grid_x) - plc[0])
+        deltay = abs(round(piece.grid_y) - plc[1])
+        if deltax == deltay:
+            if piece.grid_x < plc[0]:
+               stepx = +1
+            else:
+                stepx = -1
+            if piece.grid_y < plc[1]:
+                stepy = +1
+            else:
+                stepy = -1
+            for i in range(deltax):
+                pgnposx = round(piece.grid_x) + i * stepx + stepx
+                pgnposy = round(piece.grid_y) + i * stepy + stepy
+                pieceindex = pgnposy * 8 + pgnposx
+                pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+                if pgnpiece != None:
+                    if pgnpiece == 'K' or pgnpiece == 'k':
+                        return True
+                    break
+        return False
+        
+    def check_straight(self, plc, piece):
+        deltax = abs(round(piece.grid_x) - plc[0])
+        deltay = abs(round(piece.grid_y) - plc[1])
+        if deltax == 0 or deltay == 0:
+            if deltax == 0:
+                if piece.grid_y < plc[1]:
+                    stepy = +1
+                if piece.grid_y > plc[1]:
+                    stepy = -1
+                pgnposx = plc[0]
+                for i in range(deltay):
+                    pgnposy = round(piece.grid_y) + i * stepy + stepy
+                    pieceindex = pgnposy * 8 + pgnposx
+                    pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+                    if pgnpiece != None:
+                        if pgnpiece == 'K' or pgnpiece == 'k':
+                            return True
+                        break
+            return False
+            if deltay == 0:
+                if piece.grid_x < plc[0]:
+                    stepx = +1
+                if piece.grid_x > plc[0]:
+                    stepx = -1
+                pgnposy = plc[1]         
+                for i in range(deltax):
+                    pgnposx = round(piece.grid_x) + i * stepx + stepx
+                    pieceindex = pgnposy * 8 + pgnposx
+                    pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
+                    if pgnpiece != None:
+                        if pgnpiece == 'K' or pgnpiece == 'k':
+                            return True
+                        break
+            return False
+        return False
+          
+    def check_place(self, color, plc, pieces):
+        for piece in pieces:
+            if piece.id[:5] != color:
+                if self.attack_king(plc, piece):
+                    return True
+        return False
+
     def check_white(self):
-        #for piece_ in self.children:
-            #if piece_.id == "WhiteKing":
-                #return self.check_place("White", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
+        for piece_ in self.children:
+            if piece_.id == "WhiteKing":
+                return self.check_place("White", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
         return False
         
     def check_black(self):
         for piece_ in self.children:
             if piece_.id == "BlackKing":
-                print("Check black")
-                #return self.check_place("Black", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
+                return self.check_place("Black", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
         return False
 
     def check_check(self):
@@ -888,7 +989,7 @@ class ChessBoard(RelativeLayout):
         if self.turn_ == "White":
             if self.white_chess:
                 if self.check_white():
-                    #self.animate("White")
+                    self.animate("White")
                     self.chessmate = True
                 else:
                     self.white_chess = False
@@ -898,7 +999,7 @@ class ChessBoard(RelativeLayout):
             print("Black in check check")
             if self.black_chess:
                 if self.check_black():
-                    #self.animate("Black")
+                    self.animate("Black")
                     self.chessmate = True
                 else:
                     self.black_chess = False
