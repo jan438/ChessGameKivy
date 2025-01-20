@@ -975,17 +975,19 @@ class ChessBoard(RelativeLayout):
     def check_white(self):
         for piece_ in self.children:
             if piece_.id == "WhiteKing":
+                print("WK found")
                 return self.check_place("White", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
         return False
         
     def check_black(self):
         for piece_ in self.children:
             if piece_.id == "BlackKing":
+                print("BK found")
                 return self.check_place("Black", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
         return False
 
     def check_check(self):
-        print("Check check", self.turn_)
+        print("Check turn", self.turn_, "W", self.white_chess, "B", self.black_chess)
         if self.turn_ == "White":
             if self.white_chess:
                 if self.check_white():
@@ -996,7 +998,6 @@ class ChessBoard(RelativeLayout):
             if self.check_black():
                 self.black_chess = True
         if self.turn_ == "Black":
-            print("Black in check check")
             if self.black_chess:
                 if self.check_black():
                     self.animate("Black")
