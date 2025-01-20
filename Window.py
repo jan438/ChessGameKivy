@@ -884,8 +884,8 @@ class ChessBoard(RelativeLayout):
         return False
 
     def check_check(self):
-        print("Check check", ChessBoard.turn_)
-        if ChessBoard.turn_ == "White":
+        print("Check check", self.turn_)
+        if self.turn_ == "White":
             if self.white_chess:
                 if self.check_white():
                     #self.animate("White")
@@ -894,7 +894,7 @@ class ChessBoard(RelativeLayout):
                     self.white_chess = False
             if self.check_black():
                 self.black_chess = True
-        if ChessBoard.turn_ == "Black":
+        if self.turn_ == "Black":
             print("Black in check check")
             if self.black_chess:
                 if self.check_black():
