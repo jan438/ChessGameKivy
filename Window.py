@@ -910,6 +910,7 @@ class ChessBoard(RelativeLayout):
         return False
           
     def check_diagonal(self, plc, piece):
+        print("CD", piece.id, round(piece.grid_x), round(piece.grid_y), plc[0], plc[1])
         deltax = abs(round(piece.grid_x) - plc[0])
         deltay = abs(round(piece.grid_y) - plc[1])
         if deltax == deltay:
