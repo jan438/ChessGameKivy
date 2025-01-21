@@ -982,11 +982,8 @@ class ChessBoard(RelativeLayout):
                 pieceindex = row * 8 + col
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
-                    print("W", row, col, pgnpiece)
-        #for piece_ in self.children:
-            #if piece_.id == "WhiteKing":
-                #print("WK found")
-                #return self.check_place("White", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
+                    if str(pgnpiece) == "K" or str(pgnpiece) == "k":
+                        print("W", row, col, pgnpiece, str(pgnpiece))
         return False
         
     def check_black(self):
@@ -995,11 +992,8 @@ class ChessBoard(RelativeLayout):
                 pieceindex = row * 8 + col
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
-                    print("B", row, col, pgnpiece)
-        #for piece_ in self.children:
-            #if piece_.id == "BlackKing":
-                #print("BK found")
-                #return self.check_place("Black", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
+                    if str(pgnpiece) == "K" or str(pgnpiece) == "k":
+                        print("B", row, col, pgnpiece, str(pgnpiece))
         return False
 
     def check_check(self):
