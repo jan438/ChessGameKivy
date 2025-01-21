@@ -969,11 +969,17 @@ class ChessBoard(RelativeLayout):
             return False
         return False
           
-    def check_place(self, color, plc, pieces):
-        for piece in pieces:
-            if piece.id[:5] != color:
-                if self.attack_king(plc, piece):
-                    return True
+    def check_place(self, color, plc):
+        for row in range(8):
+            for col in range(8):
+                pieceindex = row * 8 + col
+                pgnpiece = self.pgnboard.piece_at(pieceindex)
+                if pgnpiece != None and color == "White" and (str(pgnpiece) >= 'a' and str(pgnpiece) <= 'z'):
+                    print("CP", color, "plc", plc[0], plc[1], "Piece", pgnpiece, row, col)
+                if pgnpiece != None and color == "Black" and (str(pgnpiece) >= 'A' and str(pgnpiece) <= 'Z'):
+                    print("CP", color, "plc", plc[0], plc[1], "Piece", pgnpiece, row, col)
+        #if self.attack_king(plc, piece):
+            #return True
         return False
 
     def check_white(self):
@@ -983,7 +989,7 @@ class ChessBoard(RelativeLayout):
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
                     if str(pgnpiece) == "K":
-                        print("W", row, col, pgnpiece, str(pgnpiece))
+                        return self.check_place("White", [col, row])
         return False
         
     def check_black(self):
@@ -993,7 +999,7 @@ class ChessBoard(RelativeLayout):
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
                     if str(pgnpiece) == "k":
-                        print("B", row, col, pgnpiece, str(pgnpiece))
+                        return self.check_place("Black", [col, row])
         return False
 
     def check_check(self):
