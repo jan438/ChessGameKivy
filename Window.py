@@ -982,7 +982,7 @@ class ChessBoard(RelativeLayout):
                 pieceindex = row * 8 + col
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
-                    if str(pgnpiece) == "K" or str(pgnpiece) == "k":
+                    if str(pgnpiece) == "K":
                         print("W", row, col, pgnpiece, str(pgnpiece))
         return False
         
@@ -992,7 +992,7 @@ class ChessBoard(RelativeLayout):
                 pieceindex = row * 8 + col
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
-                    if str(pgnpiece) == "K" or str(pgnpiece) == "k":
+                    if str(pgnpiece) == "k":
                         print("B", row, col, pgnpiece, str(pgnpiece))
         return False
 
