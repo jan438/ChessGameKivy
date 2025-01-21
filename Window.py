@@ -977,17 +977,21 @@ class ChessBoard(RelativeLayout):
         return False
 
     def check_white(self):
-        for piece_ in self.children:
-            if piece_.id == "WhiteKing":
-                print("WK found")
-                return self.check_place("White", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
+        pm = self.pgnboard.piece_map()
+        print("W", pm)
+        #for piece_ in self.children:
+            #if piece_.id == "WhiteKing":
+                #print("WK found")
+                #return self.check_place("White", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
         return False
         
     def check_black(self):
-        for piece_ in self.children:
-            if piece_.id == "BlackKing":
-                print("BK found")
-                return self.check_place("Black", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
+        pm = self.pgnboard.piece_map()
+        print("B", pm)
+        #for piece_ in self.children:
+            #if piece_.id == "BlackKing":
+                #print("BK found")
+                #return self.check_place("Black", [round(piece_.grid_x), round(piece_.grid_y)], self.children)
         return False
 
     def check_check(self):
