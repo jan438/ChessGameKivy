@@ -978,7 +978,7 @@ class ChessBoard(RelativeLayout):
 
     def check_white(self):
         pm = self.pgnboard.piece_map()
-        print("W", pm)
+        print("W", len(pm), pm[0])
         #for piece_ in self.children:
             #if piece_.id == "WhiteKing":
                 #print("WK found")
@@ -987,7 +987,7 @@ class ChessBoard(RelativeLayout):
         
     def check_black(self):
         pm = self.pgnboard.piece_map()
-        print("B", pm)
+        print("B", len(pm), pm[0])
         #for piece_ in self.children:
             #if piece_.id == "BlackKing":
                 #print("BK found")
