@@ -901,9 +901,9 @@ class ChessBoard(RelativeLayout):
         if piece == "r" or "R":
             if self.check_straight(plc, piece, row, col):
                 return True
-        #if piecekind == "Quee":
-            #if self.check_diagonal(plc, piece) or self.check_straight(plc, piece):
-                #return True
+        if piece == "q" or piece == "Q":
+            if self.check_diagonal(plc, piece, row, col) or self.check_straight(plc, piece, row, col):
+                return True
         #if piecekind == "Pawn":
             #if (piece.grid_x + 1, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y - 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y - 1) == (plc[0],plc[1]):
                 #return True
@@ -937,7 +937,7 @@ class ChessBoard(RelativeLayout):
         return False
         
     def check_straight(self, plc, piece, row, col):
-        print("CStraight", plc[0], plc[1], piece, "col", col, "row", row)
+        #print("CStraight", plc[0], plc[1], piece, "col", col, "row", row)
         deltax = abs(col - plc[0])
         deltay = abs(row - plc[1])
         if deltax == 0 or deltay == 0:
@@ -953,7 +953,6 @@ class ChessBoard(RelativeLayout):
                     pgnpiece = self.pgnboard.piece_at(pieceindex)
                     if pgnpiece != None:
                         pgnpiecestr = str(pgnpiece)
-                        print("piece straight", pgnpiece)
                         if pgnpiecestr == 'K' or pgnpiecestr == 'k':
                             return True
                         break
@@ -970,7 +969,6 @@ class ChessBoard(RelativeLayout):
                     pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
                     if pgnpiece != None:
                         pgnpiecestr = str(pgnpiece)
-                        print("piece straight", pgnpiece)
                         if pgnpiecestr == 'K' or pgnpiecestr == 'k':
                             return True
                         break
