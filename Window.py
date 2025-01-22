@@ -932,7 +932,7 @@ class ChessBoard(RelativeLayout):
                     print("piece diagonal", pgnpiece)
                     if pgnpiecestr == 'K' or pgnpiecestr == 'k':
                         print("king diagonal", pgnpiece)
-                        #return True
+                        return True
                     break
         return False
         
