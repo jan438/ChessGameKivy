@@ -891,14 +891,13 @@ class ChessBoard(RelativeLayout):
         anim.start(piece)
 
     def attack_king(self, plc, piece, row, col):
-        print("Attack king", plc[0], plc[1], "Piece", piece, row, col)
-        #piecekind = piece.id[5:9]
+        #print("Attack king", plc[0], plc[1], "Piece", piece, "col", col, "row", row)
         #if piecekind == "King":
             #if (piece.grid_x + 2, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y + 2) == (plc[0],plc[1]) or (piece.grid_x - 2, piece.grid_y + 1) == (plc[0],plc[1]) or  (piece.grid_x - 1, piece.grid_y + 2) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y - 2) == (plc[0],plc[1]) or (piece.grid_x + 2, piece.grid_y - 1) == (plc[0],plc[1]) or  (piece.grid_x - 2, piece.grid_y - 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y - 2) == (plc[0],plc[1]):
                 #return True
-        #if piecekind == "Bish":
-            #if self.check_diagonal(plc, piece):
-                #return True
+        if piece == "b" or "B":
+            if self.check_diagonal(plc, piece, row, col):
+                return True
         #if piecekind == "Rook":
             #if self.check_straight(plc, piece):
                 #return True
@@ -910,28 +909,28 @@ class ChessBoard(RelativeLayout):
                 #return True
         return False
           
-    def check_diagonal(self, plc, piece):
-        print("CD", piece.id, round(piece.grid_x), round(piece.grid_y), plc[0], plc[1])
-        deltax = abs(round(piece.grid_x) - plc[0])
-        deltay = abs(round(piece.grid_y) - plc[1])
-        if deltax == deltay:
-            if piece.grid_x < plc[0]:
-               stepx = +1
-            else:
-                stepx = -1
-            if piece.grid_y < plc[1]:
-                stepy = +1
-            else:
-                stepy = -1
-            for i in range(deltax):
-                pgnposx = round(piece.grid_x) + i * stepx + stepx
-                pgnposy = round(piece.grid_y) + i * stepy + stepy
-                pieceindex = pgnposy * 8 + pgnposx
-                pgnpiece = self.pgnboard.piece_at(pieceindex)
-                if pgnpiece != None:
-                    if pgnpiece == 'K' or pgnpiece == 'k':
-                        return True
-                    break
+    def check_diagonal(self, plc, piece, row, col):
+        print("CDiagonal", plc[0], plc[1], piece, "col", col, "row", row)
+        deltax = abs(col - plc[0])
+        deltay = abs(row - plc[1])
+        #if deltax == deltay:
+            #if piece.grid_x < plc[0]:
+               #stepx = +1
+            #else:
+                #stepx = -1
+            #if piece.grid_y < plc[1]:
+                #stepy = +1
+            #else:
+                #stepy = -1
+            #for i in range(deltax):
+                #pgnposx = round(piece.grid_x) + i * stepx + stepx
+                #pgnposy = round(piece.grid_y) + i * stepy + stepy
+                #pieceindex = pgnposy * 8 + pgnposx
+                #pgnpiece = self.pgnboard.piece_at(pieceindex)
+                #if pgnpiece != None:
+                    #if pgnpiece == 'K' or pgnpiece == 'k':
+                        #return True
+                    #break
         return False
         
     def check_straight(self, plc, piece):
@@ -978,11 +977,11 @@ class ChessBoard(RelativeLayout):
                 if pgnpiece != None and color == "White" and (str(pgnpiece) >= 'a' and str(pgnpiece) <= 'z'):
                     if self.attack_king(plc, str(pgnpiece), row, col):
                         return True
-                    print("CP", color, "plc", plc[0], plc[1], "Piece", pgnpiece, row, col)
+                    #print("CP", color, "plc", plc[0], plc[1], "Piece", pgnpiece, row, col)
                 if pgnpiece != None and color == "Black" and (str(pgnpiece) >= 'A' and str(pgnpiece) <= 'Z'):
                     if self.attack_king(plc, str(pgnpiece), row, col):
                         return True
-                    print("CP", color, "plc", plc[0], plc[1], "Piece", pgnpiece, row, col)
+                    #print("CP", color, "plc", plc[0], plc[1], "Piece", pgnpiece, row, col)
         return False
 
     def check_white(self):
