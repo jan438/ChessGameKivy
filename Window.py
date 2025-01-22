@@ -892,9 +892,9 @@ class ChessBoard(RelativeLayout):
 
     def attack_king(self, plc, piece, row, col):
         #print("Attack king", plc[0], plc[1], "Piece", piece, "col", col, "row", row)
-        #if piecekind == "King":
-            #if (piece.grid_x + 2, piece.grid_y + 1) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y + 2) == (plc[0],plc[1]) or (piece.grid_x - 2, piece.grid_y + 1) == (plc[0],plc[1]) or  (piece.grid_x - 1, piece.grid_y + 2) == (plc[0],plc[1]) or (piece.grid_x + 1, piece.grid_y - 2) == (plc[0],plc[1]) or (piece.grid_x + 2, piece.grid_y - 1) == (plc[0],plc[1]) or  (piece.grid_x - 2, piece.grid_y - 1) == (plc[0],plc[1]) or (piece.grid_x - 1, piece.grid_y - 2) == (plc[0],plc[1]):
-                #return True
+        if piece == "n" or "N":
+            if (col + 2, row + 1) == (plc[0], plc[1]) or (col + 1, row + 2) == (plc[0], plc[1]) or (col - 2, row + 1) == (plc[0], plc[1]) or  (col - 1, row + 2) == (plc[0], plc[1]) or (col + 1, row - 2) == (plc[0], plc[1]) or (col + 2, row - 1) == (plc[0], plc[1]) or  (col - 2, row - 1) == (plc[0], plc[1]) or (col - 1, row - 2) == (plc[0], plc[1]):
+                return True
         if piece == "b" or "B":
             if self.check_diagonal(plc, piece, row, col):
                 return True
@@ -910,7 +910,6 @@ class ChessBoard(RelativeLayout):
         return False
           
     def check_diagonal(self, plc, piece, row, col):
-        #print("CDiagonal", plc[0], plc[1], piece, "col", col, "row", row)
         deltax = abs(col - plc[0])
         deltay = abs(row - plc[1])
         if deltax == deltay:
@@ -937,7 +936,6 @@ class ChessBoard(RelativeLayout):
         return False
         
     def check_straight(self, plc, piece, row, col):
-        #print("CStraight", plc[0], plc[1], piece, "col", col, "row", row)
         deltax = abs(col - plc[0])
         deltay = abs(row - plc[1])
         if deltax == 0 or deltay == 0:
