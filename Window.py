@@ -928,8 +928,10 @@ class ChessBoard(RelativeLayout):
                 pieceindex = pgnposy * 8 + pgnposx
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
+                    pgnpiecestr = str(pgnpiece)
                     print("piece diagonal", pgnpiece)
-                    #if pgnpiece != "K" or pgnpiece != "k":
+                    if pgnpiecestr == 'K' or pgnpiecestr == 'k':
+                        print("king diagonal", pgnpiece)
                         #return True
                     break
         return False
