@@ -898,9 +898,9 @@ class ChessBoard(RelativeLayout):
         if piece == "b" or "B":
             if self.check_diagonal(plc, piece, row, col):
                 return True
-        #if piecekind == "Rook":
-            #if self.check_straight(plc, piece):
-                #return True
+        if piece == "r" or "R":
+            if self.check_straight(plc, piece, row, col):
+                return True
         #if piecekind == "Quee":
             #if self.check_diagonal(plc, piece) or self.check_straight(plc, piece):
                 #return True
@@ -936,37 +936,42 @@ class ChessBoard(RelativeLayout):
                     break
         return False
         
-    def check_straight(self, plc, piece):
-        deltax = abs(round(piece.grid_x) - plc[0])
-        deltay = abs(round(piece.grid_y) - plc[1])
+    def check_straight(self, plc, piece, row, col):
+        print("CStraight", plc[0], plc[1], piece, "col", col, "row", row)
+        deltax = abs(col - plc[0])
+        deltay = abs(row - plc[1])
         if deltax == 0 or deltay == 0:
             if deltax == 0:
-                if piece.grid_y < plc[1]:
+                if row < plc[1]:
                     stepy = +1
-                if piece.grid_y > plc[1]:
+                if row > plc[1]:
                     stepy = -1
                 pgnposx = plc[0]
                 for i in range(deltay):
-                    pgnposy = round(piece.grid_y) + i * stepy + stepy
+                    pgnposy = row + i * stepy + stepy
                     pieceindex = pgnposy * 8 + pgnposx
                     pgnpiece = self.pgnboard.piece_at(pieceindex)
                     if pgnpiece != None:
-                        if pgnpiece == 'K' or pgnpiece == 'k':
+                        pgnpiecestr = str(pgnpiece)
+                        print("piece straight", pgnpiece)
+                        if pgnpiecestr == 'K' or pgnpiecestr == 'k':
                             return True
                         break
             return False
             if deltay == 0:
-                if piece.grid_x < plc[0]:
+                if col < plc[0]:
                     stepx = +1
-                if piece.grid_x > plc[0]:
+                if col > plc[0]:
                     stepx = -1
                 pgnposy = plc[1]         
                 for i in range(deltax):
-                    pgnposx = round(piece.grid_x) + i * stepx + stepx
+                    pgnposx = col + i * stepx + stepx
                     pieceindex = pgnposy * 8 + pgnposx
                     pgnpiece = ChessBoard.pgnboard.piece_at(pieceindex)
                     if pgnpiece != None:
-                        if pgnpiece == 'K' or pgnpiece == 'k':
+                        pgnpiecestr = str(pgnpiece)
+                        print("piece straight", pgnpiece)
+                        if pgnpiecestr == 'K' or pgnpiecestr == 'k':
                             return True
                         break
             return False
