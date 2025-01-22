@@ -913,24 +913,25 @@ class ChessBoard(RelativeLayout):
         print("CDiagonal", plc[0], plc[1], piece, "col", col, "row", row)
         deltax = abs(col - plc[0])
         deltay = abs(row - plc[1])
-        #if deltax == deltay:
-            #if piece.grid_x < plc[0]:
-               #stepx = +1
-            #else:
-                #stepx = -1
-            #if piece.grid_y < plc[1]:
-                #stepy = +1
-            #else:
-                #stepy = -1
-            #for i in range(deltax):
-                #pgnposx = round(piece.grid_x) + i * stepx + stepx
-                #pgnposy = round(piece.grid_y) + i * stepy + stepy
-                #pieceindex = pgnposy * 8 + pgnposx
-                #pgnpiece = self.pgnboard.piece_at(pieceindex)
-                #if pgnpiece != None:
-                    #if pgnpiece == 'K' or pgnpiece == 'k':
+        if deltax == deltay:
+            if col < plc[0]:
+               stepx = +1
+            else:
+                stepx = -1
+            if row < plc[1]:
+                stepy = +1
+            else:
+                stepy = -1
+            for i in range(deltax):
+                pgnposx = col + i * stepx + stepx
+                pgnposy = row + i * stepy + stepy
+                pieceindex = pgnposy * 8 + pgnposx
+                pgnpiece = self.pgnboard.piece_at(pieceindex)
+                if pgnpiece != None:
+                    print("piece diagonal", pgnpiece)
+                    #if pgnpiece != "K" or pgnpiece != "k":
                         #return True
-                    #break
+                    break
         return False
         
     def check_straight(self, plc, piece):
