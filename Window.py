@@ -776,6 +776,16 @@ class ChessBoard(RelativeLayout):
                     enpassant = False
                     for enemy in self.children:
                         if enemy.grid_x == grid_x and enemy.grid_y == grid_y:
+                            touchmove = xpos_to_letter(round(old_x)) + ypos_to_digit(round(old_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
+                            node = self.pgngame.end()
+                            try:
+                                pgnmove = chess.Move.from_uci(touchmove)
+                                node = node.add_main_variation(pgnmove)
+                                self.pgn_moves.append(touchmove)
+                                self.pgnboard.push(pgnmove)
+                                print(self.pgnboard)
+                            except Exception as e:
+                                print("Except", e)
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                             anim.start(self.children[id])
                             self.remove_widget(enemy)
