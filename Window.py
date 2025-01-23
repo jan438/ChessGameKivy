@@ -706,7 +706,6 @@ class ChessBoard(RelativeLayout):
             bep = [False,False,False,False,False,False,False,False]
 
     def on_touch_down(self, touch):
-        print("Len:", len(self.children))
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
@@ -717,7 +716,6 @@ class ChessBoard(RelativeLayout):
                     ChessBoard.piece_pressed = True
                     ChessBoard.piece_index = id
                     ChessBoard.available_moves = child.available_moves(self.children)
-                    print(ChessBoard.available_moves)
                     self.draw_moves()
                     ChessBoard.id_piece_ = child.id
                     break
@@ -928,9 +926,7 @@ class ChessBoard(RelativeLayout):
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
                 if pgnpiece != None:
                     pgnpiecestr = str(pgnpiece)
-                    print("piece diagonal", pgnpiece)
                     if pgnpiecestr == 'K' or pgnpiecestr == 'k':
-                        print("king diagonal", pgnpiece)
                         return True
                     break
         return False
@@ -981,11 +977,9 @@ class ChessBoard(RelativeLayout):
                 if pgnpiece != None and color == "White" and (str(pgnpiece) >= 'a' and str(pgnpiece) <= 'z'):
                     if self.attack_king(plc, str(pgnpiece), row, col):
                         return True
-                    #print("CP", color, "plc", plc[0], plc[1], "Piece", pgnpiece, row, col)
                 if pgnpiece != None and color == "Black" and (str(pgnpiece) >= 'A' and str(pgnpiece) <= 'Z'):
                     if self.attack_king(plc, str(pgnpiece), row, col):
                         return True
-                    #print("CP", color, "plc", plc[0], plc[1], "Piece", pgnpiece, row, col)
         return False
 
     def check_white(self):
