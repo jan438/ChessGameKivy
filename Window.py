@@ -710,10 +710,6 @@ class ChessBoard(RelativeLayout):
         rows, cols = 8,8
         grid_x = int(touch.pos[0] / self.width * rows)
         grid_y = int(touch.pos[1] / self.height * cols)
-        print("On toch", grid_x, grid_y)
-        for id, child in enumerate(self.children):
-            if grid_x == child.grid_x and grid_y == child.grid_y:
-                print(child.id,child.grid_x,grid_y)
         for id, child in enumerate(self.children):
             old_x, old_y = child.grid_x, child.grid_y
             if not ChessBoard.piece_pressed:
