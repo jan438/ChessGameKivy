@@ -667,11 +667,7 @@ class ChessBoard(RelativeLayout):
 
     def close_application(self): 
         App.get_running_app().stop() 
-        Window.close()
-    
-    def listpieces(self):
-        for child in self.children:
-            print("Human board",child.id,child.grid_x,child.grid_y)           
+        Window.close()      
     
     def findpiece(self,id):
         for child in self.children:
