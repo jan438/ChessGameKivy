@@ -671,7 +671,6 @@ class ChessBoard(RelativeLayout):
     
     def findpiece(self,id):
         for child in self.children:
-            #print("find====",child.id)
             if child.id == id:
                 return child
                 
