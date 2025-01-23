@@ -662,7 +662,7 @@ class ChessBoard(RelativeLayout):
                 self.turn()
                 print("Turn", self.turn_)
         elif l == 'p':
-            print(self.pgnboard)
+            print(self.pgnboard, "\n")
         return True
 
     def close_application(self): 
@@ -734,8 +734,7 @@ class ChessBoard(RelativeLayout):
                         node = node.add_main_variation(pgnmove)
                         self.pgn_moves.append(touchmove)
                         self.pgnboard.push(pgnmove)
-                        print(self.pgnboard)
-                        print()
+                        print(self.pgnboard,"\n")
                     except Exception as e:
                         print("Except", e)
                     anim = Animation(grid_x = grid_x, grid_y = grid_y, t='in_quad', duration=0.5)
@@ -773,8 +772,7 @@ class ChessBoard(RelativeLayout):
                                 node = node.add_main_variation(pgnmove)
                                 self.pgn_moves.append(touchmove)
                                 self.pgnboard.push(pgnmove)
-                                print(self.pgnboard)
-                                print()
+                                print(self.pgnboard,"\n")
                             except Exception as e:
                                 print("Except", e)
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
@@ -800,8 +798,7 @@ class ChessBoard(RelativeLayout):
                                 node = node.add_main_variation(pgnmove)
                                 self.pgn_moves.append(touchmove)
                                 self.pgnboard.push(pgnmove)
-                                print(self.pgnboard)
-                                print()
+                                print(self.pgnboard,"\n")
                             except Exception as e:
                                 print("Except", e)
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
@@ -827,7 +824,7 @@ class ChessBoard(RelativeLayout):
                     node = node.add_main_variation(pgnmove)
                     self.pgn_moves.append(touchmove)
                     self.pgnboard.push(pgnmove)
-                    print(self.pgnboard)
+                    print(self.pgnboard,"\n")
                 except Exception as e:
                     print("Except", e)
                 if grid_x == 2 and grid_y == 0:
