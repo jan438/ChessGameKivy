@@ -974,11 +974,12 @@ class ChessBoard(RelativeLayout):
             for col in range(8):
                 pieceindex = row * 8 + col
                 pgnpiece = self.pgnboard.piece_at(pieceindex)
-                if pgnpiece != None and color == "White" and (str(pgnpiece) >= 'a' and str(pgnpiece) <= 'z'):
-                    if self.attack_king(plc, str(pgnpiece), row, col):
+                piecestr = str(pgnpiece)
+                if pgnpiece != None and color == "White" and piecestr >= 'a' and piecestr <= 'z':
+                    if self.attack_king(plc, piecestr, row, col):
                         return True
-                if pgnpiece != None and color == "Black" and (str(pgnpiece) >= 'A' and str(pgnpiece) <= 'Z'):
-                    if self.attack_king(plc, str(pgnpiece), row, col):
+                if pgnpiece != None and color == "Black" and piecestr >= 'A' and piecestr <= 'Z':
+                    if self.attack_king(plc, piecestr, row, col):
                         return True
         return False
 
