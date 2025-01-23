@@ -890,7 +890,7 @@ class ChessBoard(RelativeLayout):
         anim.start(piece)
 
     def attack_king(self, plc, piece, row, col):
-        if piece == "n" or "N":
+        if piece == "n" or piece == "N":
             if (col + 2, row + 1) == (plc[0], plc[1]) or (col + 1, row + 2) == (plc[0], plc[1]) or (col - 2, row + 1) == (plc[0], plc[1]) or  (col - 1, row + 2) == (plc[0], plc[1]) or (col + 1, row - 2) == (plc[0], plc[1]) or (col + 2, row - 1) == (plc[0], plc[1]) or  (col - 2, row - 1) == (plc[0], plc[1]) or (col - 1, row - 2) == (plc[0], plc[1]):
                 return True
         if piece == "b" or "B":
@@ -902,7 +902,7 @@ class ChessBoard(RelativeLayout):
         if piece == "q" or piece == "Q":
             if self.check_diagonal(plc, piece, row, col) or self.check_straight(plc, piece, row, col):
                 return True
-        if piece == "p" or "P":
+        if piece == "p" or piece == "P":
             if (col + 1, row + 1) == (plc[0], plc[1]) or (col - 1, row + 1) == (plc[0], plc[1]) or (col + 1, row - 1) == (plc[0], plc[1]) or (col - 1, row - 1) == (plc[0], plc[1]):
                 return True
         return False
