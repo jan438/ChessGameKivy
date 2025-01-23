@@ -735,6 +735,7 @@ class ChessBoard(RelativeLayout):
                         self.pgn_moves.append(touchmove)
                         self.pgnboard.push(pgnmove)
                         print(self.pgnboard)
+                        print()
                     except Exception as e:
                         print("Except", e)
                     anim = Animation(grid_x = grid_x, grid_y = grid_y, t='in_quad', duration=0.5)
@@ -773,6 +774,7 @@ class ChessBoard(RelativeLayout):
                                 self.pgn_moves.append(touchmove)
                                 self.pgnboard.push(pgnmove)
                                 print(self.pgnboard)
+                                print()
                             except Exception as e:
                                 print("Except", e)
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
@@ -799,6 +801,7 @@ class ChessBoard(RelativeLayout):
                                 self.pgn_moves.append(touchmove)
                                 self.pgnboard.push(pgnmove)
                                 print(self.pgnboard)
+                                print()
                             except Exception as e:
                                 print("Except", e)
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
