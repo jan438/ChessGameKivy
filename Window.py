@@ -1003,7 +1003,6 @@ class ChessBoard(RelativeLayout):
         return False
 
     def check_check(self):
-        print("Check turn", self.turn_, "W", self.white_chess, "B", self.black_chess)
         if self.turn_ == "White":
             if self.white_chess:
                 if self.check_white():
