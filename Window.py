@@ -893,10 +893,10 @@ class ChessBoard(RelativeLayout):
         if piece == "n" or piece == "N":
             if (col + 2, row + 1) == (plc[0], plc[1]) or (col + 1, row + 2) == (plc[0], plc[1]) or (col - 2, row + 1) == (plc[0], plc[1]) or  (col - 1, row + 2) == (plc[0], plc[1]) or (col + 1, row - 2) == (plc[0], plc[1]) or (col + 2, row - 1) == (plc[0], plc[1]) or  (col - 2, row - 1) == (plc[0], plc[1]) or (col - 1, row - 2) == (plc[0], plc[1]):
                 return True
-        if piece == "b" or "B":
+        if piece == "b" or piece == "B":
             if self.check_diagonal(plc, piece, row, col):
                 return True
-        if piece == "r" or "R":
+        if piece == "r" or piece == "R":
             if self.check_straight(plc, piece, row, col):
                 return True
         if piece == "q" or piece == "Q":
