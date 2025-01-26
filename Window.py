@@ -1009,19 +1009,33 @@ class ChessBoard(RelativeLayout):
                 if self.check_white():
                     self.animate("White")
                     self.chessmate = True
+                    return
                 else:
                     self.white_chess = False
+                    return
             if self.check_black():
                 self.black_chess = True
+                return
+            if self.check_white():
+                self.animate("White")
+                self.chessmate = True
+                return
         if self.turn_ == "Black":
             if self.black_chess:
                 if self.check_black():
                     self.animate("Black")
                     self.chessmate = True
+                    return
                 else:
                     self.black_chess = False
+                    return
             if self.check_white():
                 self.white_chess = True
+                return
+            if self.check_black():
+                self.animate("Black")
+                self.chessmate = True
+                return
         return self.chessmate
 
     def draw_moves(self):
