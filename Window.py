@@ -622,22 +622,6 @@ class ChessBoard(RelativeLayout):
                 layout.add_widget(button_layout)
                 self.pp = Popup(title = "AIPGN", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
                 self.pp.open()
-                node = self.pgngame.end()
-                self.pgn_index = len(self.pgn_moves)
-                try:
-                    pgnmove = chess.Move.from_uci(self.hmmove)
-                    node = node.add_main_variation(pgnmove)
-                    self.pgn_moves.append(self.hmmove)
-                    self.pgnboard.push(pgnmove)
-                    self.animate_pgn_move(self.pgn_index, self.hmmove)
-                    play_sound(True)
-                    self.turn()
-                except Exception as e:
-                    play_sound(False)
-                    print("Except", e)
-                self.hmmove = "    "
-                self.index = 0
-                self.pgn_inputmode = False
         elif l == 'r':
             pgn = open("PGN/input.pgn")
             self.pgngame = chess.pgn.read_game(pgn)
@@ -727,6 +711,22 @@ class ChessBoard(RelativeLayout):
             
     def on_yes(self, instance):
         print("User chose Yes", self.hmmove)
+        node = self.pgngame.end()
+        self.pgn_index = len(self.pgn_moves)
+        try:
+            pgnmove = chess.Move.from_uci(self.hmmove)
+            node = node.add_main_variation(pgnmove)
+            self.pgn_moves.append(self.hmmove)
+            self.pgnboard.push(pgnmove)
+            self.animate_pgn_move(self.pgn_index, self.hmmove)
+            play_sound(True)
+            self.turn()
+        except Exception as e:
+            play_sound(False)
+            print("Except", e)
+        self.hmmove = "    "
+        self.index = 0
+        self.pgn_inputmode = False
         self.pp.dismiss()
     
     def on_no(self, instance):
