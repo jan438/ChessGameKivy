@@ -14,6 +14,7 @@ from kivy.uix.widget import Widget
 from kivy.config import Config
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.boxlayout import BoxLayout 
 from kivy.uix.image import Image
 from kivy.animation import Animation
 from kivy.properties import *
@@ -604,6 +605,23 @@ class ChessBoard(RelativeLayout):
                     self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                     self.index += 1
             elif l == '.':
+                if ChessBoard.turn_ == "White":
+                    labelcolor = [1, 1, 1, 1] 
+                else:
+                    labelcolor = [0, 0, 0, 1] 
+                layout = BoxLayout(orientation='vertical')
+                message = Label(text = "Correct? " + self.hmmove, color = labelcolor, font_size='50sp')
+                layout.add_widget(message)
+                button_layout = BoxLayout(size_hint_y=0.3)
+                yes_button = Button(text = 'Yes')
+                yes_button.bind(on_release=self.on_yes)
+                button_layout.add_widget(yes_button)
+                no_button = Button(text = 'No')
+                no_button.bind(on_release=self.on_no)
+                button_layout.add_widget(no_button)
+                layout.add_widget(button_layout)
+                self.pp = Popup(title = "AIPGN", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
+                self.pp.open()
                 node = self.pgngame.end()
                 self.pgn_index = len(self.pgn_moves)
                 try:
@@ -706,6 +724,13 @@ class ChessBoard(RelativeLayout):
             wep = [False,False,False,False,False,False,False,False]
         elif c == "Black":
             bep = [False,False,False,False,False,False,False,False]
+            
+    def on_yes(self, instance):
+        print("User chose Yes", self.hmmove)
+        self.pp.dismiss()
+    
+    def on_no(self, instance):
+        self.pp.dismiss()
 
     def on_touch_down(self, touch):
         rows, cols = 8,8
