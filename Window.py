@@ -664,7 +664,6 @@ class ChessBoard(RelativeLayout):
                 if self.pgn_index < len(self.pgn_moves):
                     self.pgn_index += 1
                 self.turn()
-                print("Turn", self.turn_)
         elif l == 'p':
             print(self.pgnboard, "\n")
         return True
