@@ -633,11 +633,11 @@ class ChessBoard(RelativeLayout):
         elif l == 'l':
             self.listpgn_moves()
         elif l == 'w':
-            self.pgngame.headers["Event"] = "Bugojno 3rd"
-            self.pgngame.headers["White"] = "Jan Timman"
-            self.pgngame.headers["Black"] = "Garry Kasparov"
+            self.pgngame.headers["Event"] = "Social Chess"
+            self.pgngame.headers["White"] = "Wim"
+            self.pgngame.headers["Black"] = "Jan"
             current_date = datetime.today().strftime('%Y-%m-%d')
-            self.pgngame.headers["Date"] = "1982.05.??"
+            self.pgngame.headers["Date"] = "2025.01.31"
             self.pgnboard = self.pgngame.board()
             self.pgn_moves = []
             pgn = open("PGN/begin.txt", 'r')
