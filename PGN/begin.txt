@@ -58,3 +58,13 @@ h2h3
 a7a6
 a2a3
 b6b5
+d2a2
+b5c4
+a1d1
+d7d5
+a2c4
+c8b7
+c4b3
+b7c6
+b3b6
+f5c8
