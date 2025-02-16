@@ -637,7 +637,7 @@ class ChessBoard(RelativeLayout):
             self.pgngame.headers["White"] = "Wim"
             self.pgngame.headers["Black"] = "Jan"
             current_date = datetime.today().strftime('%Y-%m-%d')
-            self.pgngame.headers["Date"] = "2025.01.31"
+            self.pgngame.headers["Date"] = "2025.02.11"
             self.pgnboard = self.pgngame.board()
             self.pgn_moves = []
             pgn = open("PGN/begin.txt", 'r')
