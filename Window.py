@@ -608,6 +608,11 @@ class ChessBoard(RelativeLayout):
                     self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                     self.index += 1
             elif l == '.':
+                xfrom = letter_to_xpos(self.hmmove[0])
+                yfrom = letter_to_ypos(self.hmmove[1])
+                xto = letter_to_xpos(self.hmmove[2])
+                yto = letter_to_ypos(self.hmmove[3])
+                print(xfrom, yfrom, xto, yto)
                 if ChessBoard.turn_ == "White":
                     labelcolor = [1, 1, 1, 1] 
                 else:
