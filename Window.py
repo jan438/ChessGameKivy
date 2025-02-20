@@ -631,8 +631,14 @@ class ChessBoard(RelativeLayout):
                     self.show_warning("No piece", labelcolor)
                     return False
                 frompiecestr = str(frompiece)
-                if frompiecestr >= 'A' and frompiecestr >= 'Z':
-                    print("White")
+                if frompiecestr >= 'A' and frompiecestr <= 'Z':
+                    if ChessBoard.turn_ == "Black":
+                        self.show_warning("Not in turn", labelcolor)
+                        return False
+                if frompiecestr >= 'a' and frompiecestr <= 'z':
+                    if ChessBoard.turn_ == "White":
+                        self.show_warning("Not in turn", labelcolor)
+                        return False
                 x = letter_to_xpos(self.hmmove[2])
                 y = letter_to_ypos(self.hmmove[3])
                 toindex = y * 8 + x
