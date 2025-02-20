@@ -632,7 +632,7 @@ class ChessBoard(RelativeLayout):
                     return False
                 frompiecestr = str(frompiece)
                 if frompiecestr >= 'A' and frompiecestr >= 'Z':
-                    print("Witte")
+                    print("White")
                 x = letter_to_xpos(self.hmmove[2])
                 y = letter_to_ypos(self.hmmove[3])
                 toindex = y * 8 + x
