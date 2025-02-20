@@ -642,7 +642,7 @@ class ChessBoard(RelativeLayout):
                 layout = BoxLayout(orientation='vertical')
                 message = Label(text = "Correct? " + self.hmmove + frompiecestr, color = labelcolor, font_size='50sp')
                 layout.add_widget(message)
-                button_layout = BoxLayout(size_hint_y=0.3)
+                button_layout = BoxLayout(size_hint_y = 0.3)
                 yes_button = Button(text = 'Yes')
                 yes_button.bind(on_release=self.on_yes)
                 button_layout.add_widget(yes_button)
