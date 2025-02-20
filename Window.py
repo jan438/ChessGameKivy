@@ -298,6 +298,7 @@ class Bishop(ChessPiece):
         return available_moves
 
 class Queen(Rook, Bishop):
+
     def available_moves(self, pieces):
         available_moves1 = Rook.available_moves(self,pieces)
         available_moves2 = Bishop.available_moves(self,pieces)
@@ -305,6 +306,7 @@ class Queen(Rook, Bishop):
         return available_moves
 
 class King(ChessPiece):
+
     First_use = BooleanProperty()
     def available_moves(self, pieces):
         available_moves = self.create_moves()
@@ -499,6 +501,7 @@ class King(ChessPiece):
         return False              
 
 class ChessBoard(RelativeLayout):
+
     piece_pressed = False
     id_piece_ = None
     available_moves = {"available_moves":(), "pieces_to_capture":[]}
@@ -1109,6 +1112,7 @@ class ChessBoard(RelativeLayout):
                 is_white = not is_white
 
 class ChessApp(App):
+
     def build(self):
         board = ChessBoard()
         for col in range(8):
