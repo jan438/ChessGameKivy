@@ -630,11 +630,12 @@ class ChessBoard(RelativeLayout):
                 if frompiece == None:
                     self.show_warning("No piece", labelcolor)
                     return False
+                frompiecestr = str(frompiece)
                 x = letter_to_xpos(self.hmmove[2])
                 y = letter_to_ypos(self.hmmove[3])
                 toindex = y * 8 + x
                 topiece = self.pgnboard.piece_at(toindex)
-                print("f", frompiece, "t", topiece)
+                print("f", frompiece, frompiecestr, len(frompiecestr), "t", topiece)
                 layout = BoxLayout(orientation='vertical')
                 message = Label(text = "Correct? " + self.hmmove, color = labelcolor, font_size='50sp')
                 layout.add_widget(message)
