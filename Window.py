@@ -589,7 +589,18 @@ class ChessBoard(RelativeLayout):
             if id[:9] == "BlackPawn" and yto == 0:
                  self.remove_widget(child)
                  self.add_widget(Queen(id = "", source="Assets/PNG/BlackQueen.png", grid_x = xto, grid_y = 0))
-        #print("APM:" + str(index), pgnmove, len(pgnmove), xfrom, yfrom, xto, yto, pindex)
+                 
+    def show_warning(self, msg, lcolor):
+        message = Label(text = msg, color = lcolor, font_size='50sp')
+        layout = BoxLayout(orientation = 'vertical')
+        layout.add_widget(message)
+        button_layout = BoxLayout(size_hint_y = 0.3)
+        yes_button = Button(text = 'OK')
+        yes_button.bind(on_release = self.on_no)
+        button_layout.add_widget(yes_button)
+        layout.add_widget(button_layout)
+        self.pp = Popup(title = "AI", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
+        self.pp.open()
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
@@ -608,22 +619,22 @@ class ChessBoard(RelativeLayout):
                     self.hmmove = self.hmmove[:self.index] + l + self.hmmove[self.index + 1:]
                     self.index += 1
             elif l == '.':
+                if ChessBoard.turn_ == "White":
+                    labelcolor = [1, 1, 1, 1] 
+                else:
+                    labelcolor = [0, 0, 0, 1] 
                 x = letter_to_xpos(self.hmmove[0])
                 y = letter_to_ypos(self.hmmove[1])
                 fromindex = y * 8 + x
                 frompiece = self.pgnboard.piece_at(fromindex)
                 if frompiece == None:
-                    print("No piece from")
+                    self.show_warning("No piece", labelcolor)
                     return False
                 x = letter_to_xpos(self.hmmove[2])
                 y = letter_to_ypos(self.hmmove[3])
                 toindex = y * 8 + x
                 topiece = self.pgnboard.piece_at(toindex)
                 print("f", frompiece, "t", toindex)
-                if ChessBoard.turn_ == "White":
-                    labelcolor = [1, 1, 1, 1] 
-                else:
-                    labelcolor = [0, 0, 0, 1] 
                 layout = BoxLayout(orientation='vertical')
                 message = Label(text = "Correct? " + self.hmmove, color = labelcolor, font_size='50sp')
                 layout.add_widget(message)
