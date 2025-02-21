@@ -603,7 +603,12 @@ class ChessBoard(RelativeLayout):
         self.pp.open()
 
     def check_keyed_move(self, move):
-        print("check_keyed_move", move)
+        strmove = str(move)
+        xfrom = letter_to_xpos(strmove[0])
+        yfrom = letter_to_ypos(strmove[1])
+        xto = letter_to_xpos(strmove[2])
+        yto = letter_to_ypos(strmove[3])
+        print("check_keyed_move from" , xfrom, yfrom, "to", xto, yto)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
