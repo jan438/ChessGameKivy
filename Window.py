@@ -638,7 +638,9 @@ class ChessBoard(RelativeLayout):
                 y = letter_to_ypos(self.hmmove[3])
                 toindex = y * 8 + x
                 topiece = self.pgnboard.piece_at(toindex)
-                print("f", frompiece, frompiecestr, len(frompiecestr), "t", topiece)
+                if topiece != None:
+                    topiecestr = str(topiece)
+                    print("f", frompiece, frompiecestr, "t", topiece, topiecestr)
                 layout = BoxLayout(orientation='vertical')
                 message = Label(text = "Correct? " + self.hmmove + frompiecestr, color = labelcolor, font_size='50sp')
                 layout.add_widget(message)
