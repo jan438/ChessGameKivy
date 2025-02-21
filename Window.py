@@ -602,6 +602,10 @@ class ChessBoard(RelativeLayout):
         self.pp = Popup(title = "AI", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
         self.pp.open()
 
+    def check_pgn_move(self, move):
+        print("check_pgn_move", move)
+        return True
+
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
         if l == 'q':
@@ -743,6 +747,12 @@ class ChessBoard(RelativeLayout):
             bep = [False,False,False,False,False,False,False,False]
             
     def on_yes(self, instance):
+        if not self.check_pgn_move(self.hmmove):
+            self.hmmove = "    "
+            self.index = 0
+            self.pgn_inputmode = False
+            self.pp.dismiss()
+            return
         node = self.pgngame.end()
         self.pgn_index = len(self.pgn_moves)
         try:
