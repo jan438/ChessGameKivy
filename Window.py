@@ -640,7 +640,9 @@ class ChessBoard(RelativeLayout):
                 topiece = self.pgnboard.piece_at(toindex)
                 if topiece != None:
                     topiecestr = str(topiece)
-                    print("f", frompiece, frompiecestr, "t", topiece, topiecestr)
+                    if ((frompiecestr >= 'A' and frompiecestr <= 'Z') and (topiecestr >= 'A' and topiecestr <= 'Z')) or ((frompiecestr >= 'a' and frompiecestr <= 'z') and (topiecestr >= 'a' and topiecestr <= 'z')):
+                        self.show_warning("No capture", labelcolor)
+                        return False
                 layout = BoxLayout(orientation='vertical')
                 message = Label(text = "Correct? " + self.hmmove + frompiecestr, color = labelcolor, font_size='50sp')
                 layout.add_widget(message)
