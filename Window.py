@@ -611,7 +611,13 @@ class ChessBoard(RelativeLayout):
         fromindex = yfrom * 8 + xfrom
         frompiece = self.pgnboard.piece_at(fromindex)
         frompiecestr = str(frompiece)
-        print("check_keyed_move", frompiecestr, "from" , xfrom, yfrom, "to", xto, yto)
+        toindex = yto * 8 + xto
+        topiece = self.pgnboard.piece_at(toindex)
+        if topiece == None:
+            topiecestr = ""
+        else:
+            topiecestr = str(topiece)
+        print("check_keyed_move", frompiecestr, "from" , topiecestr, xfrom, yfrom, "to", xto, yto)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
