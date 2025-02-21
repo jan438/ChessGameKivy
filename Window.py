@@ -599,7 +599,7 @@ class ChessBoard(RelativeLayout):
         yes_button.bind(on_release = self.on_no)
         button_layout.add_widget(yes_button)
         layout.add_widget(button_layout)
-        self.pp = Popup(title = "AI", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
+        self.pp = Popup(title = "PGN", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
         self.pp.open()
 
     def check_pgn_move(self, move):
