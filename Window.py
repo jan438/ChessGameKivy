@@ -616,10 +616,11 @@ class ChessBoard(RelativeLayout):
             stepy = +1
         else:
             stepy = -1
+        print(stepx, stepy)
         for i in range(deltax - 1):
             x = xfrom + i * stepx + stepx
             y = yfrom + i * stepy + stepy
-            index = yto * 8 + xto
+            index = y * 8 + x
             if self.pgnboard.piece_at(index) != None:
                 return False
         return True 
@@ -641,7 +642,6 @@ class ChessBoard(RelativeLayout):
             topiecestr = str(topiece)
         if frompiecestr == 'B' or 'b':
              return self.valid_bishop(xfrom, yfrom, xto, yto)
-        print("check_keyed_move", frompiecestr, "from" , topiecestr, xfrom, yfrom, "to", xto, yto)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
