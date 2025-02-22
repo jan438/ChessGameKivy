@@ -602,7 +602,7 @@ class ChessBoard(RelativeLayout):
         self.pp = Popup(title = "PGN", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
         self.pp.open()
         
-    def valid_bishop(self, xfrom, yfrom, xto, yto):
+    def valid_diagonal(self, xfrom, yfrom, xto, yto):
         deltax = abs(xfrom - xto)
         deltay = abs(yfrom - yto)
         if deltax == 0 or deltay == 0 or deltax != deltay:
@@ -639,7 +639,7 @@ class ChessBoard(RelativeLayout):
         else:
             topiecestr = str(topiece)
         if frompiecestr == 'B' or 'b':
-             return self.valid_bishop(xfrom, yfrom, xto, yto)
+             return self.valid_diagonal(xfrom, yfrom, xto, yto)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
