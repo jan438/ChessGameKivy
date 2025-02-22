@@ -602,6 +602,17 @@ class ChessBoard(RelativeLayout):
         layout.add_widget(button_layout)
         self.pp = Popup(title = "PGN", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
         self.pp.open()
+        
+    def valid_king(self, xfrom, yfrom, xto, yto):
+        deltax = abs(xfrom - xto)
+        deltay = abs(yfrom - yto)
+        if deltax == 1 and deltay == 1:
+            return True
+        if deltax == 0 and deltay == 1:
+            return True
+        if deltay == 0 and deltax == 1:
+            return True
+        return True
 
     def valid_knight(self, xfrom, yfrom, xto, yto):
         deltax = abs(xfrom - xto)
@@ -824,6 +835,8 @@ class ChessBoard(RelativeLayout):
             valid_move = self.valid_diagonal(xfrom, yfrom, xto, yto) or self.valid_straight(xfrom, yfrom, xto, yto)
         if frompiecestr == 'N' or frompiecestr == 'n':
             valid_move = self.valid_knight(xfrom, yfrom, xto, yto)
+        if frompiecestr == 'K' or frompiecestr == 'k':
+            valid_move = self.valid_king(xfrom, yfrom, xto, yto)
         if not valid_move:
             play_sound(False)
             self.hmmove = "    "
