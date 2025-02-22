@@ -603,7 +603,6 @@ class ChessBoard(RelativeLayout):
         self.pp.open()
         
     def valid_bishop(self, xfrom, yfrom, xto, yto):
-        print("valid_bishop")
         deltax = abs(xfrom - xto)
         deltay = abs(yfrom - yto)
         if deltax == 0 or deltay == 0 or deltax != deltay:
@@ -616,7 +615,6 @@ class ChessBoard(RelativeLayout):
             stepy = +1
         else:
             stepy = -1
-        print(stepx, stepy)
         for i in range(deltax - 1):
             x = xfrom + i * stepx + stepx
             y = yfrom + i * stepy + stepy
