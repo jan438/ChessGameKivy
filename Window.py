@@ -603,7 +603,26 @@ class ChessBoard(RelativeLayout):
         self.pp.open()
         
     def valid_bishop(self, xfrom, yfrom, xto, yto):
-        print("validbishop", xfrom, yfrom)
+        print("valid_bishop")
+        deltax = abs(xfrom - xto)
+        deltay = abs(yfrom - yto)
+        if deltax == 0 or deltay == 0 or deltax != deltay:
+            return False
+        if xfrom < xto:
+            stepx = +1
+        else:
+            stepx = -1
+        if yfrom < yto:
+            stepy = +1
+        else:
+            stepy = -1
+        for i in range(deltax - 1):
+            x = xfrom + i * stepx + stepx
+            y = yfrom + i * stepy + stepy
+            index = yto * 8 + xto
+            if self.pgnboard.piece_at(index) != None:
+                return False
+        return True 
 
     def check_keyed_move(self, move):
         strmove = str(move)
@@ -621,7 +640,7 @@ class ChessBoard(RelativeLayout):
         else:
             topiecestr = str(topiece)
         if frompiecestr == 'B' or 'b':
-             self.valid_bishop(xfrom, yfrom, xto, yto)
+             return self.valid_bishop(xfrom, yfrom, xto, yto)
         print("check_keyed_move", frompiecestr, "from" , topiecestr, xfrom, yfrom, "to", xto, yto)
         return True
 
