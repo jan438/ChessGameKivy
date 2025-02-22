@@ -516,6 +516,7 @@ class ChessBoard(RelativeLayout):
     white_chess = False
     black_chess = False
     chessmate = False
+    labelcolor = [1, 1, 1, 1]
   
     def __init__(self, **kwargs):
         super(ChessBoard, self).__init__(**kwargs)
@@ -692,19 +693,19 @@ class ChessBoard(RelativeLayout):
                     self.index += 1
             elif l == '.':
                 if ChessBoard.turn_ == "White":
-                    labelcolor = [1, 1, 1, 1] 
+                    self.labelcolor = [1, 1, 1, 1] 
                 else:
-                    labelcolor = [0, 0, 0, 1] 
+                    self.labelcolor = [0, 0, 0, 1] 
                 x = letter_to_xpos(self.hmmove[0])
                 y = letter_to_ypos(self.hmmove[1])
                 fromindex = y * 8 + x
                 frompiece = self.pgnboard.piece_at(fromindex)
                 if frompiece == None:
-                    self.show_warning("No piece", labelcolor)
+                    self.show_warning("No piece", self.labelcolor)
                     return False
                 frompiecestr = str(frompiece)
                 if (frompiecestr >= 'A' and frompiecestr <= 'Z' and ChessBoard.turn_ == "Black") or (frompiecestr >= 'a' and frompiecestr <= 'z' and ChessBoard.turn_ == "White"):
-                        self.show_warning("Not in turn", labelcolor)
+                        self.show_warning("Not in turn", self.labelcolor)
                         return False
                 x = letter_to_xpos(self.hmmove[2])
                 y = letter_to_ypos(self.hmmove[3])
@@ -713,10 +714,10 @@ class ChessBoard(RelativeLayout):
                 if topiece != None:
                     topiecestr = str(topiece)
                     if ((frompiecestr >= 'A' and frompiecestr <= 'Z') and (topiecestr >= 'A' and topiecestr <= 'Z')) or ((frompiecestr >= 'a' and frompiecestr <= 'z') and (topiecestr >= 'a' and topiecestr <= 'z')):
-                        self.show_warning("No capture", labelcolor)
+                        self.show_warning("No capture", self.labelcolor)
                         return False
                 layout = BoxLayout(orientation='vertical')
-                message = Label(text = "Correct? " + self.hmmove + frompiecestr, color = labelcolor, font_size='50sp')
+                message = Label(text = "Correct? " + self.hmmove + frompiecestr, color = self.labelcolor, font_size='50sp')
                 layout.add_widget(message)
                 button_layout = BoxLayout(size_hint_y = 0.3)
                 yes_button = Button(text = 'Yes')
