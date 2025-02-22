@@ -625,7 +625,6 @@ class ChessBoard(RelativeLayout):
         return True
         
     def valid_straight(self, xfrom, yfrom, xto, yto):
-        print("validstraight")
         deltax = xfrom - xto
         deltay = yfrom - yto
         stepx = 0
@@ -673,6 +672,8 @@ class ChessBoard(RelativeLayout):
              return self.valid_diagonal(xfrom, yfrom, xto, yto)
         if frompiecestr == 'R' or frompiecestr == 'r':
              return self.valid_straight(xfrom, yfrom, xto, yto)
+        if frompiecestr == 'Q' or frompiecestr == 'q':
+             return self.valid_diagonal(xfrom, yfrom, xto, yto) or self.valid_straight(xfrom, yfrom, xto, yto)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
