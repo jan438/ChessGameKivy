@@ -825,11 +825,12 @@ class ChessBoard(RelativeLayout):
         if frompiecestr == 'N' or frompiecestr == 'n':
             valid_move = self.valid_knight(xfrom, yfrom, xto, yto)
         if not valid_move:
+            play_sound(False)
             self.hmmove = "    "
             self.index = 0
             self.pgn_inputmode = False
             self.pp.dismiss()
-            self.show_warning("Invalid move " + frompiecestr, self.labelcolor)
+            self.show_warning("Invalid " + strmove + frompiecestr, self.labelcolor)
             return
         node = self.pgngame.end()
         self.pgn_index = len(self.pgn_moves)
