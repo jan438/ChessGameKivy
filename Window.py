@@ -601,6 +601,9 @@ class ChessBoard(RelativeLayout):
         layout.add_widget(button_layout)
         self.pp = Popup(title = "PGN", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
         self.pp.open()
+        
+    def valid_bishop(self, xfrom, yfrom, xto, yto):
+        print("validbishop", xfrom, yfrom)
 
     def check_keyed_move(self, move):
         strmove = str(move)
@@ -617,6 +620,8 @@ class ChessBoard(RelativeLayout):
             topiecestr = ""
         else:
             topiecestr = str(topiece)
+        if frompiecestr == 'B' or 'b':
+             self.valid_bishop(xfrom, yfrom, xto, yto)
         print("check_keyed_move", frompiecestr, "from" , topiecestr, xfrom, yfrom, "to", xto, yto)
         return True
 
