@@ -815,34 +815,21 @@ class ChessBoard(RelativeLayout):
             topiecestr = ""
         else:
             topiecestr = str(topiece)
+        valid_move = True
         if frompiecestr == 'B' or frompiecestr == 'b':
-            if not self.valid_diagonal(xfrom, yfrom, xto, yto):
-                self.hmmove = "    "
-                self.index = 0
-                self.pgn_inputmode = False
-                self.pp.dismiss()
-                return
+            valid_move = self.valid_diagonal(xfrom, yfrom, xto, yto)
         if frompiecestr == 'R' or frompiecestr == 'r':
-            if not self.valid_straight(xfrom, yfrom, xto, yto):
-                self.hmmove = "    "
-                self.index = 0
-                self.pgn_inputmode = False
-                self.pp.dismiss()
-                return
+            valid_move = self.valid_straight(xfrom, yfrom, xto, yto)
         if frompiecestr == 'Q' or frompiecestr == 'q':
-            if not self.valid_diagonal(xfrom, yfrom, xto, yto) or self.valid_straight(xfrom, yfrom, xto, yto):
-                self.hmmove = "    "
-                self.index = 0
-                self.pgn_inputmode = False
-                self.pp.dismiss()
-                return
+            valid_move = self.valid_diagonal(xfrom, yfrom, xto, yto) or self.valid_straight(xfrom, yfrom, xto, yto)
         if frompiecestr == 'N' or frompiecestr == 'n':
-            if not self.valid_knight(xfrom, yfrom, xto, yto):
-                self.hmmove = "    "
-                self.index = 0
-                self.pgn_inputmode = False
-                self.pp.dismiss()
-                return
+            valid_move = self.valid_knight(xfrom, yfrom, xto, yto)
+        if not valid_move:
+            self.hmmove = "    "
+            self.index = 0
+            self.pgn_inputmode = False
+            self.pp.dismiss()
+            return
         node = self.pgngame.end()
         self.pgn_index = len(self.pgn_moves)
         try:
