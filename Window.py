@@ -660,31 +660,6 @@ class ChessBoard(RelativeLayout):
                 return False
         return True        
 
-    def check_keyed_move(self, move):
-        strmove = str(move)
-        xfrom = letter_to_xpos(strmove[0])
-        yfrom = letter_to_ypos(strmove[1])
-        xto = letter_to_xpos(strmove[2])
-        yto = letter_to_ypos(strmove[3])
-        fromindex = yfrom * 8 + xfrom
-        frompiece = self.pgnboard.piece_at(fromindex)
-        frompiecestr = str(frompiece)
-        toindex = yto * 8 + xto
-        topiece = self.pgnboard.piece_at(toindex)
-        if topiece == None:
-            topiecestr = ""
-        else:
-            topiecestr = str(topiece)
-        if frompiecestr == 'B' or frompiecestr == 'b':
-             return self.valid_diagonal(xfrom, yfrom, xto, yto)
-        if frompiecestr == 'R' or frompiecestr == 'r':
-             return self.valid_straight(xfrom, yfrom, xto, yto)
-        if frompiecestr == 'Q' or frompiecestr == 'q':
-             return self.valid_diagonal(xfrom, yfrom, xto, yto) or self.valid_straight(xfrom, yfrom, xto, yto)
-        if frompiecestr == 'N' or frompiecestr == 'n':
-             return self.valid_knight(xfrom, yfrom, xto, yto)
-        return True
-
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
         if l == 'q':
@@ -826,12 +801,48 @@ class ChessBoard(RelativeLayout):
             bep = [False,False,False,False,False,False,False,False]
             
     def on_yes(self, instance):
-        if not self.check_keyed_move(self.hmmove):
-            self.hmmove = "    "
-            self.index = 0
-            self.pgn_inputmode = False
-            self.pp.dismiss()
-            return
+        strmove = str(self.hmmove)
+        xfrom = letter_to_xpos(strmove[0])
+        yfrom = letter_to_ypos(strmove[1])
+        xto = letter_to_xpos(strmove[2])
+        yto = letter_to_ypos(strmove[3])
+        fromindex = yfrom * 8 + xfrom
+        frompiece = self.pgnboard.piece_at(fromindex)
+        frompiecestr = str(frompiece)
+        toindex = yto * 8 + xto
+        topiece = self.pgnboard.piece_at(toindex)
+        if topiece == None:
+            topiecestr = ""
+        else:
+            topiecestr = str(topiece)
+        if frompiecestr == 'B' or frompiecestr == 'b':
+            if not self.valid_diagonal(xfrom, yfrom, xto, yto):
+                self.hmmove = "    "
+                self.index = 0
+                self.pgn_inputmode = False
+                self.pp.dismiss()
+                return
+        if frompiecestr == 'R' or frompiecestr == 'r':
+            if not self.valid_straight(xfrom, yfrom, xto, yto):
+                self.hmmove = "    "
+                self.index = 0
+                self.pgn_inputmode = False
+                self.pp.dismiss()
+                return
+        if frompiecestr == 'Q' or frompiecestr == 'q':
+            if not self.valid_diagonal(xfrom, yfrom, xto, yto) or self.valid_straight(xfrom, yfrom, xto, yto):
+                self.hmmove = "    "
+                self.index = 0
+                self.pgn_inputmode = False
+                self.pp.dismiss()
+                return
+        if frompiecestr == 'N' or frompiecestr == 'n':
+            if not self.valid_knight(xfrom, yfrom, xto, yto):
+                self.hmmove = "    "
+                self.index = 0
+                self.pgn_inputmode = False
+                self.pp.dismiss()
+                return
         node = self.pgngame.end()
         self.pgn_index = len(self.pgn_moves)
         try:
