@@ -829,6 +829,7 @@ class ChessBoard(RelativeLayout):
             self.index = 0
             self.pgn_inputmode = False
             self.pp.dismiss()
+            self.show_warning("Invalid move " + frompiecestr, self.labelcolor)
             return
         node = self.pgngame.end()
         self.pgn_index = len(self.pgn_moves)
