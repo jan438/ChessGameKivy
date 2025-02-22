@@ -602,6 +602,13 @@ class ChessBoard(RelativeLayout):
         layout.add_widget(button_layout)
         self.pp = Popup(title = "PGN", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
         self.pp.open()
+
+    def valid_knight(self, xfrom, yfrom, xto, yto):
+        deltax = abs(xfrom - xto)
+        deltay = abs(yfrom - yto)
+        if (deltax == 2 and deltay == 1) or (deltax == 1 and deltay == 2):
+             return True
+        return False
         
     def valid_diagonal(self, xfrom, yfrom, xto, yto):
         deltax = abs(xfrom - xto)
@@ -674,6 +681,8 @@ class ChessBoard(RelativeLayout):
              return self.valid_straight(xfrom, yfrom, xto, yto)
         if frompiecestr == 'Q' or frompiecestr == 'q':
              return self.valid_diagonal(xfrom, yfrom, xto, yto) or self.valid_straight(xfrom, yfrom, xto, yto)
+        if frompiecestr == 'N' or frompiecestr == 'n':
+             return self.valid_knight(xfrom, yfrom, xto, yto)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
