@@ -621,7 +621,37 @@ class ChessBoard(RelativeLayout):
             index = y * 8 + x
             if self.pgnboard.piece_at(index) != None:
                 return False
-        return True 
+        return True
+        
+    def valid_straight(self, xfrom, yfrom, xto, yto):
+        print("validstraight")
+        deltax = xfrom - xto
+        deltay = yfrom - yto
+        stepx = 0
+        stepy = 0
+        if deltax == 0:
+            stepx = 0
+            if deltay > 0:
+                stepy = -1
+            if deltay < 0:
+                 stepy = 1
+            x = xfrom + stepx
+            y = yfrom + stepy
+            index = y * 8 + x
+            if self.pgnboard.piece_at(index) != None:
+                return False
+        if deltay == 0:
+            stepy = 0
+            if deltax > 0:
+                stepx = -1
+            if deltax < 0:
+                stepx = 1
+            x = xfrom + stepx
+            y = yfrom + stepy
+            index = y * 8 + x  
+            if self.pgnboard.piece_at(index) != None:
+                return False
+        return True        
 
     def check_keyed_move(self, move):
         strmove = str(move)
@@ -638,8 +668,10 @@ class ChessBoard(RelativeLayout):
             topiecestr = ""
         else:
             topiecestr = str(topiece)
-        if frompiecestr == 'B' or 'b':
+        if frompiecestr == 'B' or frompiecestr == 'b':
              return self.valid_diagonal(xfrom, yfrom, xto, yto)
+        if frompiecestr == 'R' or frompiecestr == 'r':
+             return self.valid_straight(xfrom, yfrom, xto, yto)
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
