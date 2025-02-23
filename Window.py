@@ -527,7 +527,7 @@ class ChessBoard(RelativeLayout):
         self._keyboard.unbind(on_key_down = self.make_pgn_move)
         self._keyboard = None
         
-    def animate_pgn_move(self, index, pgn_move):
+    def animate_pgn_move(self, pgn_move):
         pgnmove = str(pgn_move)
         xfrom = letter_to_xpos(pgnmove[0])
         yfrom = letter_to_ypos(pgnmove[1])
@@ -762,7 +762,7 @@ class ChessBoard(RelativeLayout):
                 self.pgn_moves.append(move)
         elif l == 'n':
             if self.pgn_index > -1 and self.pgn_index < len(self.pgn_moves):
-                self.animate_pgn_move(self.pgn_index, self.pgn_moves[self.pgn_index])
+                self.animate_pgn_move(self.pgn_moves[self.pgn_index])
                 self.pgnboard.push(self.pgn_moves[self.pgn_index])
                 if self.pgn_index < len(self.pgn_moves):
                     self.pgn_index += 1
@@ -852,7 +852,7 @@ class ChessBoard(RelativeLayout):
             node = node.add_main_variation(pgnmove)
             self.pgn_moves.append(self.hmmove)
             self.pgnboard.push(pgnmove)
-            self.animate_pgn_move(self.pgn_index, self.hmmove)
+            self.animate_pgn_move(self.hmmove)
             play_sound(True)
             self.turn()
             print(self.pgnboard, "\n")
