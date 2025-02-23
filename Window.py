@@ -706,7 +706,10 @@ class ChessBoard(RelativeLayout):
                 if self.pgnboard.piece_at(index) != None:
                     piece = self.pgnboard.piece_at(index)
                     strpiece = str(piece)
-                    print("safe_places", x, y, strpiece)
+                    if strpiece >= 'A' and strpiece <= 'Z' and color == 'b':
+                        print("safe_places", x, y, strpiece)
+                    if strpiece >= 'a' and strpiece <= 'z' and color == 'W':
+                        print("safe_places", x, y, strpiece)
         return True
         
     def safe_diagonal(self, col, row, plc):
