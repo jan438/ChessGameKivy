@@ -700,7 +700,35 @@ class ChessBoard(RelativeLayout):
         
     def safe_places(self, places, color):
         print("safe_places", places, color)
-        return True        
+        for y in range(8):
+            for x in range(8):
+                index = y * 8 + x
+                if self.pgnboard.piece_at(index) != None:
+                    piece = self.pgnboard.piece_at(index)
+                    strpiece = str(piece)
+                    print("safe_places", x, y, strpiece)
+        return True
+        
+    def safe_diagonal(self, col, row, plc):
+        deltax = col - plc[0]
+        deltay = row - plc[1]
+        if abs(deltax) == abs(deltay):
+             if deltax > 0:
+                 stepx = -1
+             if deltax < 0:
+                 stepx = 1
+             if deltay > 0:
+                 stepy = -1
+             if deltay < 0:
+                 stepy = 1
+#             while True:
+#                 col = col + stepx
+#                 row = row + stepy        
+#                 if boardai.chesspiecesai[col][row] != 0 or col == plc[0]:
+#                     if col == plc[0]:
+#                         return False
+#                     break 
+        return True       
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
