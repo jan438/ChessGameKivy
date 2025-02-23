@@ -620,7 +620,7 @@ class ChessBoard(RelativeLayout):
             if yto == 0:
                 eplcs = [[3,0],[2,0],[1,0]]
                 splcs = [[4,0],[3,0],[2,0],[1,0]]
-                return (self.safe_places(splcs, 'b') and andself.empty_places(eplcs))
+                return (self.safe_places(splcs, 'W') and self.empty_places(eplcs))
         if (xfrom - xto) == -2:
             if yto == 7:
                 eplcs = [[5,7],[6,7]]
@@ -629,7 +629,7 @@ class ChessBoard(RelativeLayout):
             if yto == 0:
                 eplcs = [[5,0],[6,0]]
                 splcs = [[4,0],[5,0],[6,0]]
-                return (self.safe_places(splcs, 'b') and self.empty_places(eplcs))
+                return (self.safe_places(splcs, 'W') and self.empty_places(eplcs))
         return False
 
     def valid_knight(self, xfrom, yfrom, xto, yto):
@@ -699,7 +699,7 @@ class ChessBoard(RelativeLayout):
         return True
         
     def safe_places(self, places, color):
-        print("safe_places")
+        print("safe_places", places, color)
         return True        
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
