@@ -616,20 +616,20 @@ class ChessBoard(RelativeLayout):
             if yto == 7:
                 eplcs = [[3,7],[2,7],[1,7]]
                 splcs = [[4,7],[3,7],[2,7],[1,7]]
-#                return (boardai.chesspiecesai[move.xfrom][move.yfrom].f and self.empty_places(eplcs) and self.safe_places(splcs, "W"))
+                return (self.empty_places(eplcs))
             if yto == 0:
                 eplcs = [[3,0],[2,0],[1,0]]
                 splcs = [[4,0],[3,0],[2,0],[1,0]]
-#                return (boardai.chesspiecesai[move.xfrom][move.yfrom].f and self.empty_places(eplcs) and self.safe_places(splcs, "B"))
+                return (self.empty_places(eplcs))
         if (xfrom - xto) == -2:
             if yto == 7:
                 eplcs = [[5,7],[6,7]]
                 splcs = [[4,7],[5,7],[6,7]]
-#                return (boardai.chesspiecesai[move.xfrom][move.yfrom].f and self.empty_places(eplcs) and self.safe_places(splcs, "W"))
+                return (self.empty_places(eplcs))
             if yto == 0:
                 eplcs = [[5,0],[6,0]]
                 splcs = [[4,0],[5,0],[6,0]]
-#                return (boardai.chesspiecesai[move.xfrom][move.yfrom].f and self.empty_places(eplcs) and self.safe_places(splcs, "B"))
+                return (self.empty_places(eplcs))
         #return False
         return True
 
@@ -690,11 +690,12 @@ class ChessBoard(RelativeLayout):
                 return False
         return True
 
-#    def empty_places(self, places):
-#        for plc in places:
+    def empty_places(self, places):
+        for plc in places:
+            print("empty_places", plc)
 #            if boardai.chesspiecesai[plc[0]][plc[1]] != 0:
 #                return False
-#        return True             
+        return True             
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
