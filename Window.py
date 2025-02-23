@@ -692,9 +692,11 @@ class ChessBoard(RelativeLayout):
 
     def empty_places(self, places):
         for plc in places:
-            print("empty_places", plc)
-#            if boardai.chesspiecesai[plc[0]][plc[1]] != 0:
-#                return False
+            x = plc[0]
+            y = plc[1]
+            index = y * 8 + x  
+            if self.pgnboard.piece_at(index) != None:
+                return False
         return True             
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
