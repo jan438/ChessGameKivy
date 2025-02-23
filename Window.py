@@ -612,6 +612,25 @@ class ChessBoard(RelativeLayout):
             return True
         if deltay == 0 and deltax == 1:
             return True
+        if (xfrom - xto) == 2:
+            if yto == 7:
+                eplcs = [[3,7],[2,7],[1,7]]
+                splcs = [[4,7],[3,7],[2,7],[1,7]]
+#                return (boardai.chesspiecesai[move.xfrom][move.yfrom].f and self.empty_places(eplcs) and self.safe_places(splcs, "W"))
+            if yto == 0:
+                eplcs = [[3,0],[2,0],[1,0]]
+                splcs = [[4,0],[3,0],[2,0],[1,0]]
+#                return (boardai.chesspiecesai[move.xfrom][move.yfrom].f and self.empty_places(eplcs) and self.safe_places(splcs, "B"))
+        if (xfrom - xto) == -2:
+            if yto == 7:
+                eplcs = [[5,7],[6,7]]
+                splcs = [[4,7],[5,7],[6,7]]
+#                return (boardai.chesspiecesai[move.xfrom][move.yfrom].f and self.empty_places(eplcs) and self.safe_places(splcs, "W"))
+            if yto == 0:
+                eplcs = [[5,0],[6,0]]
+                splcs = [[4,0],[5,0],[6,0]]
+#                return (boardai.chesspiecesai[move.xfrom][move.yfrom].f and self.empty_places(eplcs) and self.safe_places(splcs, "B"))
+        #return False
         return True
 
     def valid_knight(self, xfrom, yfrom, xto, yto):
@@ -669,7 +688,13 @@ class ChessBoard(RelativeLayout):
             index = y * 8 + x  
             if self.pgnboard.piece_at(index) != None:
                 return False
-        return True        
+        return True
+
+#    def empty_places(self, places):
+#        for plc in places:
+#            if boardai.chesspiecesai[plc[0]][plc[1]] != 0:
+#                return False
+#        return True             
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
