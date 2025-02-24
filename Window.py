@@ -750,7 +750,31 @@ class ChessBoard(RelativeLayout):
         return True
         
     def safe_straight(self, col, row, plc):
-        print("safe_straight")
+        deltax = col - plc[0]
+        deltay = row - plc[1]
+        stepx = 0
+        stepy = 0
+        if deltax == 0:
+            stepx = 0
+            if deltay > 0:
+                stepy = -1
+            if deltay < 0:
+                 stepy = 1
+        if deltay == 0:
+            stepy = 0
+            if deltax > 0:
+                stepx = -1
+            if deltax < 0:
+                stepx = 1
+        if deltax == 0 or deltay == 0:
+            while True:
+                col = col + stepx
+                row = row + stepy
+                index = row * 8 + col      
+                if self.pgnboard.piece_at(index) != None or (col == plc[0] and row == plc[1]):
+                    if col == plc[0] and row == plc[1]:
+                        return False
+                    break  
         return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
