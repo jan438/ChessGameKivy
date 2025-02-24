@@ -618,6 +618,17 @@ class ChessBoard(RelativeLayout):
             print(yfrom, index1)
             if self.pgnboard.piece_at(index1) == None:
                 return True
+        if deltax == 0 and deltay == 2 and yfrom == 6:
+            index1 = (yfrom - 1) * 8 + xto
+            index2 = (yfrom - 2) * 8 + xto
+            print(yfrom, index1, index2)
+            if self.pgnboard.piece_at(index1) == None and self.pgnboard.piece_at(index2) == None :
+                return True
+        if deltax == 0 and deltay == 1:
+            index1 = (yfrom - 1) * 8 + xto
+            print(yfrom, index1)
+            if self.pgnboard.piece_at(index1) == None:
+                return True
         return False
         
     def valid_king(self, xfrom, yfrom, xto, yto):
