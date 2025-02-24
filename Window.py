@@ -716,7 +716,7 @@ class ChessBoard(RelativeLayout):
                                     return False
                         if strpiece == 'N':
                             for plc in places:
-                                print("white knight")
+                                print("white knight", plc)
                     if strpiece >= 'a' and strpiece <= 'z' and color == 'W':
                         if strpiece == 'b':
                             for plc in places:
@@ -728,7 +728,7 @@ class ChessBoard(RelativeLayout):
                                     return False
                         if strpiece == 'n':
                             for plc in places:
-                                print("black knight")
+                                print("black knight", plc)
 
         return True
         
