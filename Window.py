@@ -607,7 +607,7 @@ class ChessBoard(RelativeLayout):
         print("valid_pawn", xfrom, yfrom, xto, yto)
         deltax = xfrom - xto
         deltay = yfrom - yto
-        if deltax == 0 and deltay == -2 and yfrom == 6:
+        if deltax == 0 and deltay == -2 and yfrom == 1:
             index1 = (yfrom + 1) * 8 + xto
             index2 = (yfrom + 2) * 8 + xto
             print(yfrom, index1, index2)
