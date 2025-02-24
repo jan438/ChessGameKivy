@@ -729,7 +729,8 @@ class ChessBoard(RelativeLayout):
                         if strpiece == 'n':
                             for plc in places:
                                 print("black knight", plc)
-
+                                if (plc[0] == y - 1 and plc[1] + 2 == x) or (plc[0] == y + 1 and plc[1] + 2 == x) or (plc[0] == y - 2 and plc[1] + 1 == x) or (plc[0] == y + 2 and plc[1] + 1 == x):
+                                    return False
         return True
         
     def safe_diagonal(self, col, row, plc):
