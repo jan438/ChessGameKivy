@@ -603,6 +603,10 @@ class ChessBoard(RelativeLayout):
         self.pp = Popup(title = "PGN", title_size = 50, content = layout, size_hint = (0.5, 0.5), background_color = [4,.4,.2, 1])
         self.pp.open()
         
+    def valid_pawn(self, xfrom, yfrom, xto, yto):
+        print("valid_pawn")
+        return False
+        
     def valid_king(self, xfrom, yfrom, xto, yto):
         deltax = abs(xfrom - xto)
         deltay = abs(yfrom - yto)
@@ -950,6 +954,8 @@ class ChessBoard(RelativeLayout):
             valid_move = self.valid_knight(xfrom, yfrom, xto, yto)
         if frompiecestr == 'K' or frompiecestr == 'k':
             valid_move = self.valid_king(xfrom, yfrom, xto, yto)
+        if frompiecestr == 'P' or frompiecestr == 'p':
+            valid_move = self.valid_pawn(xfrom, yfrom, xto, yto)
         if not valid_move:
             play_sound(False)
             self.hmmove = "    "
