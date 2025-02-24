@@ -709,17 +709,18 @@ class ChessBoard(RelativeLayout):
                     if strpiece >= 'A' and strpiece <= 'Z' and color == 'b':
                         if strpiece == 'B':
                             for plc in places:
-                                self.safe_diagonal(x, y, plc)
+                                if not self.safe_diagonal(x, y, plc):
+                                    return False
                         print("safe_places", x, y, strpiece)
                     if strpiece >= 'a' and strpiece <= 'z' and color == 'W':
                         if strpiece == 'b':
                             for plc in places:
-                                self.safe_diagonal(x, y, plc)
+                                if not self.safe_diagonal(x, y, plc):
+                                    return False
                         print("safe_places", x, y, strpiece)
         return True
         
     def safe_diagonal(self, col, row, plc):
-        print("safe diagonal", col, row, plc)
         deltax = col - plc[0]
         deltay = row - plc[1]
         if abs(deltax) == abs(deltay):
@@ -731,13 +732,16 @@ class ChessBoard(RelativeLayout):
                  stepy = -1
              if deltay < 0:
                  stepy = 1
-#             while True:
-#                 col = col + stepx
-#                 row = row + stepy        
-#                 if boardai.chesspiecesai[col][row] != 0 or col == plc[0]:
-#                     if col == plc[0]:
-#                         return False
-#                     break 
+             while True:
+                 print("safe diagonal", col, row, plc)
+                 col = col + stepx
+                 row = row + stepy
+                 index = row * 8 + col
+                 if self.pgnboard.piece_at(index) != None or col == plc[0]:
+                     print("safe diagonal not none", col, row, plc)
+                     if col == plc[0]:
+                         return False
+                     break 
         return True       
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
