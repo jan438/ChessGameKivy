@@ -699,7 +699,6 @@ class ChessBoard(RelativeLayout):
         return True
         
     def safe_places(self, places, color):
-        print("safe_places", places, color)
         for y in range(8):
             for x in range(8):
                 index = y * 8 + x
