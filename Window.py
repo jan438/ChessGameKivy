@@ -604,30 +604,19 @@ class ChessBoard(RelativeLayout):
         self.pp.open()
         
     def valid_pawn(self, xfrom, yfrom, xto, yto):
-        print("valid_pawn", xfrom, yfrom, xto, yto)
         deltax = xfrom - xto
         deltay = yfrom - yto
         if deltax == 0 and deltay == -2 and yfrom == 1:
-            index1 = (yfrom + 1) * 8 + xto
-            index2 = (yfrom + 2) * 8 + xto
-            print(yfrom, index1, index2)
-            if self.pgnboard.piece_at(index1) == None and self.pgnboard.piece_at(index2) == None :
+            if self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom + 2) * 8 + xto) == None :
                 return True
         if deltax == 0 and deltay == -1:
-            index1 = (yfrom + 1) * 8 + xto
-            print(yfrom, index1)
-            if self.pgnboard.piece_at(index1) == None:
+            if self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
                 return True
         if deltax == 0 and deltay == 2 and yfrom == 6:
-            index1 = (yfrom - 1) * 8 + xto
-            index2 = (yfrom - 2) * 8 + xto
-            print(yfrom, index1, index2)
-            if self.pgnboard.piece_at(index1) == None and self.pgnboard.piece_at(index2) == None :
+            if self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom - 2) * 8 + xto) == None :
                 return True
         if deltax == 0 and deltay == 1:
-            index1 = (yfrom - 1) * 8 + xto
-            print(yfrom, index1)
-            if self.pgnboard.piece_at(index1) == None:
+            if self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
                 return True
         return False
         
