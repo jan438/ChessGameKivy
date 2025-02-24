@@ -711,13 +711,19 @@ class ChessBoard(RelativeLayout):
                             for plc in places:
                                 if not self.safe_diagonal(x, y, plc):
                                     return False
-                        print("safe_places", x, y, strpiece)
+                        if strpiece == 'R':
+                            for plc in places:
+                                if not self.safe_straight(x, y, plc):
+                                    return False
                     if strpiece >= 'a' and strpiece <= 'z' and color == 'W':
                         if strpiece == 'b':
                             for plc in places:
                                 if not self.safe_diagonal(x, y, plc):
                                     return False
-                        print("safe_places", x, y, strpiece)
+                        if strpiece == 'r':
+                            for plc in places:
+                                if not self.safe_straight(x, y, plc):
+                                    return False
         return True
         
     def safe_diagonal(self, col, row, plc):
@@ -738,11 +744,14 @@ class ChessBoard(RelativeLayout):
                  row = row + stepy
                  index = row * 8 + col
                  if self.pgnboard.piece_at(index) != None or col == plc[0]:
-                     print("safe diagonal not none", col, row, plc)
                      if col == plc[0]:
                          return False
                      break 
-        return True       
+        return True
+        
+    def safe_straight(self, col, row, plc):
+        print("safe_straight")
+        return True
 
     def make_pgn_move(self, keyboard, keycode, text, modifiers):
         l = keycode[1]
