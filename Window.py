@@ -623,6 +623,12 @@ class ChessBoard(RelativeLayout):
                 return True
         if abs(deltax == 1) and deltay == 1:
             if self.pgnboard.piece_at((yfrom - 1) * 8 + xto) != None:
+                return True 
+        if abs(deltax == 1) and deltay == -1 and bep[xto]:
+            if self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
+                return True
+        if abs(deltax == 1) and deltay == 1 and wep[xto]:
+            if self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
                 return True        
         return False
         
