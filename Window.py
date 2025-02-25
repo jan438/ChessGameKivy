@@ -553,13 +553,11 @@ class ChessBoard(RelativeLayout):
                     if pieceindex > -1:
                         piece = self.children[pieceindex]
                         self.remove_widget(piece)
-                    print("Enpassant black", wep)
                 if color == "White" and yto == 5 and abs(xfrom - xto) == 1 and bep[xto]:
                     pieceindex = self.pieceindex_at_board(xto, yto - 1)
                     if pieceindex > -1:
                         piece = self.children[pieceindex]
                         self.remove_widget(piece)
-                    print("Enpassant white", bep)
             else:
                 self.clear_en_passant(color) 
             anim = Animation(grid_x = xto, grid_y = yto, t='in_out_expo', duration=0.5)
