@@ -606,13 +606,11 @@ class ChessBoard(RelativeLayout):
         deltay = yfrom - yto
         if deltax == 0 and deltay == -2 and yfrom == 1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom + 2) * 8 + xto) == None :
                 return True
-        if deltax == 0 and deltay == -1:
-            if self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
+        if deltax == 0 and deltay == -1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
                 return True
         if deltax == 0 and deltay == 2 and yfrom == 6 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom - 2) * 8 + xto) == None :
                 return True
-        if deltax == 0 and deltay == 1:
-            if self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
+        if deltax == 0 and deltay == 1 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
                 return True
         if abs(deltax == 1) and deltay == -1:
             if self.pgnboard.piece_at((yfrom + 1) * 8 + xto) != None:
