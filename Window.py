@@ -632,6 +632,10 @@ class ChessBoard(RelativeLayout):
         
                 print("Enpassant by black from", xfrom, yfrom, "to", xto, yto, "wep", wep[xto])
                 return True
+        elif yfrom == 4:
+                print("white from 4")
+        elif yfrom == 3:
+                print("black from 3")         
         print("no valid")     
         return False
         
