@@ -608,16 +608,22 @@ class ChessBoard(RelativeLayout):
         print("wep", wep, "x", wep[xto])
         print("bep", bep, "x", bep[xto])
         if deltax == 0 and deltay == -2 and yfrom == 1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom + 2) * 8 + xto) == None :
+                print("2 places w")     
                 return True
         elif deltax == 0 and deltay == -1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
+                print("1 places w")     
                 return True
         elif deltax == 0 and deltay == 2 and yfrom == 6 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom - 2) * 8 + xto) == None :
+                print("2 places b")     
                 return True
         elif deltax == 0 and deltay == 1 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
+                print("1 places b")     
                 return True
         elif abs(deltax == 1) and deltay == -1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) != None:
+                print("capture w")     
                 return True
         elif abs(deltax == 1) and deltay == 1 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) != None:
+                print("capture b")     
                 return True 
         elif abs(deltax == 1) and deltay == -1 and bep[xto] and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
                 print("Enpassant by white from", xfrom, yfrom, "to", xto, yto, "bep", bep[xto])
@@ -625,7 +631,8 @@ class ChessBoard(RelativeLayout):
         elif abs(deltax == 1) and deltay == 1 and wep[xto] and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
         
                 print("Enpassant by black from", xfrom, yfrom, "to", xto, yto, "wep", wep[xto])
-                return True        
+                return True
+        print("no valid")     
         return False
         
     def valid_king(self, xfrom, yfrom, xto, yto):
