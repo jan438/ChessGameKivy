@@ -618,11 +618,11 @@ class ChessBoard(RelativeLayout):
         elif abs(deltax == 1) and deltay == 1 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) != None:
                 return True 
         elif abs(deltax == 1) and deltay == -1 and bep[xto] and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
-                print("Enpassant by white from", xfrom, yfrom, "to", xto, yto)
+                print("Enpassant by white from", xfrom, yfrom, "to", xto, yto, "bep", bep[xto])
                 return True
         elif abs(deltax == 1) and deltay == 1 and wep[xto] and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
         
-                print("Enpassant by black from", xfrom, yfrom, "to", xto, yto)
+                print("Enpassant by black from", xfrom, yfrom, "to", xto, yto, "wep", wep[xto])
                 return True        
         return False
         
