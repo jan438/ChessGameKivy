@@ -983,6 +983,8 @@ class ChessBoard(RelativeLayout):
         node = self.pgngame.end()
         self.pgn_index = len(self.pgn_moves)
         try:
+            if (frompiecestr == 'P' and self.hmmove[3] == '8') or (frompiecestr == 'p' and self.hmmove[3] == '1'):
+                self.hmmove = self.hmmove + "q"
             pgnmove = chess.Move.from_uci(self.hmmove)
             node = node.add_main_variation(pgnmove)
             self.pgn_moves.append(self.hmmove)
