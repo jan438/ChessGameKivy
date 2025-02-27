@@ -626,10 +626,8 @@ class ChessBoard(RelativeLayout):
                 print("capture b")     
                 return True 
         elif yfrom == 4 and bep[xto] and deltay == -1 and abs(deltax) == 1 and self.pgnboard.piece_at(yto * 8 + xto) == None:
-                print("white from 4", bep[xto])
                 return True
-        elif yfrom == 3 and wep[xto] and deltay == 1 and abs(deltax) == 1:
-                print("black from 3", wep[xto])
+        elif yfrom == 3 and wep[xto] and deltay == 1 and abs(deltax) == 1 and self.pgnboard.piece_at(yto * 8 + xto) == None:
                 return True       
         print("no valid")     
         return False
