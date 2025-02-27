@@ -584,10 +584,10 @@ class ChessBoard(RelativeLayout):
                 anim.start(piece)
             if id[:9] == "WhitePawn" and yto == 7:
                  self.remove_widget(child)
-                 self.add_widget(Queen(id = "", source="Assets/PNG/WhiteQueen.png", grid_x = xto, grid_y = 7))
+                 self.add_widget(Queen(id = "WhiteQueen2", source="Assets/PNG/WhiteQueen.png", grid_x = xto, grid_y = 7))
             if id[:9] == "BlackPawn" and yto == 0:
                  self.remove_widget(child)
-                 self.add_widget(Queen(id = "", source="Assets/PNG/BlackQueen.png", grid_x = xto, grid_y = 0))
+                 self.add_widget(Queen(id = "BlackQueen2", source="Assets/PNG/BlackQueen.png", grid_x = xto, grid_y = 0))
                  
     def show_warning(self, msg, lcolor):
         message = Label(text = msg, color = lcolor, font_size='50sp')
