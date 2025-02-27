@@ -620,10 +620,10 @@ class ChessBoard(RelativeLayout):
                 print("1 places b")     
                 return True
         elif abs(deltax == 1) and deltay == -1 and self.pgnboard.piece_at(yto * 8 + xto) != None:
-                print("capture w")     
+                print("capture by w")     
                 return True
         elif abs(deltax == 1) and deltay == 1 and self.pgnboard.piece_at(yto * 8 + xto) != None:
-                print("capture b")     
+                print("capture by b")     
                 return True 
         elif yfrom == 4 and bep[xto] and deltay == -1 and abs(deltax) == 1 and self.pgnboard.piece_at(yto * 8 + xto) == None:
                 return True
