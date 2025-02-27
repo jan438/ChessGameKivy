@@ -4,6 +4,6 @@
 [Round "?"]
 [White "Wim"]
 [Black "Jan"]
-[Result "1-0"]
+[Result "*"]
 
-1. d4 { Comment } 1... d5 2. Nc3 Nf6 3. e3 Nc6 4. Bd3 e6 5. Nf3 Bb4 6. O-O O-O 7. Re1 a6 8. Bd2 Bd6 9. Ne2 e5 10. dxe5 Nxe5 11. Nxe5 Bxe5 12. c3 c6 13. h3 Qd6 14. f4 Bxf4 15. exf4 Bd7 16. Kh2 g6 17. g3 Kg7 18. Nd4 Ng8 19. Be3 c5 20. Nf3 Qe6 21. g4 Rac8 22. Bc2 Qd6 23. a3 Rce8 24. Kg3 b6 25. Bc1 Be6 26. Rb1 b5 27. b4 c4 28. Nd4 Bc8 29. Rxe8 Rxe8 30. Qf3 Qe7 31. Bd2 Qc7 32. Qf1 Rd8 33. Ra1 Rd6 34. a4 Rf6 35. axb5 g5 36. Ne2 Qd7 37. bxa6 h5 38. a7 hxg4 39. a8=Q gxh3 40. Ng1 Qg4+ 41. Kf2 1-0
+1. d4 { Comment } 1... d5 2. e3 Bf5 3. Bd3 Bc8 4. Nc3 Nf6 5. Nf3 Bg4 6. Be2 Bc8 7. b3 e6 8. O-O Nc6 9. Bb2 Bd6 10. g3 Qd7 11. Re1 O-O 12. Nh4 Be7 13. Bf3 Ne8 14. Ng2 e5 15. dxe5 Nxe5 16. Bxd5 Qh3 17. Nf4 Qd7 18. Bg2 f6 19. Qxd7 Nxd7 20. Red1 c6 21. Nce2 Nb6 22. Bh3 f5 23. a3 Nc7 24. c4 Nd7 25. Bg2 Nf6 26. Bxf6 Bxf6 27. Ra2 Be6 28. Nxe6 Nxe6 29. a4 Be7 30. Rd7 Rfd8 *
