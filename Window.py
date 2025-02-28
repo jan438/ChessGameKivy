@@ -1054,10 +1054,11 @@ class ChessBoard(RelativeLayout):
                     if grid_y == 0 and child.id[0:9] == "BlackPawn":
                         self.remove_widget(child)
                         self.add_widget(Queen(id="BlackQueen2",source="Assets/PNG/BlackQueen.png", grid_x=grid_x, grid_y=grid_y))
-                    if child.id[5:9] == "Pawn" and abs(grid_y - old_y) == 2:
-                        self.mark_en_passant(child.id[:5], grid_x)
-                    else:
-                        self.clear_en_passant(child.id[:5]) 
+                    if child.id[5:9] == "Pawn":
+                        if abs(grid_y - old_y) == 2:
+                             self.mark_en_passant(child.id[:5], grid_x)
+                        else:
+                            self.clear_en_passant(child.id[:5]) 
                     if (child.id[5:9] == "Pawn" or child.id[5:9] == "Rook" or child.id[5:9] == "King") and child.First_use:
                         child.First_use = False
                     self.draw_moves()
@@ -1119,10 +1120,6 @@ class ChessBoard(RelativeLayout):
                             self.draw_moves()
                             enpassant = True
                             self.turn()
-                    if child.id[:5] == "White":
-                        self.clear_en_passant("Black")
-                    else:
-                        self.clear_en_passant("White")
             elif ChessBoard.piece_pressed and ChessBoard.id_piece_[5:] == "King" and (grid_x, grid_y) in ChessBoard.available_moves["castling"]:
                 touchmove = xpos_to_letter(round(self.children[ChessBoard.piece_index].grid_x)) + ypos_to_digit(round(self.children[ChessBoard.piece_index].grid_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
                 node = self.pgngame.end()
