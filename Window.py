@@ -604,22 +604,28 @@ class ChessBoard(RelativeLayout):
     def valid_pawn(self, xfrom, yfrom, xto, yto):
         deltax = xfrom - xto
         deltay = yfrom - yto
-        if deltax == 0 and deltay == -2 and yfrom == 1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom + 2) * 8 + xto) == None :    
-                return True
-        elif deltax == 0 and deltay == -1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:   
-                return True
-        elif deltax == 0 and deltay == 2 and yfrom == 6 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom - 2) * 8 + xto) == None :   
-                return True
-        elif deltax == 0 and deltay == 1 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None: 
-                return True
-        elif abs(deltax) == 1 and deltay == -1 and self.pgnboard.piece_at(yto * 8 + xto) != None:  
-                return True
-        elif abs(deltax) == 1 and deltay == 1 and self.pgnboard.piece_at(yto * 8 + xto) != None: 
-                return True 
+        if deltax == 0 and deltay == -2 and yfrom == 1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom + 2) * 8 + xto) == None: 
+            self.clear_en_passant("White")           
+            return True
+        elif deltax == 0 and deltay == -1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
+            self.clear_en_passant("White")              
+            return True
+        elif deltax == 0 and deltay == 2 and yfrom == 6 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom - 2) * 8 + xto) == None:
+            self.clear_en_passant("Black")                
+            return True
+        elif deltax == 0 and deltay == 1 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
+            self.clear_en_passant("Black")                
+            return True
+        elif abs(deltax) == 1 and deltay == -1 and self.pgnboard.piece_at(yto * 8 + xto) != None:
+            self.clear_en_passant("White")           
+            return True
+        elif abs(deltax) == 1 and deltay == 1 and self.pgnboard.piece_at(yto * 8 + xto) != None:
+            self.clear_en_passant("Black")           
+            return True 
         elif yfrom == 4 and bep[xto] and deltay == -1 and abs(deltax) == 1 and self.pgnboard.piece_at(yto * 8 + xto) == None:
-                return True
+            return True
         elif yfrom == 3 and wep[xto] and deltay == 1 and abs(deltax) == 1 and self.pgnboard.piece_at(yto * 8 + xto) == None:
-                return True       
+            return True       
         print("no valid")     
         return False
         
