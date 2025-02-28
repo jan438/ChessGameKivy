@@ -605,13 +605,13 @@ class ChessBoard(RelativeLayout):
         deltax = xfrom - xto
         deltay = yfrom - yto
         if deltax == 0 and deltay == -2 and yfrom == 1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom + 2) * 8 + xto) == None: 
-            self.clear_en_passant("White")           
+            self.mark_en_passant("White", xto)
             return True
         elif deltax == 0 and deltay == -1 and self.pgnboard.piece_at((yfrom + 1) * 8 + xto) == None:
             self.clear_en_passant("White")              
             return True
         elif deltax == 0 and deltay == 2 and yfrom == 6 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None and self.pgnboard.piece_at((yfrom - 2) * 8 + xto) == None:
-            self.clear_en_passant("Black")                
+            self.mark_en_passant("Black", xto)
             return True
         elif deltax == 0 and deltay == 1 and self.pgnboard.piece_at((yfrom - 1) * 8 + xto) == None:
             self.clear_en_passant("Black")                
@@ -623,8 +623,10 @@ class ChessBoard(RelativeLayout):
             self.clear_en_passant("Black")           
             return True 
         elif yfrom == 4 and bep[xto] and deltay == -1 and abs(deltax) == 1 and self.pgnboard.piece_at(yto * 8 + xto) == None:
+            self.clear_en_passant("White")           
             return True
         elif yfrom == 3 and wep[xto] and deltay == 1 and abs(deltax) == 1 and self.pgnboard.piece_at(yto * 8 + xto) == None:
+            self.clear_en_passant("Black")           
             return True       
         print("no valid")     
         return False
