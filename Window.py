@@ -1090,12 +1090,12 @@ class ChessBoard(RelativeLayout):
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                             anim.start(self.children[id])
                             self.remove_widget(enemy)
-                            
                             if grid_y == 7 and child.id[0:9] == "WhitePawn":
-                                print("Capture by white pawn")
                                 self.remove_widget(child)
                                 self.add_widget(Queen(id="WhiteQueen2",source="Assets/PNG/WhiteQueen.png", grid_x=grid_x, grid_y=grid_y))
-                            
+                            if grid_y == 0 and child.id[0:9] == "BlackPawn":
+                                self.remove_widget(child)
+                                self.add_widget(Queen(id="BlackQueen2",source="Assets/PNG/BlackQueen.png", grid_x=grid_x, grid_y=grid_y))
                             ChessBoard.piece_pressed = False
                             ChessBoard.available_moves = {"available_moves":(), "pieces_to_capture":[]}
                             if (child.id[5:9] == "Pawn" or child.id[5:9] == "Rook" or child.id[5:9] == "King") and child.First_use:
