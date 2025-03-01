@@ -1090,6 +1090,9 @@ class ChessBoard(RelativeLayout):
                             anim = Animation(grid_x=grid_x, grid_y=grid_y, t='in_out_expo', duration=0.5)
                             anim.start(self.children[id])
                             self.remove_widget(enemy)
+                            
+                            print("Capture")
+                            
                             ChessBoard.piece_pressed = False
                             ChessBoard.available_moves = {"available_moves":(), "pieces_to_capture":[]}
                             if (child.id[5:9] == "Pawn" or child.id[5:9] == "Rook" or child.id[5:9] == "King") and child.First_use:
