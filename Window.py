@@ -988,6 +988,11 @@ class ChessBoard(RelativeLayout):
             self.pp.dismiss()
             self.show_warning("Invalid " + strmove + frompiecestr, self.labelcolor)
             return
+        if frompiecestr == 'B' or frompiecestr == 'R' or frompiecestr == 'Q' or frompiecestr == 'N' or frompiecestr == 'K':
+            self.clear_en_passant("White")
+            
+        if frompiecestr == 'b' or frompiecestr == 'r' or frompiecestr == 'q' or frompiecestr == 'n' or frompiecestr == 'k':
+            self.clear_en_passant("Black")   
         node = self.pgngame.end()
         self.pgn_index = len(self.pgn_moves)
         try:
