@@ -1078,6 +1078,8 @@ class ChessBoard(RelativeLayout):
                     for enemy in self.children:
                         if enemy.grid_x == grid_x and enemy.grid_y == grid_y:
                             touchmove = xpos_to_letter(round(old_x)) + ypos_to_digit(round(old_y)) + xpos_to_letter(round(grid_x)) + ypos_to_digit(round(grid_y))
+                            if (grid_y == 7 and child.id[0:9] == "WhitePawn") or (grid_y == 0 and child.id[0:9] == "BlackPawn"):
+                                touchmove = touchmove + "q" 
                             node = self.pgngame.end()
                             try:
                                 pgnmove = chess.Move.from_uci(touchmove)
