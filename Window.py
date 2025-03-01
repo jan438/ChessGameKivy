@@ -1093,6 +1093,8 @@ class ChessBoard(RelativeLayout):
                             
                             if grid_y == 7 and child.id[0:9] == "WhitePawn":
                                 print("Capture by white pawn")
+                                self.remove_widget(child)
+                                self.add_widget(Queen(id="WhiteQueen2",source="Assets/PNG/WhiteQueen.png", grid_x=grid_x, grid_y=grid_y))
                             
                             ChessBoard.piece_pressed = False
                             ChessBoard.available_moves = {"available_moves":(), "pieces_to_capture":[]}
