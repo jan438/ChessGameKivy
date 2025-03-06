@@ -878,8 +878,8 @@ class ChessBoard(RelativeLayout):
             self.listpgn_moves()
         elif l == 'w':
             self.pgngame.headers["Event"] = "Social Chess"
-            self.pgngame.headers["White"] = "Jan"
-            self.pgngame.headers["Black"] = "Wim"
+            self.pgngame.headers["White"] = "Wim"
+            self.pgngame.headers["Black"] = "Jan"
             current_date = datetime.today().strftime('%Y-%m-%d')
             self.pgngame.headers["Date"] = "2025.03.01"
             self.pgnboard = self.pgngame.board()
